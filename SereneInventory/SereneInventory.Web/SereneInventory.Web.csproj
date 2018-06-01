@@ -575,6 +575,23 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\ionicons.svg" />
     <Content Include="fonts\Simple-Line-Icons.svg" />
+    <Content Include="Modules\_Ext\AuditLogViewer\AuditLogViewer.Template.html" />
+    <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\formatters-styles\annotated.css" />
+    <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\formatters-styles\html.css" />
+    <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch-formatters.js" />
+    <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch-formatters.min.js" />
+    <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch-full.js" />
+    <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch-full.min.js" />
+    <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch.js" />
+    <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch.min.js" />
+    <Content Include="Modules\_Ext\AuditLog\dbo.AuditLog.sql" />
+    <Content Include="Modules\_Ext\CustomSlickGridPlugin\slick.autocolumnsize.js" />
+    <Content Include="Modules\_Ext\Editors\SerenityInlineEditors.js" />
+    <Content Include="Modules\_Ext\Editors\slick.editors.js" />
+    <Content Include="Modules\_Ext\ExtStyles.css" />
+    <Content Include="Modules\_Ext\Reporting\report.css" />
+    <Content Include="Modules\_Ext\Reporting\ReportFooter.html" />
+    <Content Include="Modules\_Ext\Utils\ReplaceRow\SP_ReplaceRow.sql" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -793,6 +810,25 @@
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
     <Content Include="wkhtmltopdf-license.txt" />
+    <Content Include="Modules\_Ext\CompareEntityToDB\CompareEntityToDBIndex.cshtml" />
+    <Content Include="Modules\_Ext\CodeGeneratorTemplates\_Style.scriban" />
+    <Content Include="Modules\_Ext\CodeGeneratorTemplates\_ServiceTyping.scriban" />
+    <Content Include="Modules\_Ext\CodeGeneratorTemplates\_RowTyping.scriban" />
+    <Content Include="Modules\_Ext\CodeGeneratorTemplates\_Repository.scriban" />
+    <Content Include="Modules\_Ext\CodeGeneratorTemplates\_Page.scriban" />
+    <Content Include="Modules\_Ext\CodeGeneratorTemplates\_NavigationLink.scriban" />
+    <Content Include="Modules\_Ext\CodeGeneratorTemplates\_IndexView.scriban" />
+    <Content Include="Modules\_Ext\CodeGeneratorTemplates\_FormTyping.scriban" />
+    <Content Include="Modules\_Ext\CodeGeneratorTemplates\_Form.scriban" />
+    <Content Include="Modules\_Ext\CodeGeneratorTemplates\_Columns.scriban" />
+    <Content Include="Modules\_Ext\CodeGeneratorTemplates\Row.scriban" />
+    <Content Include="Modules\_Ext\CodeGeneratorTemplates\Grid.scriban" />
+    <Content Include="Modules\_Ext\CodeGeneratorTemplates\Endpoint.scriban" />
+    <Content Include="Modules\_Ext\CodeGeneratorTemplates\Dialog.scriban" />
+    <Content Include="Modules\_Ext\AuditLog\AuditLogIndex.cshtml" />
+    <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch.min.map" />
+    <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch-full.min.map" />
+    <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch-formatters.min.map" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -891,6 +927,84 @@
     <Content Include="tools\Node\lessc.cmd" />
     <Content Include="tools\JsEngine\lib.d.ts_" />
     <None Include="tsconfig.json" />
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.AuditActionType.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.AuditLogColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.AuditLogForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.AuditLogRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.AuditLogService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.AuditLogViewerRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.AuditLogViewerResponse.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.AuditLogViewerService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.EntityReportRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.ListReportRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.Months.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.ReplaceRowForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.ReplaceRowRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.ReplaceRowResponse.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.ReplaceRowService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.TimeUoM.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\_Ext\AuditLogViewer\AuditLogViewer.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\AuditLogViewer\AuditLogViewerDialog.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\AuditLog\AuditLogActionTypeFormatter.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\AuditLog\AuditLogDialog.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\AuditLog\AuditLogGrid.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Bases\DialogBase.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Bases\GridBase.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Bases\ReportGridBase.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Editors\AutoCompleteEditor.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Editors\ColorEditor.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Editors\DateTimePickerEditor.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Editors\EditorDialogBase.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Editors\EmptyLookupEditor.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Editors\GridEditorBase.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Editors\StaticTextBlock.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Editors\TemplatedLookupEditor.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Mixins\CardViewMixin.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Reporting\ExcelExportHelper.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Reporting\PdfExportHelper.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Reporting\ReportHelper.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Utils\DialogUtils.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Utils\ReplaceRow\ReplaceRowDialog.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Utils\Using.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\_q\_q.array.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\_q\_q.d.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\_q\_q.datetime.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\_q\_q.editor-utils.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\_q\_q.enum.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\_q\_q.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\_q\_q.var.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jquery\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jqueryui\index.d.ts" />
     <TypeScriptCompile Include="node_modules\%40types\jquery.blockui\index.d.ts" />
@@ -1589,6 +1703,27 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Imports\ClientTypes\_Ext.AuditLogActionTypeFormatterAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ClientTypes\_Ext.AutoCompleteEditorAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ClientTypes\_Ext.ColorEditorAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ClientTypes\_Ext.DateTimePickerEditorAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ClientTypes\_Ext.EmptyLookupEditorAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ClientTypes\_Ext.StaticTextBlockAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ClientTypes\_Ext.TemplatedLookupEditorAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Administration\AdministrationNavigation.cs" />
     <Compile Include="Modules\Administration\Language\LanguageLookup.cs" />
     <Compile Include="Modules\Administration\RolePermission\RolePermissionUpdateRequest.cs" />
@@ -1619,46 +1754,7 @@
     <Compile Include="Imports\ClientTypes\Administration.RoleCheckEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Imports\ClientTypes\BasicSamples.ChangingLookupTextEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\BasicSamples.FilteredLookupDetailEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\BasicSamples.HardcodedValuesEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\BasicSamples.InlineImageFormatterAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\BasicSamples.ProduceSeafoodCategoryEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
     <Compile Include="Imports\ClientTypes\Common.EnumSelectFormatterAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\Northwind.CustomerEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\Northwind.EmployeeFormatterAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\Northwind.EmployeeListFormatterAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\Northwind.FreightFormatterAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\Northwind.NotesEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\Northwind.OrderDetailsEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\Northwind.PhoneEditorAttribute.cs">
-      <DependentUpon>ClientTypes.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Imports\ClientTypes\Northwind.ShipperFormatterAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ClientTypes\StaticTextBlockAttribute.cs">
@@ -1715,6 +1811,29 @@
     <Compile Include="Modules\Administration\User\Authentication\AuthenticationService.cs" />
     <Compile Include="Modules\Administration\User\Authentication\UserRetrieveService.cs" />
     <Compile Include="Modules\Membership\Account\LoginRequest.cs" />
+    <Compile Include="Modules\_Ext\AuditLogViewer\AuditLogViewerEndpoint.cs" />
+    <Compile Include="Modules\_Ext\AuditLog\AuditLogColumns.cs" />
+    <Compile Include="Modules\_Ext\AuditLog\AuditLogEndpoint.cs" />
+    <Compile Include="Modules\_Ext\AuditLog\AuditLogForm.cs" />
+    <Compile Include="Modules\_Ext\AuditLog\AuditLogPage.cs" />
+    <Compile Include="Modules\_Ext\AuditLog\AuditLogRepository.cs" />
+    <Compile Include="Modules\_Ext\AuditLog\AuditLogRow.cs" />
+    <Compile Include="Modules\_Ext\Behaviours\AuditLogBehaviour.cs" />
+    <Compile Include="Modules\_Ext\CompareEntityToDB\CompareEntityToDBPage.cs" />
+    <Compile Include="Modules\_Ext\CompareEntityToDB\CompareEntityToDBPageModel.cs" />
+    <Compile Include="Modules\_Ext\CompareEntityToDB\SchemaHelper.cs" />
+    <Compile Include="Modules\_Ext\Reporting\ReportBase.cs" />
+    <Compile Include="Modules\_Ext\Reporting\ReportModelBase.cs" />
+    <Compile Include="Modules\_Ext\Reporting\ReportRequest.cs" />
+    <Compile Include="Modules\_Ext\Utils\DateTimeHelper.cs" />
+    <Compile Include="Modules\_Ext\Utils\EnumHelper.cs" />
+    <Compile Include="Modules\_Ext\Utils\Enums.cs" />
+    <Compile Include="Modules\_Ext\Utils\NumberToWords.cs" />
+    <Compile Include="Modules\_Ext\Utils\ObjectExtentions.cs" />
+    <Compile Include="Modules\_Ext\Utils\Q.cs" />
+    <Compile Include="Modules\_Ext\Utils\ReplaceRow\ReplaceRowEndpoint.cs" />
+    <Compile Include="Modules\_Ext\Utils\ReplaceRow\ReplaceRowForm.cs" />
+    <Compile Include="Modules\_Ext\_ExtNavigation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Modules\Administration\User\UserRow.cs" />
     <Compile Include="Modules\Administration\User\UserForm.cs" />
