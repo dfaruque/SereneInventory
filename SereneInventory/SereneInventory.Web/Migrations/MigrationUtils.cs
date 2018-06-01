@@ -108,6 +108,17 @@ END;", table, id, seq));
             migration.IfDatabase("Oracle")
                 .Execute.Sql(@"ALTER TRIGGER " + seq + "_TRG ENABLE");
         }
+
+        public static ICreateTableWithColumnSyntax CommonFields(this ICreateTableWithColumnSyntax e)
+        {
+            return e.WithColumn("Remarks").AsString(500).Nullable()
+                    .WithColumn("IUser").AsString(50).Nullable()
+                    .WithColumn("EUser").AsString(50).Nullable()
+                    .WithColumn("IDate").AsDateTime().Nullable().WithDefault(SystemMethods.CurrentDateTime)
+                    .WithColumn("EDate").AsDateTime().Nullable();
+
+        }
+
     }
 
     public class MigrationAttribute : FluentMigrator.MigrationAttribute
