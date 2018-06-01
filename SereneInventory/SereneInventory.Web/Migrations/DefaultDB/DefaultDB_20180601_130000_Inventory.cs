@@ -8,8 +8,9 @@ namespace SereneInventory.Migrations.DefaultDB
         public override void Up()
         {
             this.CreateTableWithId64("Product", "Id", s => s
-                .WithColumn("Name").AsGuid().NotNullable()
-                .WithColumn("Description").AsString(50).NotNullable());
+                .WithColumn("Name").AsString(100).NotNullable()
+                .WithColumn("Description").AsString(500).Nullable()
+                .CommonFields());
 
             
         }
