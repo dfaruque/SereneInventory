@@ -9,7 +9,7 @@ namespace SereneInventory.Administration.Forms
     [BasedOnRow(typeof(Entities.RoleRow), CheckNames = true)]
     public class RoleColumns
     {
-        [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
+        [EditLink, DisplayName("Db.Shared.RecordId"), Hidden]
         public Int32 RoleId { get; set; }
         [EditLink, Width(300)]
         public String RoleName { get; set; }

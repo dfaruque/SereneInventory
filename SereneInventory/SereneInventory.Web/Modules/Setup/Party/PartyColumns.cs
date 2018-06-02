@@ -13,7 +13,7 @@ namespace SereneInventory.Setup.Columns
     [BasedOnRow(typeof(Entities.PartyRow), CheckNames = true)]
     public class PartyColumns
     {
-        [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
+        [EditLink, DisplayName("Db.Shared.RecordId"), Hidden]
         public Int64 Id { get; set; }
         public Int32 PartyType { get; set; }
         [EditLink]

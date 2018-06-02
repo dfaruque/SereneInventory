@@ -13,7 +13,7 @@ namespace SereneInventory.Setup.Columns
     [BasedOnRow(typeof(Entities.ProductCategoryRow), CheckNames = true)]
     public class ProductCategoryColumns
     {
-        [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
+        [EditLink, DisplayName("Db.Shared.RecordId"), Hidden]
         public Int64 Id { get; set; }
         [EditLink]
         public String Name { get; set; }

@@ -13,7 +13,7 @@ namespace SereneInventory.Administration.Columns
     [BasedOnRow(typeof(Entities.TenantRow), CheckNames = true)]
     public class TenantColumns
     {
-        [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
+        [EditLink, DisplayName("Db.Shared.RecordId"), Hidden]
         public Int64 Id { get; set; }
         [EditLink]
         public String Name { get; set; }

@@ -13,7 +13,7 @@ namespace SereneInventory.Inventory.Columns
     [BasedOnRow(typeof(Entities.TransactionDetailRow), CheckNames = true)]
     public class TransactionDetailColumns
     {
-        [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
+        [EditLink, DisplayName("Db.Shared.RecordId"), Hidden]
         public Int64 Id { get; set; }
         public Int64 TransactionId { get; set; }
         public Int64 ProductId { get; set; }
