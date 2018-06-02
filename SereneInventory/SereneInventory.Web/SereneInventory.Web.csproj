@@ -522,6 +522,7 @@
     <Content Include="Content\serenity\images\zoom.png" />
     <Content Include="Content\serenity\serenity.css" />
     <Content Include="Content\simple-line-icons.css" />
+    <Content Include="Content\site\site.css" />
     <Content Include="Content\slick-default-theme.css" />
     <Content Include="Content\slick.columnpicker.css" />
     <Content Include="Content\slick.grid.css" />
@@ -809,6 +810,7 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <Content Include="Content\toastr.scss" />
     <Content Include="Content\toastr.less" />
+    <Content Include="Scripts\site\SereneInventory.Web.js" />
     <Content Include="wkhtmltopdf-license.txt" />
     <Content Include="Modules\_Ext\CompareEntityToDB\CompareEntityToDBIndex.cshtml" />
     <Content Include="Modules\_Ext\CodeGeneratorTemplates\_Style.scriban" />
