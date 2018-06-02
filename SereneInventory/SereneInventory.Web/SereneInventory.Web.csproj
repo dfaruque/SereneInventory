@@ -1282,7 +1282,6 @@
     <Content Include="Content\site\images\tick-red-partial.png" />
     <Content Include="Content\site\site.rtl.css" />
     <Content Include="Content\site\site.htmlcontent.css" />
-    <Content Include="Content\site\site.css" />
     <Content Include="Content\site\site.mixins.less" />
     <Content Include="Content\site\site.membership.less" />
     <Content Include="Content\adminlte\.csslintrc" />
@@ -1637,7 +1636,6 @@
     <Content Include="Scripts\mousetrap.min.js" />
     <Content Include="Scripts\raphael\raphael-min.js" />
     <Content Include="Scripts\raphael\raphael.js" />
-    <Content Include="Scripts\site\SereneInventory.Web.js" />
     <Content Include="Scripts\sparkline\jquery.sparkline.js" />
     <Content Include="Scripts\sparkline\jquery.sparkline.min.js" />
     <Content Include="Scripts\timepicker\bootstrap-timepicker.css" />
