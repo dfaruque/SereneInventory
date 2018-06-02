@@ -22,17 +22,17 @@ namespace SereneInventory
         public DateTime? IDate { get { return Fields.IDate[this]; } set { Fields.IDate[this] = value; } }
 
         [DisplayName("Insert User Id")]
-        public string IUser { get { return Fields.IUser[this]; } set { Fields.IUser[this] = value; } }
+        public Int64? IUserId { get { return Fields.IUserId[this]; } set { Fields.IUserId[this] = value; } }
 
         [DisplayName("Update Date")]
         public DateTime? EDate { get { return Fields.EDate[this]; } set { Fields.EDate[this] = value; } }
 
         [DisplayName("Update User Id")]
-        public string EUser { get { return Fields.EUser[this]; } set { Fields.EUser[this] = value; } }
+        public Int64? EUserId { get { return Fields.EUserId[this]; } set { Fields.EUserId[this] = value; } }
 
         IIdField IInsertLogRow.InsertUserIdField
         {
-            get { return Fields.IUser; }
+            get { return Fields.IUserId; }
         }
 
         //IIdField IUpdateLogRow.UpdateUserIdField
@@ -60,16 +60,12 @@ namespace SereneInventory
         public abstract class NRowFields : RowFieldsBase
         {
             public StringField Remarks;
-            public StringField IUser;
-            public StringField EUser;
+            public Int64Field IUserId;
+            public Int64Field EUserId;
             public Int32Field RowNum;
             public DateTimeField IDate;
             public DateTimeField EDate;
 
-            public NRowFields(string tableName = null, string fieldPrefix = "") : base(tableName, fieldPrefix)
-            {
-
-            }
         }
 
     }
