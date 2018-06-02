@@ -38,7 +38,7 @@ namespace SereneInventory.Migrations.DefaultDB
             this.CreateTableWithId64("TransactionDetail", "Id", s => s
                 .WithColumn("TransactionId").AsInt64().NotNullable().ForeignKey("Transaction", "Id")
                 .WithColumn("ProductId").AsInt64().NotNullable().ForeignKey("Product", "Id")
-                .WithColumn("Quantity").AsDateTime().NotNullable()
+                .WithColumn("Quantity").AsDecimal().NotNullable()
                 .WithColumn("UnitPrice").AsDecimal().NotNullable()
                 .WithColumn("Amount").AsDecimal().NotNullable()
                 .CommonFields());

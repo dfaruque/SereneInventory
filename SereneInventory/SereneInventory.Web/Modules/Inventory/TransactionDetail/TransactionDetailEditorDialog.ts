@@ -9,5 +9,22 @@ namespace SereneInventory.Inventory {
 
         protected form = new TransactionDetailForm(this.idPrefix);
 
+        constructor() {
+            super();
+
+            this.form.Quantity.change(e => {
+                this.calculateAmount();
+            });
+
+            this.form.UnitPrice.change(e => {
+                this.calculateAmount();
+            });
+
+        }
+
+        private calculateAmount() {
+
+            this.form.Amount.value = this.form.Quantity.value * this.form.UnitPrice.value;
+        }
     }
 }

@@ -31,15 +31,15 @@
         public Int64? ProductId { get { return Fields.ProductId[this]; } set { Fields.ProductId[this] = value; } }
         public partial class RowFields { public Int64Field ProductId; }
 
-        [DisplayName("Quantity"), NotNull]
-        public DateTime? Quantity { get { return Fields.Quantity[this]; } set { Fields.Quantity[this] = value; } }
-        public partial class RowFields { public DateTimeField Quantity; }
+        [DisplayName("Quantity"), NotNull, Width(200, Min = 200)]
+        public Decimal? Quantity { get { return Fields.Quantity[this]; } set { Fields.Quantity[this] = value; } }
+        public partial class RowFields { public DecimalField Quantity; }
 
-        [DisplayName("Unit Price"), Size(19), Scale(2), NotNull]
+        [DisplayName("Unit Price"), Size(19), Scale(2), NotNull, Width(200, Min = 200)]
         public Decimal? UnitPrice { get { return Fields.UnitPrice[this]; } set { Fields.UnitPrice[this] = value; } }
         public partial class RowFields { public DecimalField UnitPrice; }
 
-        [DisplayName("Amount"), Size(19), Scale(2), NotNull]
+        [DisplayName("Amount"), Size(19), Scale(2), NotNull, ReadOnly(true), Width(200, Min = 200)]
         public Decimal? Amount { get { return Fields.Amount[this]; } set { Fields.Amount[this] = value; } }
         public partial class RowFields { public DecimalField Amount; }
 

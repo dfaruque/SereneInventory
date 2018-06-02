@@ -13,5 +13,16 @@ namespace SereneInventory.Inventory.Pages
         {
             return View("~/Modules/Inventory/Transaction/TransactionIndex.cshtml");
         }
+
+        public ActionResult PurchaseInvoiceIndex()
+        {
+            return View("~/Modules/Inventory/Transaction/TransactionIndex.cshtml");
+        }
+
+        public ActionResult SalesInvoiceIndex()
+        {
+            return View("~/Modules/Inventory/Transaction/TransactionIndex.cshtml");
+        }
+
     }
 }

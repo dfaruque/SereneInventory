@@ -20,7 +20,7 @@
     public sealed class TransactionRow : NRow, IIdRow, INameRow
     {
 
-        [DisplayName("Id"), Identity]
+        [DisplayName("Id"), Identity, SortOrder(1, true)]
         public Int64? Id { get { return Fields.Id[this]; } set { Fields.Id[this] = value; } }
         public partial class RowFields { public Int64Field Id; }
 
@@ -37,7 +37,7 @@
         public String TransactionNumber { get { return Fields.TransactionNumber[this]; } set { Fields.TransactionNumber[this] = value; } }
         public partial class RowFields { public StringField TransactionNumber; }
 
-        [DisplayName("Transaction Date"), NotNull]
+        [DisplayName("Transaction Date"), NotNull, DefaultValue("today")]
         public DateTime? TransactionDate { get { return Fields.TransactionDate[this]; } set { Fields.TransactionDate[this] = value; } }
         public partial class RowFields { public DateTimeField TransactionDate; }
 

@@ -14,7 +14,7 @@ namespace SereneInventory.Inventory.Forms
     public class TransactionDetailForm
     {
         public Int64 ProductId { get; set; }
-        public DateTime Quantity { get; set; }
+        public Decimal Quantity { get; set; }
         public Decimal UnitPrice { get; set; }
         public Decimal Amount { get; set; }
         public Int64 TenantId { get; set; }

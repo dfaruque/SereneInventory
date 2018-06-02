@@ -14,6 +14,7 @@ namespace SereneInventory.Inventory.Forms
     [BasedOnRow(typeof(Entities.TransactionRow), CheckNames = true)]
     public class TransactionForm
     {
+        [Hidden]
         public TransactionType TransactionType { get; set; }
         public Int64 RefTransactionId { get; set; }
         public String TransactionNumber { get; set; }

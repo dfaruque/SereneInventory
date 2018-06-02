@@ -3,7 +3,7 @@
         Id?: number;
         TransactionId?: number;
         ProductId?: number;
-        Quantity?: string;
+        Quantity?: number;
         UnitPrice?: number;
         Amount?: number;
         TransactionTransactionType?: number;
