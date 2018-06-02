@@ -313,6 +313,65 @@ var SereneInventory;
 (function (SereneInventory) {
     var Administration;
     (function (Administration) {
+        var TenantForm = (function (_super) {
+            __extends(TenantForm, _super);
+            function TenantForm(prefix) {
+                var _this = _super.call(this, prefix) || this;
+                if (!TenantForm.init) {
+                    TenantForm.init = true;
+                    var s = Serenity;
+                    var w0 = s.StringEditor;
+                    Q.initFormType(TenantForm, [
+                        'Name', w0,
+                        'Description', w0,
+                        'TenantId', w0
+                    ]);
+                }
+                return _this;
+            }
+            return TenantForm;
+        }(Serenity.PrefixedContext));
+        TenantForm.formKey = 'Administration.Tenant';
+        Administration.TenantForm = TenantForm;
+    })(Administration = SereneInventory.Administration || (SereneInventory.Administration = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Administration;
+    (function (Administration) {
+        var TenantRow;
+        (function (TenantRow) {
+            TenantRow.idProperty = 'Id';
+            TenantRow.nameProperty = 'Name';
+            TenantRow.localTextPrefix = 'Administration.Tenant';
+        })(TenantRow = Administration.TenantRow || (Administration.TenantRow = {}));
+    })(Administration = SereneInventory.Administration || (SereneInventory.Administration = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Administration;
+    (function (Administration) {
+        var TenantService;
+        (function (TenantService) {
+            TenantService.baseUrl = 'Administration/Tenant';
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                TenantService[x] = function (r, s, o) {
+                    return Q.serviceRequest(TenantService.baseUrl + '/' + x, r, s, o);
+                };
+            });
+        })(TenantService = Administration.TenantService || (Administration.TenantService = {}));
+    })(Administration = SereneInventory.Administration || (SereneInventory.Administration = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Administration;
+    (function (Administration) {
         var TranslationService;
         (function (TranslationService) {
             TranslationService.baseUrl = 'Administration/Translation';
@@ -493,6 +552,133 @@ var SereneInventory;
 })(SereneInventory || (SereneInventory = {}));
 var SereneInventory;
 (function (SereneInventory) {
+    var Inventory;
+    (function (Inventory) {
+        var TransactionDetailForm = (function (_super) {
+            __extends(TransactionDetailForm, _super);
+            function TransactionDetailForm(prefix) {
+                var _this = _super.call(this, prefix) || this;
+                if (!TransactionDetailForm.init) {
+                    TransactionDetailForm.init = true;
+                    var s = Serenity;
+                    var w0 = s.StringEditor;
+                    var w1 = s.DateEditor;
+                    var w2 = s.DecimalEditor;
+                    Q.initFormType(TransactionDetailForm, [
+                        'TransactionId', w0,
+                        'ProductId', w0,
+                        'Quantity', w1,
+                        'UnitPrice', w2,
+                        'Amount', w2,
+                        'TenantId', w0
+                    ]);
+                }
+                return _this;
+            }
+            return TransactionDetailForm;
+        }(Serenity.PrefixedContext));
+        TransactionDetailForm.formKey = 'Inventory.TransactionDetail';
+        Inventory.TransactionDetailForm = TransactionDetailForm;
+    })(Inventory = SereneInventory.Inventory || (SereneInventory.Inventory = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Inventory;
+    (function (Inventory) {
+        var TransactionDetailRow;
+        (function (TransactionDetailRow) {
+            TransactionDetailRow.idProperty = 'Id';
+            TransactionDetailRow.localTextPrefix = 'Inventory.TransactionDetail';
+        })(TransactionDetailRow = Inventory.TransactionDetailRow || (Inventory.TransactionDetailRow = {}));
+    })(Inventory = SereneInventory.Inventory || (SereneInventory.Inventory = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Inventory;
+    (function (Inventory) {
+        var TransactionDetailService;
+        (function (TransactionDetailService) {
+            TransactionDetailService.baseUrl = 'Inventory/TransactionDetail';
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                TransactionDetailService[x] = function (r, s, o) {
+                    return Q.serviceRequest(TransactionDetailService.baseUrl + '/' + x, r, s, o);
+                };
+            });
+        })(TransactionDetailService = Inventory.TransactionDetailService || (Inventory.TransactionDetailService = {}));
+    })(Inventory = SereneInventory.Inventory || (SereneInventory.Inventory = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Inventory;
+    (function (Inventory) {
+        var TransactionForm = (function (_super) {
+            __extends(TransactionForm, _super);
+            function TransactionForm(prefix) {
+                var _this = _super.call(this, prefix) || this;
+                if (!TransactionForm.init) {
+                    TransactionForm.init = true;
+                    var s = Serenity;
+                    var w0 = s.IntegerEditor;
+                    var w1 = s.StringEditor;
+                    var w2 = s.DateEditor;
+                    Q.initFormType(TransactionForm, [
+                        'TransactionType', w0,
+                        'RefTransactionId', w1,
+                        'TransactionNumber', w1,
+                        'TransactionDate', w2,
+                        'PartyId', w1,
+                        'TenantId', w1
+                    ]);
+                }
+                return _this;
+            }
+            return TransactionForm;
+        }(Serenity.PrefixedContext));
+        TransactionForm.formKey = 'Inventory.Transaction';
+        Inventory.TransactionForm = TransactionForm;
+    })(Inventory = SereneInventory.Inventory || (SereneInventory.Inventory = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Inventory;
+    (function (Inventory) {
+        var TransactionRow;
+        (function (TransactionRow) {
+            TransactionRow.idProperty = 'Id';
+            TransactionRow.nameProperty = 'TransactionNumber';
+            TransactionRow.localTextPrefix = 'Inventory.Transaction';
+        })(TransactionRow = Inventory.TransactionRow || (Inventory.TransactionRow = {}));
+    })(Inventory = SereneInventory.Inventory || (SereneInventory.Inventory = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Inventory;
+    (function (Inventory) {
+        var TransactionService;
+        (function (TransactionService) {
+            TransactionService.baseUrl = 'Inventory/Transaction';
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                TransactionService[x] = function (r, s, o) {
+                    return Q.serviceRequest(TransactionService.baseUrl + '/' + x, r, s, o);
+                };
+            });
+        })(TransactionService = Inventory.TransactionService || (Inventory.TransactionService = {}));
+    })(Inventory = SereneInventory.Inventory || (SereneInventory.Inventory = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
     var Membership;
     (function (Membership) {
         var ChangePasswordForm = (function (_super) {
@@ -621,6 +807,190 @@ var SereneInventory;
         SignUpForm.formKey = 'Membership.SignUp';
         Membership.SignUpForm = SignUpForm;
     })(Membership = SereneInventory.Membership || (SereneInventory.Membership = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Setup;
+    (function (Setup) {
+        var PartyForm = (function (_super) {
+            __extends(PartyForm, _super);
+            function PartyForm(prefix) {
+                var _this = _super.call(this, prefix) || this;
+                if (!PartyForm.init) {
+                    PartyForm.init = true;
+                    var s = Serenity;
+                    var w0 = s.IntegerEditor;
+                    var w1 = s.StringEditor;
+                    Q.initFormType(PartyForm, [
+                        'PartyType', w0,
+                        'Name', w1,
+                        'Address', w1,
+                        'Contact', w1,
+                        'TenantId', w1
+                    ]);
+                }
+                return _this;
+            }
+            return PartyForm;
+        }(Serenity.PrefixedContext));
+        PartyForm.formKey = 'Setup.Party';
+        Setup.PartyForm = PartyForm;
+    })(Setup = SereneInventory.Setup || (SereneInventory.Setup = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Setup;
+    (function (Setup) {
+        var PartyRow;
+        (function (PartyRow) {
+            PartyRow.idProperty = 'Id';
+            PartyRow.nameProperty = 'Name';
+            PartyRow.localTextPrefix = 'Setup.Party';
+        })(PartyRow = Setup.PartyRow || (Setup.PartyRow = {}));
+    })(Setup = SereneInventory.Setup || (SereneInventory.Setup = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Setup;
+    (function (Setup) {
+        var PartyService;
+        (function (PartyService) {
+            PartyService.baseUrl = 'Setup/Party';
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                PartyService[x] = function (r, s, o) {
+                    return Q.serviceRequest(PartyService.baseUrl + '/' + x, r, s, o);
+                };
+            });
+        })(PartyService = Setup.PartyService || (Setup.PartyService = {}));
+    })(Setup = SereneInventory.Setup || (SereneInventory.Setup = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Setup;
+    (function (Setup) {
+        var ProductCategoryForm = (function (_super) {
+            __extends(ProductCategoryForm, _super);
+            function ProductCategoryForm(prefix) {
+                var _this = _super.call(this, prefix) || this;
+                if (!ProductCategoryForm.init) {
+                    ProductCategoryForm.init = true;
+                    var s = Serenity;
+                    var w0 = s.StringEditor;
+                    Q.initFormType(ProductCategoryForm, [
+                        'Name', w0,
+                        'Description', w0,
+                        'TenantId', w0
+                    ]);
+                }
+                return _this;
+            }
+            return ProductCategoryForm;
+        }(Serenity.PrefixedContext));
+        ProductCategoryForm.formKey = 'Setup.ProductCategory';
+        Setup.ProductCategoryForm = ProductCategoryForm;
+    })(Setup = SereneInventory.Setup || (SereneInventory.Setup = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Setup;
+    (function (Setup) {
+        var ProductCategoryRow;
+        (function (ProductCategoryRow) {
+            ProductCategoryRow.idProperty = 'Id';
+            ProductCategoryRow.nameProperty = 'Name';
+            ProductCategoryRow.localTextPrefix = 'Setup.ProductCategory';
+        })(ProductCategoryRow = Setup.ProductCategoryRow || (Setup.ProductCategoryRow = {}));
+    })(Setup = SereneInventory.Setup || (SereneInventory.Setup = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Setup;
+    (function (Setup) {
+        var ProductCategoryService;
+        (function (ProductCategoryService) {
+            ProductCategoryService.baseUrl = 'Setup/ProductCategory';
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                ProductCategoryService[x] = function (r, s, o) {
+                    return Q.serviceRequest(ProductCategoryService.baseUrl + '/' + x, r, s, o);
+                };
+            });
+        })(ProductCategoryService = Setup.ProductCategoryService || (Setup.ProductCategoryService = {}));
+    })(Setup = SereneInventory.Setup || (SereneInventory.Setup = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Setup;
+    (function (Setup) {
+        var ProductForm = (function (_super) {
+            __extends(ProductForm, _super);
+            function ProductForm(prefix) {
+                var _this = _super.call(this, prefix) || this;
+                if (!ProductForm.init) {
+                    ProductForm.init = true;
+                    var s = Serenity;
+                    var w0 = s.StringEditor;
+                    var w1 = s.IntegerEditor;
+                    Q.initFormType(ProductForm, [
+                        'Name', w0,
+                        'ProductType', w1,
+                        'ProductCategoryId', w0,
+                        'Description', w0,
+                        'Images', w0,
+                        'TenantId', w0
+                    ]);
+                }
+                return _this;
+            }
+            return ProductForm;
+        }(Serenity.PrefixedContext));
+        ProductForm.formKey = 'Setup.Product';
+        Setup.ProductForm = ProductForm;
+    })(Setup = SereneInventory.Setup || (SereneInventory.Setup = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Setup;
+    (function (Setup) {
+        var ProductRow;
+        (function (ProductRow) {
+            ProductRow.idProperty = 'Id';
+            ProductRow.nameProperty = 'Name';
+            ProductRow.localTextPrefix = 'Setup.Product';
+        })(ProductRow = Setup.ProductRow || (Setup.ProductRow = {}));
+    })(Setup = SereneInventory.Setup || (SereneInventory.Setup = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Setup;
+    (function (Setup) {
+        var ProductService;
+        (function (ProductService) {
+            ProductService.baseUrl = 'Setup/Product';
+            [
+                'Create',
+                'Update',
+                'Delete',
+                'Retrieve',
+                'List'
+            ].forEach(function (x) {
+                ProductService[x] = function (r, s, o) {
+                    return Q.serviceRequest(ProductService.baseUrl + '/' + x, r, s, o);
+                };
+            });
+        })(ProductService = Setup.ProductService || (Setup.ProductService = {}));
+    })(Setup = SereneInventory.Setup || (SereneInventory.Setup = {}));
 })(SereneInventory || (SereneInventory = {}));
 var q;
 (function (q) {
@@ -3396,6 +3766,52 @@ var SereneInventory;
 (function (SereneInventory) {
     var Administration;
     (function (Administration) {
+        var TenantDialog = (function (_super) {
+            __extends(TenantDialog, _super);
+            function TenantDialog() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new Administration.TenantForm(_this.idPrefix);
+                return _this;
+            }
+            TenantDialog.prototype.getFormKey = function () { return Administration.TenantForm.formKey; };
+            TenantDialog.prototype.getIdProperty = function () { return Administration.TenantRow.idProperty; };
+            TenantDialog.prototype.getLocalTextPrefix = function () { return Administration.TenantRow.localTextPrefix; };
+            TenantDialog.prototype.getNameProperty = function () { return Administration.TenantRow.nameProperty; };
+            TenantDialog.prototype.getService = function () { return Administration.TenantService.baseUrl; };
+            return TenantDialog;
+        }(_Ext.DialogBase));
+        TenantDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], TenantDialog);
+        Administration.TenantDialog = TenantDialog;
+    })(Administration = SereneInventory.Administration || (SereneInventory.Administration = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Administration;
+    (function (Administration) {
+        var TenantGrid = (function (_super) {
+            __extends(TenantGrid, _super);
+            function TenantGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            TenantGrid.prototype.getColumnsKey = function () { return 'Administration.Tenant'; };
+            TenantGrid.prototype.getDialogType = function () { return Administration.TenantDialog; };
+            TenantGrid.prototype.getIdProperty = function () { return Administration.TenantRow.idProperty; };
+            TenantGrid.prototype.getLocalTextPrefix = function () { return Administration.TenantRow.localTextPrefix; };
+            TenantGrid.prototype.getService = function () { return Administration.TenantService.baseUrl; };
+            return TenantGrid;
+        }(_Ext.GridBase));
+        TenantGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], TenantGrid);
+        Administration.TenantGrid = TenantGrid;
+    })(Administration = SereneInventory.Administration || (SereneInventory.Administration = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Administration;
+    (function (Administration) {
         var TranslationGrid = (function (_super) {
             __extends(TranslationGrid, _super);
             function TranslationGrid(container) {
@@ -5351,6 +5767,97 @@ var SereneInventory;
 })(SereneInventory || (SereneInventory = {}));
 var SereneInventory;
 (function (SereneInventory) {
+    var Inventory;
+    (function (Inventory) {
+        var TransactionDialog = (function (_super) {
+            __extends(TransactionDialog, _super);
+            function TransactionDialog() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new Inventory.TransactionForm(_this.idPrefix);
+                return _this;
+            }
+            TransactionDialog.prototype.getFormKey = function () { return Inventory.TransactionForm.formKey; };
+            TransactionDialog.prototype.getIdProperty = function () { return Inventory.TransactionRow.idProperty; };
+            TransactionDialog.prototype.getLocalTextPrefix = function () { return Inventory.TransactionRow.localTextPrefix; };
+            TransactionDialog.prototype.getNameProperty = function () { return Inventory.TransactionRow.nameProperty; };
+            TransactionDialog.prototype.getService = function () { return Inventory.TransactionService.baseUrl; };
+            return TransactionDialog;
+        }(_Ext.DialogBase));
+        TransactionDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], TransactionDialog);
+        Inventory.TransactionDialog = TransactionDialog;
+    })(Inventory = SereneInventory.Inventory || (SereneInventory.Inventory = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Inventory;
+    (function (Inventory) {
+        var TransactionGrid = (function (_super) {
+            __extends(TransactionGrid, _super);
+            function TransactionGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            TransactionGrid.prototype.getColumnsKey = function () { return 'Inventory.Transaction'; };
+            TransactionGrid.prototype.getDialogType = function () { return Inventory.TransactionDialog; };
+            TransactionGrid.prototype.getIdProperty = function () { return Inventory.TransactionRow.idProperty; };
+            TransactionGrid.prototype.getLocalTextPrefix = function () { return Inventory.TransactionRow.localTextPrefix; };
+            TransactionGrid.prototype.getService = function () { return Inventory.TransactionService.baseUrl; };
+            return TransactionGrid;
+        }(_Ext.GridBase));
+        TransactionGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], TransactionGrid);
+        Inventory.TransactionGrid = TransactionGrid;
+    })(Inventory = SereneInventory.Inventory || (SereneInventory.Inventory = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Inventory;
+    (function (Inventory) {
+        var TransactionDetailDialog = (function (_super) {
+            __extends(TransactionDetailDialog, _super);
+            function TransactionDetailDialog() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new Inventory.TransactionDetailForm(_this.idPrefix);
+                return _this;
+            }
+            TransactionDetailDialog.prototype.getFormKey = function () { return Inventory.TransactionDetailForm.formKey; };
+            TransactionDetailDialog.prototype.getIdProperty = function () { return Inventory.TransactionDetailRow.idProperty; };
+            TransactionDetailDialog.prototype.getLocalTextPrefix = function () { return Inventory.TransactionDetailRow.localTextPrefix; };
+            TransactionDetailDialog.prototype.getService = function () { return Inventory.TransactionDetailService.baseUrl; };
+            return TransactionDetailDialog;
+        }(_Ext.DialogBase));
+        TransactionDetailDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], TransactionDetailDialog);
+        Inventory.TransactionDetailDialog = TransactionDetailDialog;
+    })(Inventory = SereneInventory.Inventory || (SereneInventory.Inventory = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Inventory;
+    (function (Inventory) {
+        var TransactionDetailGrid = (function (_super) {
+            __extends(TransactionDetailGrid, _super);
+            function TransactionDetailGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            TransactionDetailGrid.prototype.getColumnsKey = function () { return 'Inventory.TransactionDetail'; };
+            TransactionDetailGrid.prototype.getDialogType = function () { return Inventory.TransactionDetailDialog; };
+            TransactionDetailGrid.prototype.getIdProperty = function () { return Inventory.TransactionDetailRow.idProperty; };
+            TransactionDetailGrid.prototype.getLocalTextPrefix = function () { return Inventory.TransactionDetailRow.localTextPrefix; };
+            TransactionDetailGrid.prototype.getService = function () { return Inventory.TransactionDetailService.baseUrl; };
+            return TransactionDetailGrid;
+        }(_Ext.GridBase));
+        TransactionDetailGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], TransactionDetailGrid);
+        Inventory.TransactionDetailGrid = TransactionDetailGrid;
+    })(Inventory = SereneInventory.Inventory || (SereneInventory.Inventory = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
     var Membership;
     (function (Membership) {
         var ChangePasswordPanel = (function (_super) {
@@ -5526,5 +6033,143 @@ var SereneInventory;
         ], SignUpPanel);
         Membership.SignUpPanel = SignUpPanel;
     })(Membership = SereneInventory.Membership || (SereneInventory.Membership = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Setup;
+    (function (Setup) {
+        var PartyDialog = (function (_super) {
+            __extends(PartyDialog, _super);
+            function PartyDialog() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new Setup.PartyForm(_this.idPrefix);
+                return _this;
+            }
+            PartyDialog.prototype.getFormKey = function () { return Setup.PartyForm.formKey; };
+            PartyDialog.prototype.getIdProperty = function () { return Setup.PartyRow.idProperty; };
+            PartyDialog.prototype.getLocalTextPrefix = function () { return Setup.PartyRow.localTextPrefix; };
+            PartyDialog.prototype.getNameProperty = function () { return Setup.PartyRow.nameProperty; };
+            PartyDialog.prototype.getService = function () { return Setup.PartyService.baseUrl; };
+            return PartyDialog;
+        }(_Ext.DialogBase));
+        PartyDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], PartyDialog);
+        Setup.PartyDialog = PartyDialog;
+    })(Setup = SereneInventory.Setup || (SereneInventory.Setup = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Setup;
+    (function (Setup) {
+        var PartyGrid = (function (_super) {
+            __extends(PartyGrid, _super);
+            function PartyGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            PartyGrid.prototype.getColumnsKey = function () { return 'Setup.Party'; };
+            PartyGrid.prototype.getDialogType = function () { return Setup.PartyDialog; };
+            PartyGrid.prototype.getIdProperty = function () { return Setup.PartyRow.idProperty; };
+            PartyGrid.prototype.getLocalTextPrefix = function () { return Setup.PartyRow.localTextPrefix; };
+            PartyGrid.prototype.getService = function () { return Setup.PartyService.baseUrl; };
+            return PartyGrid;
+        }(_Ext.GridBase));
+        PartyGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], PartyGrid);
+        Setup.PartyGrid = PartyGrid;
+    })(Setup = SereneInventory.Setup || (SereneInventory.Setup = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Setup;
+    (function (Setup) {
+        var ProductDialog = (function (_super) {
+            __extends(ProductDialog, _super);
+            function ProductDialog() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new Setup.ProductForm(_this.idPrefix);
+                return _this;
+            }
+            ProductDialog.prototype.getFormKey = function () { return Setup.ProductForm.formKey; };
+            ProductDialog.prototype.getIdProperty = function () { return Setup.ProductRow.idProperty; };
+            ProductDialog.prototype.getLocalTextPrefix = function () { return Setup.ProductRow.localTextPrefix; };
+            ProductDialog.prototype.getNameProperty = function () { return Setup.ProductRow.nameProperty; };
+            ProductDialog.prototype.getService = function () { return Setup.ProductService.baseUrl; };
+            return ProductDialog;
+        }(_Ext.DialogBase));
+        ProductDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], ProductDialog);
+        Setup.ProductDialog = ProductDialog;
+    })(Setup = SereneInventory.Setup || (SereneInventory.Setup = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Setup;
+    (function (Setup) {
+        var ProductGrid = (function (_super) {
+            __extends(ProductGrid, _super);
+            function ProductGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            ProductGrid.prototype.getColumnsKey = function () { return 'Setup.Product'; };
+            ProductGrid.prototype.getDialogType = function () { return Setup.ProductDialog; };
+            ProductGrid.prototype.getIdProperty = function () { return Setup.ProductRow.idProperty; };
+            ProductGrid.prototype.getLocalTextPrefix = function () { return Setup.ProductRow.localTextPrefix; };
+            ProductGrid.prototype.getService = function () { return Setup.ProductService.baseUrl; };
+            return ProductGrid;
+        }(_Ext.GridBase));
+        ProductGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], ProductGrid);
+        Setup.ProductGrid = ProductGrid;
+    })(Setup = SereneInventory.Setup || (SereneInventory.Setup = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Setup;
+    (function (Setup) {
+        var ProductCategoryDialog = (function (_super) {
+            __extends(ProductCategoryDialog, _super);
+            function ProductCategoryDialog() {
+                var _this = _super !== null && _super.apply(this, arguments) || this;
+                _this.form = new Setup.ProductCategoryForm(_this.idPrefix);
+                return _this;
+            }
+            ProductCategoryDialog.prototype.getFormKey = function () { return Setup.ProductCategoryForm.formKey; };
+            ProductCategoryDialog.prototype.getIdProperty = function () { return Setup.ProductCategoryRow.idProperty; };
+            ProductCategoryDialog.prototype.getLocalTextPrefix = function () { return Setup.ProductCategoryRow.localTextPrefix; };
+            ProductCategoryDialog.prototype.getNameProperty = function () { return Setup.ProductCategoryRow.nameProperty; };
+            ProductCategoryDialog.prototype.getService = function () { return Setup.ProductCategoryService.baseUrl; };
+            return ProductCategoryDialog;
+        }(_Ext.DialogBase));
+        ProductCategoryDialog = __decorate([
+            Serenity.Decorators.registerClass()
+        ], ProductCategoryDialog);
+        Setup.ProductCategoryDialog = ProductCategoryDialog;
+    })(Setup = SereneInventory.Setup || (SereneInventory.Setup = {}));
+})(SereneInventory || (SereneInventory = {}));
+var SereneInventory;
+(function (SereneInventory) {
+    var Setup;
+    (function (Setup) {
+        var ProductCategoryGrid = (function (_super) {
+            __extends(ProductCategoryGrid, _super);
+            function ProductCategoryGrid(container) {
+                return _super.call(this, container) || this;
+            }
+            ProductCategoryGrid.prototype.getColumnsKey = function () { return 'Setup.ProductCategory'; };
+            ProductCategoryGrid.prototype.getDialogType = function () { return Setup.ProductCategoryDialog; };
+            ProductCategoryGrid.prototype.getIdProperty = function () { return Setup.ProductCategoryRow.idProperty; };
+            ProductCategoryGrid.prototype.getLocalTextPrefix = function () { return Setup.ProductCategoryRow.localTextPrefix; };
+            ProductCategoryGrid.prototype.getService = function () { return Setup.ProductCategoryService.baseUrl; };
+            return ProductCategoryGrid;
+        }(_Ext.GridBase));
+        ProductCategoryGrid = __decorate([
+            Serenity.Decorators.registerClass()
+        ], ProductCategoryGrid);
+        Setup.ProductCategoryGrid = ProductCategoryGrid;
+    })(Setup = SereneInventory.Setup || (SereneInventory.Setup = {}));
 })(SereneInventory || (SereneInventory = {}));
 //# sourceMappingURL=SereneInventory.Web.js.map

@@ -30,6 +30,11 @@ namespace MVC
                 public const string RoleIndex = "~/Modules/Administration/Role/RoleIndex.cshtml";
             }
 
+            public static class Tenant
+            {
+                public const string TenantIndex = "~/Modules/Administration/Tenant/TenantIndex.cshtml";
+            }
+
             public static class Translation
             {
                 public const string TranslationIndex = "~/Modules/Administration/Translation/TranslationIndex.cshtml";
@@ -59,6 +64,20 @@ namespace MVC
         {
             public const string AccessDenied = "~/Views/Errors/AccessDenied.cshtml";
             public const string ValidationError = "~/Views/Errors/ValidationError.cshtml";
+        }
+
+        public static class Inventory
+        {
+            public static class Transaction
+            {
+                public const string TransactionIndex = "~/Modules/Inventory/Transaction/TransactionIndex.cshtml";
+            }
+
+            public static class TransactionDetail
+            {
+                public const string TransactionDetailIndex = "~/Modules/Inventory/TransactionDetail/TransactionDetailIndex.cshtml";
+            }
+
         }
 
         public static class Membership
@@ -91,6 +110,25 @@ namespace MVC
                     public const string AccountSignUp = "~/Modules/Membership/Account/SignUp/AccountSignUp.cshtml";
                     public const string AccountSignUp_AdminLTE = "~/Modules/Membership/Account/SignUp/AccountSignUp.AdminLTE.cshtml";
                 }
+            }
+
+        }
+
+        public static class Setup
+        {
+            public static class Party
+            {
+                public const string PartyIndex = "~/Modules/Setup/Party/PartyIndex.cshtml";
+            }
+
+            public static class Product
+            {
+                public const string ProductIndex = "~/Modules/Setup/Product/ProductIndex.cshtml";
+            }
+
+            public static class ProductCategory
+            {
+                public const string ProductCategoryIndex = "~/Modules/Setup/ProductCategory/ProductCategoryIndex.cshtml";
             }
         }
 

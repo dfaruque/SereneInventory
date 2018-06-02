@@ -323,6 +323,68 @@ declare namespace SereneInventory.Administration {
     }
 }
 declare namespace SereneInventory.Administration {
+}
+declare namespace SereneInventory.Administration {
+    interface TenantForm {
+        Name: Serenity.StringEditor;
+        Description: Serenity.StringEditor;
+        TenantId: Serenity.StringEditor;
+    }
+    class TenantForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
+    }
+}
+declare namespace SereneInventory.Administration {
+    interface TenantRow {
+        Id?: number;
+        Name?: string;
+        Description?: string;
+        TenantId?: number;
+        Remarks?: string;
+        IUser?: string;
+        EUser?: string;
+        RowNum?: number;
+        IDate?: string;
+        EDate?: string;
+    }
+    namespace TenantRow {
+        const idProperty = "Id";
+        const nameProperty = "Name";
+        const localTextPrefix = "Administration.Tenant";
+        const enum Fields {
+            Id,
+            Name,
+            Description,
+            TenantId,
+            Remarks,
+            IUser,
+            EUser,
+            RowNum,
+            IDate,
+            EDate,
+        }
+    }
+}
+declare namespace SereneInventory.Administration {
+    namespace TenantService {
+        const baseUrl = "Administration/Tenant";
+        function Create(request: Serenity.SaveRequest<TenantRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<TenantRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<TenantRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<TenantRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        const enum Methods {
+            Create,
+            Update,
+            Delete,
+            Retrieve,
+            List,
+        }
+    }
+}
+declare namespace SereneInventory.Administration {
     interface TranslationItem {
         Key?: string;
         SourceText?: string;
@@ -620,6 +682,159 @@ declare namespace SereneInventory {
         Serial?: string;
     }
 }
+declare namespace SereneInventory.Inventory {
+}
+declare namespace SereneInventory.Inventory {
+}
+declare namespace SereneInventory.Inventory {
+    interface TransactionDetailForm {
+        TransactionId: Serenity.StringEditor;
+        ProductId: Serenity.StringEditor;
+        Quantity: Serenity.DateEditor;
+        UnitPrice: Serenity.DecimalEditor;
+        Amount: Serenity.DecimalEditor;
+        TenantId: Serenity.StringEditor;
+    }
+    class TransactionDetailForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
+    }
+}
+declare namespace SereneInventory.Inventory {
+    interface TransactionDetailRow {
+        Id?: number;
+        TransactionId?: number;
+        ProductId?: number;
+        Quantity?: string;
+        UnitPrice?: number;
+        Amount?: number;
+        TenantId?: number;
+        Remarks?: string;
+        IUser?: string;
+        EUser?: string;
+        RowNum?: number;
+        IDate?: string;
+        EDate?: string;
+    }
+    namespace TransactionDetailRow {
+        const idProperty = "Id";
+        const localTextPrefix = "Inventory.TransactionDetail";
+        const enum Fields {
+            Id,
+            TransactionId,
+            ProductId,
+            Quantity,
+            UnitPrice,
+            Amount,
+            TenantId,
+            Remarks,
+            IUser,
+            EUser,
+            RowNum,
+            IDate,
+            EDate,
+        }
+    }
+}
+declare namespace SereneInventory.Inventory {
+    namespace TransactionDetailService {
+        const baseUrl = "Inventory/TransactionDetail";
+        function Create(request: Serenity.SaveRequest<TransactionDetailRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<TransactionDetailRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<TransactionDetailRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<TransactionDetailRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        const enum Methods {
+            Create,
+            Update,
+            Delete,
+            Retrieve,
+            List,
+        }
+    }
+}
+declare namespace SereneInventory.Inventory {
+    interface TransactionForm {
+        TransactionType: Serenity.IntegerEditor;
+        RefTransactionId: Serenity.StringEditor;
+        TransactionNumber: Serenity.StringEditor;
+        TransactionDate: Serenity.DateEditor;
+        PartyId: Serenity.StringEditor;
+        TenantId: Serenity.StringEditor;
+    }
+    class TransactionForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
+    }
+}
+declare namespace SereneInventory.Inventory {
+    interface TransactionRow {
+        Id?: number;
+        TransactionType?: number;
+        RefTransactionId?: number;
+        TransactionNumber?: string;
+        TransactionDate?: string;
+        PartyId?: number;
+        TenantId?: number;
+        RefTransactionTransactionType?: number;
+        RefTransactionRefTransactionId?: number;
+        RefTransactionTransactionNumber?: string;
+        RefTransactionTransactionDate?: string;
+        RefTransactionPartyId?: number;
+        RefTransactionTenantId?: number;
+        Remarks?: string;
+        IUser?: string;
+        EUser?: string;
+        RowNum?: number;
+        IDate?: string;
+        EDate?: string;
+    }
+    namespace TransactionRow {
+        const idProperty = "Id";
+        const nameProperty = "TransactionNumber";
+        const localTextPrefix = "Inventory.Transaction";
+        const enum Fields {
+            Id,
+            TransactionType,
+            RefTransactionId,
+            TransactionNumber,
+            TransactionDate,
+            PartyId,
+            TenantId,
+            RefTransactionTransactionType,
+            RefTransactionRefTransactionId,
+            RefTransactionTransactionNumber,
+            RefTransactionTransactionDate,
+            RefTransactionPartyId,
+            RefTransactionTenantId,
+            Remarks,
+            IUser,
+            EUser,
+            RowNum,
+            IDate,
+            EDate,
+        }
+    }
+}
+declare namespace SereneInventory.Inventory {
+    namespace TransactionService {
+        const baseUrl = "Inventory/Transaction";
+        function Create(request: Serenity.SaveRequest<TransactionRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<TransactionRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<TransactionRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<TransactionRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        const enum Methods {
+            Create,
+            Update,
+            Delete,
+            Retrieve,
+            List,
+        }
+    }
+}
 declare namespace SereneInventory.Membership {
     interface ChangePasswordForm {
         OldPassword: Serenity.PasswordEditor;
@@ -718,6 +933,207 @@ declare namespace SereneInventory {
         Permissions?: {
             [key: string]: boolean;
         };
+    }
+}
+declare namespace SereneInventory.Setup {
+}
+declare namespace SereneInventory.Setup {
+    interface PartyForm {
+        PartyType: Serenity.IntegerEditor;
+        Name: Serenity.StringEditor;
+        Address: Serenity.StringEditor;
+        Contact: Serenity.StringEditor;
+        TenantId: Serenity.StringEditor;
+    }
+    class PartyForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
+    }
+}
+declare namespace SereneInventory.Setup {
+    interface PartyRow {
+        Id?: number;
+        PartyType?: number;
+        Name?: string;
+        Address?: string;
+        Contact?: string;
+        TenantId?: number;
+        Remarks?: string;
+        IUser?: string;
+        EUser?: string;
+        RowNum?: number;
+        IDate?: string;
+        EDate?: string;
+    }
+    namespace PartyRow {
+        const idProperty = "Id";
+        const nameProperty = "Name";
+        const localTextPrefix = "Setup.Party";
+        const enum Fields {
+            Id,
+            PartyType,
+            Name,
+            Address,
+            Contact,
+            TenantId,
+            Remarks,
+            IUser,
+            EUser,
+            RowNum,
+            IDate,
+            EDate,
+        }
+    }
+}
+declare namespace SereneInventory.Setup {
+    namespace PartyService {
+        const baseUrl = "Setup/Party";
+        function Create(request: Serenity.SaveRequest<PartyRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<PartyRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<PartyRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<PartyRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        const enum Methods {
+            Create,
+            Update,
+            Delete,
+            Retrieve,
+            List,
+        }
+    }
+}
+declare namespace SereneInventory.Setup {
+}
+declare namespace SereneInventory.Setup {
+    interface ProductCategoryForm {
+        Name: Serenity.StringEditor;
+        Description: Serenity.StringEditor;
+        TenantId: Serenity.StringEditor;
+    }
+    class ProductCategoryForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
+    }
+}
+declare namespace SereneInventory.Setup {
+    interface ProductCategoryRow {
+        Id?: number;
+        Name?: string;
+        Description?: string;
+        TenantId?: number;
+        Remarks?: string;
+        IUser?: string;
+        EUser?: string;
+        RowNum?: number;
+        IDate?: string;
+        EDate?: string;
+    }
+    namespace ProductCategoryRow {
+        const idProperty = "Id";
+        const nameProperty = "Name";
+        const localTextPrefix = "Setup.ProductCategory";
+        const enum Fields {
+            Id,
+            Name,
+            Description,
+            TenantId,
+            Remarks,
+            IUser,
+            EUser,
+            RowNum,
+            IDate,
+            EDate,
+        }
+    }
+}
+declare namespace SereneInventory.Setup {
+    namespace ProductCategoryService {
+        const baseUrl = "Setup/ProductCategory";
+        function Create(request: Serenity.SaveRequest<ProductCategoryRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<ProductCategoryRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ProductCategoryRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ProductCategoryRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        const enum Methods {
+            Create,
+            Update,
+            Delete,
+            Retrieve,
+            List,
+        }
+    }
+}
+declare namespace SereneInventory.Setup {
+}
+declare namespace SereneInventory.Setup {
+    interface ProductForm {
+        Name: Serenity.StringEditor;
+        ProductType: Serenity.IntegerEditor;
+        ProductCategoryId: Serenity.StringEditor;
+        Description: Serenity.StringEditor;
+        Images: Serenity.StringEditor;
+        TenantId: Serenity.StringEditor;
+    }
+    class ProductForm extends Serenity.PrefixedContext {
+        static formKey: string;
+        private static init;
+        constructor(prefix: string);
+    }
+}
+declare namespace SereneInventory.Setup {
+    interface ProductRow {
+        Id?: number;
+        Name?: string;
+        ProductType?: number;
+        ProductCategoryId?: number;
+        Description?: string;
+        Images?: string;
+        TenantId?: number;
+        Remarks?: string;
+        IUser?: string;
+        EUser?: string;
+        RowNum?: number;
+        IDate?: string;
+        EDate?: string;
+    }
+    namespace ProductRow {
+        const idProperty = "Id";
+        const nameProperty = "Name";
+        const localTextPrefix = "Setup.Product";
+        const enum Fields {
+            Id,
+            Name,
+            ProductType,
+            ProductCategoryId,
+            Description,
+            Images,
+            TenantId,
+            Remarks,
+            IUser,
+            EUser,
+            RowNum,
+            IDate,
+            EDate,
+        }
+    }
+}
+declare namespace SereneInventory.Setup {
+    namespace ProductService {
+        const baseUrl = "Setup/Product";
+        function Create(request: Serenity.SaveRequest<ProductRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<ProductRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ProductRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ProductRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        const enum Methods {
+            Create,
+            Update,
+            Delete,
+            Retrieve,
+            List,
+        }
     }
 }
 declare namespace q {
@@ -1207,6 +1623,26 @@ declare namespace SereneInventory.Administration {
     }
 }
 declare namespace SereneInventory.Administration {
+    class TenantDialog extends _Ext.DialogBase<TenantRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: TenantForm;
+    }
+}
+declare namespace SereneInventory.Administration {
+    class TenantGrid extends _Ext.GridBase<TenantRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof TenantDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace SereneInventory.Administration {
     class TranslationGrid extends Serenity.EntityGrid<TranslationItem, any> {
         protected getIdProperty(): string;
         protected getLocalTextPrefix(): string;
@@ -1572,6 +2008,45 @@ declare namespace SereneInventory.Common {
         setItem(key: string, data: string): void;
     }
 }
+declare namespace SereneInventory.Inventory {
+    class TransactionDialog extends _Ext.DialogBase<TransactionRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: TransactionForm;
+    }
+}
+declare namespace SereneInventory.Inventory {
+    class TransactionGrid extends _Ext.GridBase<TransactionRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof TransactionDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace SereneInventory.Inventory {
+    class TransactionDetailDialog extends _Ext.DialogBase<TransactionDetailRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        protected form: TransactionDetailForm;
+    }
+}
+declare namespace SereneInventory.Inventory {
+    class TransactionDetailGrid extends _Ext.GridBase<TransactionDetailRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof TransactionDetailDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
 declare namespace SereneInventory.Membership {
     class ChangePasswordPanel extends Serenity.PropertyPanel<ChangePasswordRequest, any> {
         protected getFormKey(): string;
@@ -1597,6 +2072,66 @@ declare namespace SereneInventory.Membership {
     class SignUpPanel extends Serenity.PropertyPanel<SignUpRequest, any> {
         protected getFormKey(): string;
         private form;
+        constructor(container: JQuery);
+    }
+}
+declare namespace SereneInventory.Setup {
+    class PartyDialog extends _Ext.DialogBase<PartyRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: PartyForm;
+    }
+}
+declare namespace SereneInventory.Setup {
+    class PartyGrid extends _Ext.GridBase<PartyRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof PartyDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace SereneInventory.Setup {
+    class ProductDialog extends _Ext.DialogBase<ProductRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: ProductForm;
+    }
+}
+declare namespace SereneInventory.Setup {
+    class ProductGrid extends _Ext.GridBase<ProductRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof ProductDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace SereneInventory.Setup {
+    class ProductCategoryDialog extends _Ext.DialogBase<ProductCategoryRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: ProductCategoryForm;
+    }
+}
+declare namespace SereneInventory.Setup {
+    class ProductCategoryGrid extends _Ext.GridBase<ProductCategoryRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof ProductCategoryDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
         constructor(container: JQuery);
     }
 }

@@ -927,6 +927,24 @@
     <Content Include="tools\Node\lessc.cmd" />
     <Content Include="tools\JsEngine\lib.d.ts_" />
     <None Include="tsconfig.json" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.TenantColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Inventory.TransactionColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Inventory.TransactionDetailColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Setup.PartyColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Setup.ProductCategoryColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Setup.ProductColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\_Ext.AuditActionType.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1686,6 +1704,80 @@
     <TypeScriptCompile Include="Modules\Common\Helpers\BasicProgressDialog.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\BulkServiceAction.ts" />
     <TypeScriptCompile Include="Scripts\typings\serenity\Serenity.CoreLib.d.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Setup.PartyRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Setup.PartyService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <Content Include="Modules\Setup\Party\PartyIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Setup\Party\PartyDialog.ts" />
+    <TypeScriptCompile Include="Modules\Setup\Party\PartyGrid.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Setup.PartyForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <Content Include="Content\site\site.setup.less" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Setup.ProductRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Setup.ProductService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <Content Include="Modules\Setup\Product\ProductIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Setup\Product\ProductDialog.ts" />
+    <TypeScriptCompile Include="Modules\Setup\Product\ProductGrid.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Setup.ProductForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Setup.ProductCategoryRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Setup.ProductCategoryService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <Content Include="Modules\Setup\ProductCategory\ProductCategoryIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Setup\ProductCategory\ProductCategoryDialog.ts" />
+    <TypeScriptCompile Include="Modules\Setup\ProductCategory\ProductCategoryGrid.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Setup.ProductCategoryForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.TenantRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.TenantService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <Content Include="Modules\Administration\Tenant\TenantIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Administration\Tenant\TenantDialog.ts" />
+    <TypeScriptCompile Include="Modules\Administration\Tenant\TenantGrid.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Administration.TenantForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Inventory.TransactionRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Inventory.TransactionService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <Content Include="Modules\Inventory\Transaction\TransactionIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Inventory\Transaction\TransactionDialog.ts" />
+    <TypeScriptCompile Include="Modules\Inventory\Transaction\TransactionGrid.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Inventory.TransactionForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <Content Include="Content\site\site.inventory.less" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Inventory.TransactionDetailRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Inventory.TransactionDetailService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <Content Include="Modules\Inventory\TransactionDetail\TransactionDetailIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Inventory\TransactionDetail\TransactionDetailDialog.ts" />
+    <TypeScriptCompile Include="Modules\Inventory\TransactionDetail\TransactionDetailGrid.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\Inventory.TransactionDetailForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1866,6 +1958,44 @@
     <Compile Include="Modules\Administration\UserPermission\UserPermissionRow.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionRepository.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionEndpoint.cs" />
+    <Compile Include="Modules\Setup\Party\PartyRow.cs" />
+    <Compile Include="Modules\Setup\Party\PartyRepository.cs" />
+    <Compile Include="Modules\Setup\Party\PartyEndpoint.cs" />
+    <Compile Include="Modules\Setup\Party\PartyPage.cs" />
+    <Compile Include="Modules\Setup\Party\PartyColumns.cs" />
+    <Compile Include="Modules\Setup\Party\PartyForm.cs" />
+    <Compile Include="Modules\Setup\SetupNavigation.cs" />
+    <Compile Include="Modules\Setup\Product\ProductRow.cs" />
+    <Compile Include="Modules\Setup\Product\ProductRepository.cs" />
+    <Compile Include="Modules\Setup\Product\ProductEndpoint.cs" />
+    <Compile Include="Modules\Setup\Product\ProductPage.cs" />
+    <Compile Include="Modules\Setup\Product\ProductColumns.cs" />
+    <Compile Include="Modules\Setup\Product\ProductForm.cs" />
+    <Compile Include="Modules\Setup\ProductCategory\ProductCategoryRow.cs" />
+    <Compile Include="Modules\Setup\ProductCategory\ProductCategoryRepository.cs" />
+    <Compile Include="Modules\Setup\ProductCategory\ProductCategoryEndpoint.cs" />
+    <Compile Include="Modules\Setup\ProductCategory\ProductCategoryPage.cs" />
+    <Compile Include="Modules\Setup\ProductCategory\ProductCategoryColumns.cs" />
+    <Compile Include="Modules\Setup\ProductCategory\ProductCategoryForm.cs" />
+    <Compile Include="Modules\Administration\Tenant\TenantRow.cs" />
+    <Compile Include="Modules\Administration\Tenant\TenantRepository.cs" />
+    <Compile Include="Modules\Administration\Tenant\TenantEndpoint.cs" />
+    <Compile Include="Modules\Administration\Tenant\TenantPage.cs" />
+    <Compile Include="Modules\Administration\Tenant\TenantColumns.cs" />
+    <Compile Include="Modules\Administration\Tenant\TenantForm.cs" />
+    <Compile Include="Modules\Inventory\Transaction\TransactionRow.cs" />
+    <Compile Include="Modules\Inventory\Transaction\TransactionRepository.cs" />
+    <Compile Include="Modules\Inventory\Transaction\TransactionEndpoint.cs" />
+    <Compile Include="Modules\Inventory\Transaction\TransactionPage.cs" />
+    <Compile Include="Modules\Inventory\Transaction\TransactionColumns.cs" />
+    <Compile Include="Modules\Inventory\Transaction\TransactionForm.cs" />
+    <Compile Include="Modules\Inventory\InventoryNavigation.cs" />
+    <Compile Include="Modules\Inventory\TransactionDetail\TransactionDetailRow.cs" />
+    <Compile Include="Modules\Inventory\TransactionDetail\TransactionDetailRepository.cs" />
+    <Compile Include="Modules\Inventory\TransactionDetail\TransactionDetailEndpoint.cs" />
+    <Compile Include="Modules\Inventory\TransactionDetail\TransactionDetailPage.cs" />
+    <Compile Include="Modules\Inventory\TransactionDetail\TransactionDetailColumns.cs" />
+    <Compile Include="Modules\Inventory\TransactionDetail\TransactionDetailForm.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
