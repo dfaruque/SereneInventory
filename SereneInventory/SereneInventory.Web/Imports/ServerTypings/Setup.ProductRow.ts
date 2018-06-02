@@ -8,8 +8,8 @@
         Images?: string;
         TenantId?: number;
         Remarks?: string;
-        IUser?: string;
-        EUser?: string;
+        IUserId?: number;
+        EUserId?: number;
         RowNum?: number;
         IDate?: string;
         EDate?: string;
@@ -29,8 +29,8 @@
             Images = "Images",
             TenantId = "TenantId",
             Remarks = "Remarks",
-            IUser = "IUser",
-            EUser = "EUser",
+            IUserId = "IUserId",
+            EUserId = "EUserId",
             RowNum = "RowNum",
             IDate = "IDate",
             EDate = "EDate"

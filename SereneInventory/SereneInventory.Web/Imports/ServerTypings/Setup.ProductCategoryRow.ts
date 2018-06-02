@@ -5,8 +5,8 @@
         Description?: string;
         TenantId?: number;
         Remarks?: string;
-        IUser?: string;
-        EUser?: string;
+        IUserId?: number;
+        EUserId?: number;
         RowNum?: number;
         IDate?: string;
         EDate?: string;
@@ -23,8 +23,8 @@
             Description = "Description",
             TenantId = "TenantId",
             Remarks = "Remarks",
-            IUser = "IUser",
-            EUser = "EUser",
+            IUserId = "IUserId",
+            EUserId = "EUserId",
             RowNum = "RowNum",
             IDate = "IDate",
             EDate = "EDate"

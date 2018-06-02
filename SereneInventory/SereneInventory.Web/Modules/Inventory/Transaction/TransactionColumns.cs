@@ -15,12 +15,13 @@ namespace SereneInventory.Inventory.Columns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), Hidden]
         public Int64 Id { get; set; }
-        public Int32 TransactionType { get; set; }
+        public TransactionType TransactionType { get; set; }
         public String RefTransactionTransactionNumber { get; set; }
         [EditLink]
         public String TransactionNumber { get; set; }
         public DateTime TransactionDate { get; set; }
         public Int64 PartyId { get; set; }
+        [Hidden]
         public Int64 TenantId { get; set; }
     }
 }

@@ -14,6 +14,7 @@
     [InsertPermission("Inventory:Transaction:Insert")]
     [UpdatePermission("Inventory:Transaction:Update")]
     [DeletePermission("Inventory:Transaction:Delete")]
+    [LookupScript]
     public sealed class TransactionRow : NRow, IIdRow, INameRow
     {
 
@@ -22,10 +23,11 @@
 		public partial class RowFields { public Int64Field Id; }
 
         [DisplayName("Transaction Type"), NotNull]
-        public Int32? TransactionType { get { return Fields.TransactionType[this]; } set { Fields.TransactionType[this] = value; } }
+        public TransactionType? TransactionType { get { return (TransactionType?)Fields.TransactionType[this]; } set { Fields.TransactionType[this] = (Int32?)value; } }
 		public partial class RowFields { public Int32Field TransactionType; }
 
-        [DisplayName("Ref Transaction"), ForeignKey("[dbo].[Transaction]", "Id"), LeftJoin("jRefTransaction"), TextualField("RefTransactionTransactionNumber")]
+        [DisplayName("Ref. Transaction"), ForeignKey("[dbo].[Transaction]", "Id"), LeftJoin("jRefTransaction"), TextualField("RefTransactionTransactionNumber")]
+        [LookupEditor(typeof(TransactionRow))]
         public Int64? RefTransactionId { get { return Fields.RefTransactionId[this]; } set { Fields.RefTransactionId[this] = value; } }
 		public partial class RowFields { public Int64Field RefTransactionId; }
 

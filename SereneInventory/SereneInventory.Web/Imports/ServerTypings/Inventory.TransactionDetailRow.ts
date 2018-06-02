@@ -8,8 +8,8 @@
         Amount?: number;
         TenantId?: number;
         Remarks?: string;
-        IUser?: string;
-        EUser?: string;
+        IUserId?: number;
+        EUserId?: number;
         RowNum?: number;
         IDate?: string;
         EDate?: string;
@@ -28,8 +28,8 @@
             Amount = "Amount",
             TenantId = "TenantId",
             Remarks = "Remarks",
-            IUser = "IUser",
-            EUser = "EUser",
+            IUserId = "IUserId",
+            EUserId = "EUserId",
             RowNum = "RowNum",
             IDate = "IDate",
             EDate = "EDate"

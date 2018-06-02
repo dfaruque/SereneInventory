@@ -1,7 +1,7 @@
 ﻿namespace SereneInventory.Inventory {
     export interface TransactionRow {
         Id?: number;
-        TransactionType?: number;
+        TransactionType?: TransactionType;
         RefTransactionId?: number;
         TransactionNumber?: string;
         TransactionDate?: string;
@@ -14,8 +14,8 @@
         RefTransactionPartyId?: number;
         RefTransactionTenantId?: number;
         Remarks?: string;
-        IUser?: string;
-        EUser?: string;
+        IUserId?: number;
+        EUserId?: number;
         RowNum?: number;
         IDate?: string;
         EDate?: string;
@@ -25,6 +25,11 @@
         export const idProperty = 'Id';
         export const nameProperty = 'TransactionNumber';
         export const localTextPrefix = 'Inventory.Transaction';
+        export const lookupKey = 'Inventory.Transaction';
+
+        export function getLookup(): Q.Lookup<TransactionRow> {
+            return Q.getLookup<TransactionRow>('Inventory.Transaction');
+        }
 
         export declare const enum Fields {
             Id = "Id",
@@ -41,8 +46,8 @@
             RefTransactionPartyId = "RefTransactionPartyId",
             RefTransactionTenantId = "RefTransactionTenantId",
             Remarks = "Remarks",
-            IUser = "IUser",
-            EUser = "EUser",
+            IUserId = "IUserId",
+            EUserId = "EUserId",
             RowNum = "RowNum",
             IDate = "IDate",
             EDate = "EDate"
