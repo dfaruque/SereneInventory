@@ -6,6 +6,7 @@
     using Serenity.Data.Mapping;
     using System;
     using System.ComponentModel;
+	using System.Collections.Generic;
     using System.IO;
 
     [ConnectionKey("{{ConnectionKey}}"), TableName("{{SchemaAndTable}}")]
