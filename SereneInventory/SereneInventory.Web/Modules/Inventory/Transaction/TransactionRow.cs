@@ -43,10 +43,6 @@
         public Int64? PartyId { get { return Fields.PartyId[this]; } set { Fields.PartyId[this] = value; } }
 		public partial class RowFields { public Int64Field PartyId; }
 
-        [DisplayName("Tenant Id")]
-        public Int64? TenantId { get { return Fields.TenantId[this]; } set { Fields.TenantId[this] = value; } }
-		public partial class RowFields { public Int64Field TenantId; }
-
         #region Foreign Fields
 
 

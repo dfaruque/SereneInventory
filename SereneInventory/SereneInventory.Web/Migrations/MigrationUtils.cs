@@ -112,7 +112,7 @@ END;", table, id, seq));
         public static ICreateTableWithColumnSyntax CommonFields(this ICreateTableWithColumnSyntax e)
         {
             return e.WithColumn("Remarks").AsString(500).Nullable()
-                    .WithColumn("TenantId").AsInt64().Nullable().ForeignKey()
+                    .WithColumn("TenantId").AsInt64().Nullable().ForeignKey("Tenant", "Id")
                     .WithColumn("IUserId").AsInt64().Nullable()
                     .WithColumn("EUserId").AsInt64().Nullable()
                     .WithColumn("IDate").AsDateTime().Nullable().WithDefault(SystemMethods.CurrentDateTime)

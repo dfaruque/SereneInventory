@@ -37,10 +37,6 @@
         public String Contact { get { return Fields.Contact[this]; } set { Fields.Contact[this] = value; } }
 		public partial class RowFields { public StringField Contact; }
 
-        [DisplayName("Tenant Id")]
-        public Int64? TenantId { get { return Fields.TenantId[this]; } set { Fields.TenantId[this] = value; } }
-		public partial class RowFields { public Int64Field TenantId; }
-
         #region Foreign Fields
 
         #endregion Foreign Fields

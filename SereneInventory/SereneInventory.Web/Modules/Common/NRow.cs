@@ -18,6 +18,9 @@ namespace SereneInventory
         [DisplayName("Remarks"), Size(500), TextAreaEditor(Rows = 3), Width(200)]
         public String Remarks { get { return Fields.Remarks[this]; } set { Fields.Remarks[this] = value; } }
 
+        [DisplayName("Tenant Id")]
+        public Int64? TenantId { get { return Fields.TenantId[this]; } set { Fields.TenantId[this] = value; } }
+
         [DisplayName("Insert Date")]
         public DateTime? IDate { get { return Fields.IDate[this]; } set { Fields.IDate[this] = value; } }
 
@@ -61,6 +64,7 @@ namespace SereneInventory
         {
             public StringField Remarks;
             public Int64Field IUserId;
+            public Int64Field TenantId;
             public Int64Field EUserId;
             public Int32Field RowNum;
             public DateTimeField IDate;

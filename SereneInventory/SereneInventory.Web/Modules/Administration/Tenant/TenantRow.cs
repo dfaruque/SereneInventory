@@ -29,10 +29,6 @@
         public String Description { get { return Fields.Description[this]; } set { Fields.Description[this] = value; } }
 		public partial class RowFields { public StringField Description; }
 
-        [DisplayName("Tenant Id")]
-        public Int64? TenantId { get { return Fields.TenantId[this]; } set { Fields.TenantId[this] = value; } }
-		public partial class RowFields { public Int64Field TenantId; }
-
         #region Foreign Fields
 
         #endregion Foreign Fields

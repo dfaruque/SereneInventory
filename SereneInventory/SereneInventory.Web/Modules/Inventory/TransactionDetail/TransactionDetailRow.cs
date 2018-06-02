@@ -41,10 +41,6 @@
         public Decimal? Amount { get { return Fields.Amount[this]; } set { Fields.Amount[this] = value; } }
 		public partial class RowFields { public DecimalField Amount; }
 
-        [DisplayName("Tenant Id")]
-        public Int64? TenantId { get { return Fields.TenantId[this]; } set { Fields.TenantId[this] = value; } }
-		public partial class RowFields { public Int64Field TenantId; }
-
         #region Foreign Fields
 
         #endregion Foreign Fields
