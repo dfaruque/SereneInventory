@@ -938,6 +938,12 @@
     <TypeScriptCompile Include="Imports\ServerTypings\Inventory.TransactionDetailColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\PartyType.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\ProductType.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Setup.PartyColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1776,8 +1782,8 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <Content Include="Modules\Inventory\TransactionDetail\TransactionDetailIndex.cshtml" />
-    <TypeScriptCompile Include="Modules\Inventory\TransactionDetail\TransactionDetailDialog.ts" />
-    <TypeScriptCompile Include="Modules\Inventory\TransactionDetail\TransactionDetailGrid.ts" />
+    <TypeScriptCompile Include="Modules\Inventory\TransactionDetail\TransactionDetailEditorDialog.ts" />
+    <TypeScriptCompile Include="Modules\Inventory\TransactionDetail\TransactionDetailGridEditor.ts" />
     <TypeScriptCompile Include="Imports\ServerTypings\Inventory.TransactionDetailForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1797,6 +1803,9 @@
     <Compile Include="App_Start\SiteInitialization.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ClientTypes\Inventory.TransactionDetailGridEditorAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ClientTypes\_Ext.AuditLogActionTypeFormatterAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>

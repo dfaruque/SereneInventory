@@ -23,7 +23,7 @@
 		public partial class RowFields { public Int64Field Id; }
 
         [DisplayName("Party Type")]
-        public Int32? PartyType { get { return Fields.PartyType[this]; } set { Fields.PartyType[this] = value; } }
+        public PartyType? PartyType { get { return (PartyType?)Fields.PartyType[this]; } set { Fields.PartyType[this] = (Int32?)value; } }
 		public partial class RowFields { public Int32Field PartyType; }
 
         [DisplayName("Name"), Size(100), NotNull, QuickSearch]

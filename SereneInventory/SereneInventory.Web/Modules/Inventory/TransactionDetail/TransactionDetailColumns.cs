@@ -15,7 +15,6 @@ namespace SereneInventory.Inventory.Columns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), Hidden]
         public Int64 Id { get; set; }
-        public Int64 TransactionId { get; set; }
         public Int64 ProductId { get; set; }
         public DateTime Quantity { get; set; }
         public Decimal UnitPrice { get; set; }

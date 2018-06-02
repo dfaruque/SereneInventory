@@ -1,6 +1,6 @@
 ﻿namespace SereneInventory.Setup {
     export interface PartyForm {
-        PartyType: Serenity.IntegerEditor;
+        PartyType: Serenity.EnumEditor;
         Name: Serenity.StringEditor;
         Address: Serenity.StringEditor;
         Contact: Serenity.StringEditor;
@@ -18,7 +18,7 @@
                 PartyForm.init = true;
 
                 var s = Serenity;
-                var w0 = s.IntegerEditor;
+                var w0 = s.EnumEditor;
                 var w1 = s.StringEditor;
 
                 Q.initFormType(PartyForm, [

@@ -15,7 +15,7 @@ namespace SereneInventory.Setup.Columns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), Hidden]
         public Int64 Id { get; set; }
-        public Int32 PartyType { get; set; }
+        public PartyType PartyType { get; set; }
         [EditLink]
         public String Name { get; set; }
         public String Address { get; set; }

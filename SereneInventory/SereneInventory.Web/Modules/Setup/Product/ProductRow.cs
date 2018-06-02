@@ -27,7 +27,7 @@
         public partial class RowFields { public StringField Name; }
 
         [DisplayName("Product Type")]
-        public Int32? ProductType { get { return Fields.ProductType[this]; } set { Fields.ProductType[this] = value; } }
+        public ProductType? ProductType { get { return (ProductType?)Fields.ProductType[this]; } set { Fields.ProductType[this] = (Int32?)value; } }
         public partial class RowFields { public Int32Field ProductType; }
 
         [DisplayName("Product Category"), ForeignKey("[dbo].[ProductCategory]", "Id"), LeftJoin("jProductCategory"), TextualField("ProductCategoryName")]

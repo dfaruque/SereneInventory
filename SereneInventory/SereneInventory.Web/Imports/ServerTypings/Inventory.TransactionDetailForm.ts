@@ -1,6 +1,5 @@
 ﻿namespace SereneInventory.Inventory {
     export interface TransactionDetailForm {
-        TransactionId: Serenity.StringEditor;
         ProductId: Serenity.LookupEditor;
         Quantity: Serenity.DateEditor;
         UnitPrice: Serenity.DecimalEditor;
@@ -19,18 +18,17 @@
                 TransactionDetailForm.init = true;
 
                 var s = Serenity;
-                var w0 = s.StringEditor;
-                var w1 = s.LookupEditor;
-                var w2 = s.DateEditor;
-                var w3 = s.DecimalEditor;
+                var w0 = s.LookupEditor;
+                var w1 = s.DateEditor;
+                var w2 = s.DecimalEditor;
+                var w3 = s.StringEditor;
 
                 Q.initFormType(TransactionDetailForm, [
-                    'TransactionId', w0,
-                    'ProductId', w1,
-                    'Quantity', w2,
-                    'UnitPrice', w3,
-                    'Amount', w3,
-                    'TenantId', w0
+                    'ProductId', w0,
+                    'Quantity', w1,
+                    'UnitPrice', w2,
+                    'Amount', w2,
+                    'TenantId', w3
                 ]);
             }
         }

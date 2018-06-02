@@ -1,7 +1,7 @@
 ﻿namespace SereneInventory.Setup {
     export interface PartyRow {
         Id?: number;
-        PartyType?: number;
+        PartyType?: PartyType;
         Name?: string;
         Address?: string;
         Contact?: string;

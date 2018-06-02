@@ -91,6 +91,7 @@
         #endregion Foreign Fields
 
         [DisplayName("Transaction Details"), MasterDetailRelation(nameof(TransactionDetailRow.TransactionId))]
+        [TransactionDetailGridEditor]
         public List<TransactionDetailRow> TransactionDetailRows { get { return Fields.TransactionDetailRows[this]; } set { Fields.TransactionDetailRows[this] = value; } }
         public partial class RowFields { public ListField<TransactionDetailRow> TransactionDetailRows; }
 

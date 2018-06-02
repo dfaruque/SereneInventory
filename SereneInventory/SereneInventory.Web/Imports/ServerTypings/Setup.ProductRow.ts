@@ -2,7 +2,7 @@
     export interface ProductRow {
         Id?: number;
         Name?: string;
-        ProductType?: number;
+        ProductType?: ProductType;
         ProductCategoryId?: number;
         Description?: string;
         Images?: string;

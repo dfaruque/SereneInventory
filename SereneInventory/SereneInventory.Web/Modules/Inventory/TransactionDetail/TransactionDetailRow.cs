@@ -35,11 +35,11 @@
         public DateTime? Quantity { get { return Fields.Quantity[this]; } set { Fields.Quantity[this] = value; } }
         public partial class RowFields { public DateTimeField Quantity; }
 
-        [DisplayName("Unit Price"), Size(19), Scale(5), NotNull]
+        [DisplayName("Unit Price"), Size(19), Scale(2), NotNull]
         public Decimal? UnitPrice { get { return Fields.UnitPrice[this]; } set { Fields.UnitPrice[this] = value; } }
         public partial class RowFields { public DecimalField UnitPrice; }
 
-        [DisplayName("Amount"), Size(19), Scale(5), NotNull]
+        [DisplayName("Amount"), Size(19), Scale(2), NotNull]
         public Decimal? Amount { get { return Fields.Amount[this]; } set { Fields.Amount[this] = value; } }
         public partial class RowFields { public DecimalField Amount; }
 

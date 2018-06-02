@@ -6,7 +6,7 @@
         TransactionDate: Serenity.DateEditor;
         PartyId: Serenity.LookupEditor;
         TenantId: Serenity.StringEditor;
-        TransactionDetailRows: Serenity.StringEditor;
+        TransactionDetailRows: TransactionDetailGridEditor;
     }
 
     export class TransactionForm extends Serenity.PrefixedContext {
@@ -24,6 +24,7 @@
                 var w1 = s.LookupEditor;
                 var w2 = s.StringEditor;
                 var w3 = s.DateEditor;
+                var w4 = TransactionDetailGridEditor;
 
                 Q.initFormType(TransactionForm, [
                     'TransactionType', w0,
@@ -32,7 +33,7 @@
                     'TransactionDate', w3,
                     'PartyId', w1,
                     'TenantId', w2,
-                    'TransactionDetailRows', w2
+                    'TransactionDetailRows', w4
                 ]);
             }
         }
