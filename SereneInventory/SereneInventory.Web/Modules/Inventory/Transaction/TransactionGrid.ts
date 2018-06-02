@@ -1,4 +1,5 @@
-﻿
+﻿/// <reference path="../../_Ext/_q/_q.ts" />
+
 namespace SereneInventory.Inventory {
 
     @Serenity.Decorators.registerClass()
