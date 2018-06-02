@@ -4,7 +4,9 @@
     using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
+    using Setup.Entities;
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel;
     using System.IO;
 
@@ -40,6 +42,7 @@
         public partial class RowFields { public DateTimeField TransactionDate; }
 
         [DisplayName("Party"), ForeignKey("[dbo].[Party]", "Id"), LeftJoin("jParty"), TextualField("PartyName")]
+        [LookupEditor(typeof(PartyRow), InplaceAdd = true)]
         public Int64? PartyId { get { return Fields.PartyId[this]; } set { Fields.PartyId[this] = value; } }
         public partial class RowFields { public Int64Field PartyId; }
 
@@ -86,6 +89,10 @@
 
 
         #endregion Foreign Fields
+
+        [DisplayName("Transaction Details"), MasterDetailRelation(nameof(TransactionDetailRow.TransactionId))]
+        public List<TransactionDetailRow> TransactionDetailRows { get { return Fields.TransactionDetailRows[this]; } set { Fields.TransactionDetailRows[this] = value; } }
+        public partial class RowFields { public ListField<TransactionDetailRow> TransactionDetailRows; }
 
 
         IIdField IIdRow.IdField { get { return Fields.Id; } }

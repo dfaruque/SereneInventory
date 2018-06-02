@@ -2,7 +2,7 @@
     export interface ProductForm {
         Name: Serenity.StringEditor;
         ProductType: Serenity.IntegerEditor;
-        ProductCategoryId: Serenity.StringEditor;
+        ProductCategoryId: Serenity.LookupEditor;
         Description: Serenity.StringEditor;
         Images: Serenity.StringEditor;
         TenantId: Serenity.StringEditor;
@@ -21,11 +21,12 @@
                 var s = Serenity;
                 var w0 = s.StringEditor;
                 var w1 = s.IntegerEditor;
+                var w2 = s.LookupEditor;
 
                 Q.initFormType(ProductForm, [
                     'Name', w0,
                     'ProductType', w1,
-                    'ProductCategoryId', w0,
+                    'ProductCategoryId', w2,
                     'Description', w0,
                     'Images', w0,
                     'TenantId', w0

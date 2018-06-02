@@ -18,6 +18,11 @@
         export const idProperty = 'Id';
         export const nameProperty = 'Name';
         export const localTextPrefix = 'Setup.Party';
+        export const lookupKey = 'Setup.Party';
+
+        export function getLookup(): Q.Lookup<PartyRow> {
+            return Q.getLookup<PartyRow>('Setup.Party');
+        }
 
         export declare const enum Fields {
             Id = "Id",

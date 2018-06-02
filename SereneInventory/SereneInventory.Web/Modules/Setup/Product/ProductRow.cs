@@ -14,6 +14,7 @@
     [InsertPermission("Setup:Product:Insert")]
     [UpdatePermission("Setup:Product:Update")]
     [DeletePermission("Setup:Product:Delete")]
+    [LookupScript]
     public sealed class ProductRow : NRow, IIdRow, INameRow
     {
 
@@ -30,6 +31,7 @@
         public partial class RowFields { public Int32Field ProductType; }
 
         [DisplayName("Product Category"), ForeignKey("[dbo].[ProductCategory]", "Id"), LeftJoin("jProductCategory"), TextualField("ProductCategoryName")]
+        [LookupEditor(typeof(ProductCategoryRow), InplaceAdd = true)]
         public Int64? ProductCategoryId { get { return Fields.ProductCategoryId[this]; } set { Fields.ProductCategoryId[this] = value; } }
         public partial class RowFields { public Int64Field ProductCategoryId; }
 

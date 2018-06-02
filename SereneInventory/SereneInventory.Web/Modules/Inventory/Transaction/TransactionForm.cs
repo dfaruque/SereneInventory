@@ -8,6 +8,7 @@ namespace SereneInventory.Inventory.Forms
     using System.ComponentModel;
     using System.Collections.Generic;
     using System.IO;
+    using Entities;
 
     [FormScript("Inventory.Transaction")]
     [BasedOnRow(typeof(Entities.TransactionRow), CheckNames = true)]
@@ -19,5 +20,7 @@ namespace SereneInventory.Inventory.Forms
         public DateTime TransactionDate { get; set; }
         public Int64 PartyId { get; set; }
         public Int64 TenantId { get; set; }
+
+        public List<TransactionDetailRow> TransactionDetailRows { get; set; }
     }
 }

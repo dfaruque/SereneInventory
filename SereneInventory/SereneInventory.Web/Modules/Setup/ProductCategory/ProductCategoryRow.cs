@@ -14,6 +14,7 @@
     [InsertPermission("Setup:ProductCategory:Insert")]
     [UpdatePermission("Setup:ProductCategory:Update")]
     [DeletePermission("Setup:ProductCategory:Delete")]
+    [LookupScript]
     public sealed class ProductCategoryRow : NRow, IIdRow, INameRow
     {
 

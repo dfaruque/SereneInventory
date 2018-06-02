@@ -4,6 +4,7 @@
     using Serenity.ComponentModel;
     using Serenity.Data;
     using Serenity.Data.Mapping;
+    using Setup.Entities;
     using System;
     using System.ComponentModel;
     using System.IO;
@@ -26,6 +27,7 @@
         public partial class RowFields { public Int64Field TransactionId; }
 
         [DisplayName("Product"), NotNull, ForeignKey("[dbo].[Product]", "Id"), LeftJoin("jProduct"), TextualField("ProductName")]
+        [LookupEditor(typeof(ProductRow), InplaceAdd = true)]
         public Int64? ProductId { get { return Fields.ProductId[this]; } set { Fields.ProductId[this] = value; } }
         public partial class RowFields { public Int64Field ProductId; }
 

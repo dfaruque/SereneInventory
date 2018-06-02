@@ -4,8 +4,9 @@
         RefTransactionId: Serenity.LookupEditor;
         TransactionNumber: Serenity.StringEditor;
         TransactionDate: Serenity.DateEditor;
-        PartyId: Serenity.StringEditor;
+        PartyId: Serenity.LookupEditor;
         TenantId: Serenity.StringEditor;
+        TransactionDetailRows: Serenity.StringEditor;
     }
 
     export class TransactionForm extends Serenity.PrefixedContext {
@@ -29,8 +30,9 @@
                     'RefTransactionId', w1,
                     'TransactionNumber', w2,
                     'TransactionDate', w3,
-                    'PartyId', w2,
-                    'TenantId', w2
+                    'PartyId', w1,
+                    'TenantId', w2,
+                    'TransactionDetailRows', w2
                 ]);
             }
         }

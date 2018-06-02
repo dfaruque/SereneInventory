@@ -14,6 +14,7 @@
     [InsertPermission("Setup:Party:Insert")]
     [UpdatePermission("Setup:Party:Update")]
     [DeletePermission("Setup:Party:Delete")]
+    [LookupScript]
     public sealed class PartyRow : NRow, IIdRow, INameRow
     {
 
