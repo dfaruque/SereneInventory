@@ -1724,6 +1724,7 @@
     <Compile Include="Imports\ClientTypes\_Ext.TemplatedLookupEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\DefaultDB\DefaultDB_20180601_110000_Tenant.cs" />
     <Compile Include="Migrations\DefaultDB\DefaultDB_20180601_130000_Inventory.cs" />
     <Compile Include="Modules\Administration\AdministrationNavigation.cs" />
     <Compile Include="Modules\Administration\Language\LanguageLookup.cs" />

@@ -7,16 +7,21 @@ namespace SereneInventory.Migrations.DefaultDB
     {
         public override void Up()
         {
+            this.CreateTableWithId64("ProductCategory", "Id", s => s
+                .WithColumn("Name").AsString(100).NotNullable()
+                .WithColumn("Description").AsString(500).Nullable()
+                .CommonFields());
+
             this.CreateTableWithId64("Product", "Id", s => s
                 .WithColumn("Name").AsString(100).NotNullable()
                 .WithColumn("ProductType").AsInt32().Nullable()
-                .WithColumn("ProductCategory").AsInt32().Nullable()
+                .WithColumn("ProductCategoryId").AsInt64().Nullable().ForeignKey()
                 .WithColumn("Description").AsString(500).Nullable()
                 .WithColumn("Images").AsString(500).Nullable()
                 .CommonFields());
 
             this.CreateTableWithId64("Party", "Id", s => s
-                .WithColumn("PartyType").AsInt32().NotNullable()
+                .WithColumn("PartyType").AsInt32().Nullable()
                 .WithColumn("Name").AsString(100).NotNullable()
                 .WithColumn("Address").AsString(500).Nullable()
                 .WithColumn("Contact").AsString(500).Nullable()
