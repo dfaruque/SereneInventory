@@ -11,6 +11,7 @@
     "~/Scripts/vegas/vegas.css"
   ],
   "Site": [
+    "~/Modules/_Ext/ExtStyles.css",
     "~/Content/jquery.fileupload.css",
     "~/Content/colorbox/jquery.colorbox.css",
     "~/Content/site/site.css"

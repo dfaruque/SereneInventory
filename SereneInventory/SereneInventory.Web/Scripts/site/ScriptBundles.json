@@ -16,6 +16,8 @@
     "~/Scripts/serenity/Serenity.CoreLib.js"
   ],
   "Site": [
+    "~/Modules/_Ext/Editors/slick.editors.js",
+    "~/Modules/_Ext/CustomSlickGridPlugin/slick.autocolumnsize.js",
     "~/Scripts/jquery.autoNumeric.js",
     "~/Scripts/jquery.colorbox.js",
     "~/Scripts/jquery.dialogextendQ.js",
