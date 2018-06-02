@@ -1881,6 +1881,7 @@
     <Compile Include="Modules\Common\UserPreference\UserPreferenceModels.cs" />
     <Compile Include="Modules\Common\UserPreference\UserPreferenceEndpoint.cs" />
     <Compile Include="Modules\Common\UserPreference\UserPreferenceRepository.cs" />
+    <Compile Include="Modules\Inventory\InventoryEnums.cs" />
     <Compile Include="Modules\Membership\Account\ChangePassword\AccountPage.ChangePassword.cs" />
     <Compile Include="Modules\Membership\Account\EnvironmentSettings.cs" />
     <Compile Include="Modules\Membership\Account\ForgotPassword\AccountPage.ForgotPassword.cs" />
@@ -1897,6 +1898,7 @@
     <Compile Include="Modules\Common\UserPreference\UserPreferenceRow.cs" />
     <Compile Include="Modules\Common\Helpers\GetNextNumberHelper.cs" />
     <Compile Include="Modules\Common\Helpers\GetNextNumberRequest.cs" />
+    <Compile Include="Modules\Setup\SetupEnums.cs" />
     <Compile Include="Modules\Texts.cs" />
     <Compile Include="Modules\Membership\Account\AccountPage.cs" />
     <Compile Include="Modules\Administration\User\Authentication\AuthorizationService.cs" />
