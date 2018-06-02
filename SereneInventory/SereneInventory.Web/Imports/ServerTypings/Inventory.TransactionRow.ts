@@ -6,15 +6,18 @@
         TransactionNumber?: string;
         TransactionDate?: string;
         PartyId?: number;
-        TenantId?: number;
         RefTransactionTransactionType?: number;
         RefTransactionRefTransactionId?: number;
         RefTransactionTransactionNumber?: string;
         RefTransactionTransactionDate?: string;
         RefTransactionPartyId?: number;
-        RefTransactionTenantId?: number;
+        PartyPartyType?: number;
+        PartyName?: string;
+        PartyAddress?: string;
+        PartyContact?: string;
         Remarks?: string;
         IUserId?: number;
+        TenantId?: number;
         EUserId?: number;
         RowNum?: number;
         IDate?: string;
@@ -38,15 +41,18 @@
             TransactionNumber = "TransactionNumber",
             TransactionDate = "TransactionDate",
             PartyId = "PartyId",
-            TenantId = "TenantId",
             RefTransactionTransactionType = "RefTransactionTransactionType",
             RefTransactionRefTransactionId = "RefTransactionRefTransactionId",
             RefTransactionTransactionNumber = "RefTransactionTransactionNumber",
             RefTransactionTransactionDate = "RefTransactionTransactionDate",
             RefTransactionPartyId = "RefTransactionPartyId",
-            RefTransactionTenantId = "RefTransactionTenantId",
+            PartyPartyType = "PartyPartyType",
+            PartyName = "PartyName",
+            PartyAddress = "PartyAddress",
+            PartyContact = "PartyContact",
             Remarks = "Remarks",
             IUserId = "IUserId",
+            TenantId = "TenantId",
             EUserId = "EUserId",
             RowNum = "RowNum",
             IDate = "IDate",

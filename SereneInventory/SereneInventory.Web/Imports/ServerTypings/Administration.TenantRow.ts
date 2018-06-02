@@ -3,9 +3,9 @@
         Id?: number;
         Name?: string;
         Description?: string;
-        TenantId?: number;
         Remarks?: string;
         IUserId?: number;
+        TenantId?: number;
         EUserId?: number;
         RowNum?: number;
         IDate?: string;
@@ -21,9 +21,9 @@
             Id = "Id",
             Name = "Name",
             Description = "Description",
-            TenantId = "TenantId",
             Remarks = "Remarks",
             IUserId = "IUserId",
+            TenantId = "TenantId",
             EUserId = "EUserId",
             RowNum = "RowNum",
             IDate = "IDate",

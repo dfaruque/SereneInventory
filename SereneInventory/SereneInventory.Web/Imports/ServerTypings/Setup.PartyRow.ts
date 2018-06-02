@@ -5,9 +5,9 @@
         Name?: string;
         Address?: string;
         Contact?: string;
-        TenantId?: number;
         Remarks?: string;
         IUserId?: number;
+        TenantId?: number;
         EUserId?: number;
         RowNum?: number;
         IDate?: string;
@@ -25,9 +25,9 @@
             Name = "Name",
             Address = "Address",
             Contact = "Contact",
-            TenantId = "TenantId",
             Remarks = "Remarks",
             IUserId = "IUserId",
+            TenantId = "TenantId",
             EUserId = "EUserId",
             RowNum = "RowNum",
             IDate = "IDate",

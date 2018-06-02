@@ -19,29 +19,39 @@
 
         [DisplayName("Id"), Identity]
         public Int64? Id { get { return Fields.Id[this]; } set { Fields.Id[this] = value; } }
-		public partial class RowFields { public Int64Field Id; }
+        public partial class RowFields { public Int64Field Id; }
 
         [DisplayName("Name"), Size(100), NotNull, QuickSearch]
         public String Name { get { return Fields.Name[this]; } set { Fields.Name[this] = value; } }
-		public partial class RowFields { public StringField Name; }
+        public partial class RowFields { public StringField Name; }
 
         [DisplayName("Product Type")]
         public Int32? ProductType { get { return Fields.ProductType[this]; } set { Fields.ProductType[this] = value; } }
-		public partial class RowFields { public Int32Field ProductType; }
+        public partial class RowFields { public Int32Field ProductType; }
 
-        [DisplayName("Product Category Id")]
+        [DisplayName("Product Category"), ForeignKey("[dbo].[ProductCategory]", "Id"), LeftJoin("jProductCategory"), TextualField("ProductCategoryName")]
         public Int64? ProductCategoryId { get { return Fields.ProductCategoryId[this]; } set { Fields.ProductCategoryId[this] = value; } }
-		public partial class RowFields { public Int64Field ProductCategoryId; }
+        public partial class RowFields { public Int64Field ProductCategoryId; }
 
         [DisplayName("Description"), Size(500)]
         public String Description { get { return Fields.Description[this]; } set { Fields.Description[this] = value; } }
-		public partial class RowFields { public StringField Description; }
+        public partial class RowFields { public StringField Description; }
 
         [DisplayName("Images"), Size(500)]
         public String Images { get { return Fields.Images[this]; } set { Fields.Images[this] = value; } }
-		public partial class RowFields { public StringField Images; }
+        public partial class RowFields { public StringField Images; }
 
         #region Foreign Fields
+
+
+        [DisplayName("Product Category Name"), Expression("jProductCategory.[Name]")]
+        public String ProductCategoryName { get { return Fields.ProductCategoryName[this]; } set { Fields.ProductCategoryName[this] = value; } }
+        public partial class RowFields { public StringField ProductCategoryName; }
+
+        [DisplayName("Product Category Description"), Expression("jProductCategory.[Description]")]
+        public String ProductCategoryDescription { get { return Fields.ProductCategoryDescription[this]; } set { Fields.ProductCategoryDescription[this] = value; } }
+        public partial class RowFields { public StringField ProductCategoryDescription; }
+
 
         #endregion Foreign Fields
 
@@ -54,6 +64,6 @@
 
         public ProductRow() : base(Fields) { }
 
-		public partial class RowFields : NRowFields { }
+        public partial class RowFields : NRowFields { }
     }
 }

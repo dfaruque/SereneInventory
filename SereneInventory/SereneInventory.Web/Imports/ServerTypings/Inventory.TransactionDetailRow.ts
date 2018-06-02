@@ -6,9 +6,19 @@
         Quantity?: string;
         UnitPrice?: number;
         Amount?: number;
-        TenantId?: number;
+        TransactionTransactionType?: number;
+        TransactionRefTransactionId?: number;
+        TransactionTransactionNumber?: string;
+        TransactionTransactionDate?: string;
+        TransactionPartyId?: number;
+        ProductName?: string;
+        ProductProductType?: number;
+        ProductProductCategoryId?: number;
+        ProductDescription?: string;
+        ProductImages?: string;
         Remarks?: string;
         IUserId?: number;
+        TenantId?: number;
         EUserId?: number;
         RowNum?: number;
         IDate?: string;
@@ -26,9 +36,19 @@
             Quantity = "Quantity",
             UnitPrice = "UnitPrice",
             Amount = "Amount",
-            TenantId = "TenantId",
+            TransactionTransactionType = "TransactionTransactionType",
+            TransactionRefTransactionId = "TransactionRefTransactionId",
+            TransactionTransactionNumber = "TransactionTransactionNumber",
+            TransactionTransactionDate = "TransactionTransactionDate",
+            TransactionPartyId = "TransactionPartyId",
+            ProductName = "ProductName",
+            ProductProductType = "ProductProductType",
+            ProductProductCategoryId = "ProductProductCategoryId",
+            ProductDescription = "ProductDescription",
+            ProductImages = "ProductImages",
             Remarks = "Remarks",
             IUserId = "IUserId",
+            TenantId = "TenantId",
             EUserId = "EUserId",
             RowNum = "RowNum",
             IDate = "IDate",

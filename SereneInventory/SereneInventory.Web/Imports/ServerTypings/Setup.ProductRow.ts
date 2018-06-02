@@ -6,9 +6,11 @@
         ProductCategoryId?: number;
         Description?: string;
         Images?: string;
-        TenantId?: number;
+        ProductCategoryName?: string;
+        ProductCategoryDescription?: string;
         Remarks?: string;
         IUserId?: number;
+        TenantId?: number;
         EUserId?: number;
         RowNum?: number;
         IDate?: string;
@@ -27,9 +29,11 @@
             ProductCategoryId = "ProductCategoryId",
             Description = "Description",
             Images = "Images",
-            TenantId = "TenantId",
+            ProductCategoryName = "ProductCategoryName",
+            ProductCategoryDescription = "ProductCategoryDescription",
             Remarks = "Remarks",
             IUserId = "IUserId",
+            TenantId = "TenantId",
             EUserId = "EUserId",
             RowNum = "RowNum",
             IDate = "IDate",
