@@ -18,7 +18,7 @@ namespace SereneInventory
         [DisplayName("Remarks"), Size(500), TextAreaEditor(Rows = 3), Width(200)]
         public String Remarks { get { return Fields.Remarks[this]; } set { Fields.Remarks[this] = value; } }
 
-        [DisplayName("Tenant Id")]
+        [DisplayName("Tenant Id"), Hidden]
         public Int64? TenantId { get { return Fields.TenantId[this]; } set { Fields.TenantId[this] = value; } }
 
         [DisplayName("Insert Date")]

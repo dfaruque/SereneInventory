@@ -46,23 +46,23 @@
         #region Foreign Fields
 
 
-        [DisplayName("Ref Transaction Transaction Type"), Expression("jRefTransaction.[TransactionType]")]
+        [DisplayName("Ref. Transaction Transaction Type"), Expression("jRefTransaction.[TransactionType]")]
         public Int32? RefTransactionTransactionType { get { return Fields.RefTransactionTransactionType[this]; } set { Fields.RefTransactionTransactionType[this] = value; } }
         public partial class RowFields { public Int32Field RefTransactionTransactionType; }
 
-        [DisplayName("Ref Transaction Ref Transaction Id"), Expression("jRefTransaction.[RefTransactionId]")]
+        [DisplayName("Ref. Transaction Ref. Transaction Id"), Expression("jRefTransaction.[RefTransactionId]")]
         public Int64? RefTransactionRefTransactionId { get { return Fields.RefTransactionRefTransactionId[this]; } set { Fields.RefTransactionRefTransactionId[this] = value; } }
         public partial class RowFields { public Int64Field RefTransactionRefTransactionId; }
 
-        [DisplayName("Ref Transaction Transaction Number"), Expression("jRefTransaction.[TransactionNumber]")]
+        [DisplayName("Ref. Transaction Transaction Number"), Expression("jRefTransaction.[TransactionNumber]")]
         public String RefTransactionTransactionNumber { get { return Fields.RefTransactionTransactionNumber[this]; } set { Fields.RefTransactionTransactionNumber[this] = value; } }
         public partial class RowFields { public StringField RefTransactionTransactionNumber; }
 
-        [DisplayName("Ref Transaction Transaction Date"), Expression("jRefTransaction.[TransactionDate]")]
+        [DisplayName("Ref. Transaction Transaction Date"), Expression("jRefTransaction.[TransactionDate]")]
         public DateTime? RefTransactionTransactionDate { get { return Fields.RefTransactionTransactionDate[this]; } set { Fields.RefTransactionTransactionDate[this] = value; } }
         public partial class RowFields { public DateTimeField RefTransactionTransactionDate; }
 
-        [DisplayName("Ref Transaction Party Id"), Expression("jRefTransaction.[PartyId]")]
+        [DisplayName("Ref. Transaction Party Id"), Expression("jRefTransaction.[PartyId]")]
         public Int64? RefTransactionPartyId { get { return Fields.RefTransactionPartyId[this]; } set { Fields.RefTransactionPartyId[this] = value; } }
         public partial class RowFields { public Int64Field RefTransactionPartyId; }
 

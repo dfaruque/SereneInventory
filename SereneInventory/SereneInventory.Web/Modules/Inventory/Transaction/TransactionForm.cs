@@ -18,7 +18,6 @@ namespace SereneInventory.Inventory.Forms
         public String TransactionNumber { get; set; }
         public DateTime TransactionDate { get; set; }
         public Int64 PartyId { get; set; }
-        [Hidden]
         public Int64 TenantId { get; set; }
     }
 }
