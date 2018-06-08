@@ -17,6 +17,8 @@
         PartyContact?: string;
         TransactionDetailRows?: TransactionDetailRow[];
         RelatedTransactionRows?: TransactionRow[];
+        TotalQuantity?: number;
+        TotalAmount?: number;
         Remarks?: string;
         IUserId?: number;
         TenantId?: number;
@@ -54,6 +56,8 @@
             PartyContact = "PartyContact",
             TransactionDetailRows = "TransactionDetailRows",
             RelatedTransactionRows = "RelatedTransactionRows",
+            TotalQuantity = "TotalQuantity",
+            TotalAmount = "TotalAmount",
             Remarks = "Remarks",
             IUserId = "IUserId",
             TenantId = "TenantId",

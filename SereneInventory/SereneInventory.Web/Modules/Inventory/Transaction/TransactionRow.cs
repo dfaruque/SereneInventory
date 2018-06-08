@@ -100,6 +100,16 @@
         public List<TransactionRow> RelatedTransactionRows { get { return Fields.RelatedTransactionRows[this]; } set { Fields.RelatedTransactionRows[this] = value; } }
         public partial class RowFields { public ListField<TransactionRow> RelatedTransactionRows; }
 
+        [DisplayName("Total Quantity"), Expression("(SELECT SUM(d.Quantity) FROM TransactionDetail d WHERE d.TransactionId = T0.Id)")]
+        [MinSelectLevel(SelectLevel.List)]
+        public Decimal? TotalQuantity { get { return Fields.TotalQuantity[this]; } set { Fields.TotalQuantity[this] = value; } }
+        public partial class RowFields { public DecimalField TotalQuantity; }
+
+        [DisplayName("Total Amount"), Expression("(SELECT SUM(d.Amount) FROM TransactionDetail d WHERE d.TransactionId = T0.Id)")]
+        [MinSelectLevel(SelectLevel.List)]
+        public Decimal? TotalAmount { get { return Fields.TotalAmount[this]; } set { Fields.TotalAmount[this] = value; } }
+        public partial class RowFields { public DecimalField TotalAmount; }
+
         IIdField IIdRow.IdField { get { return Fields.Id; } }
 
         StringField INameRow.NameField { get { return Fields.TransactionNumber; } }

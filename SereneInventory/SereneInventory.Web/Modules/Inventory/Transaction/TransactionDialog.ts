@@ -3,6 +3,7 @@
 namespace SereneInventory.Inventory {
     import fld = TransactionRow.Fields;
 
+    @Serenity.Decorators.panel()
     @Serenity.Decorators.registerClass()
     export class TransactionDialog extends _Ext.DialogBase<TransactionRow, any> {
         protected getFormKey() { return TransactionForm.formKey; }
@@ -14,6 +15,13 @@ namespace SereneInventory.Inventory {
         protected getEntityTitle() { return getTrasactionTypeName(getTrasactionTypeFromUrl()) }
 
         protected form = new TransactionForm(this.idPrefix);
+
+        constructor() {
+            super();
+
+            q.initDetailEditor(this, this.form.TransactionDetailRows);
+            q.initDetailEditor(this, this.form.RelatedTransactionRows);
+        }
 
         protected getSaveEntity() {
             let entity = super.getSaveEntity();

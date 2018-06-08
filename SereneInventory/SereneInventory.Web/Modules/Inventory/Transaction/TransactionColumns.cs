@@ -22,6 +22,8 @@ namespace SereneInventory.Inventory.Columns
         public String RefTransactionTransactionNumber { get; set; }
         public DateTime TransactionDate { get; set; }
         public Int64 PartyId { get; set; }
+        public Decimal TotalAmount { get; set; }
+        public Decimal TotalQuantity { get; set; }
         public Int64 TenantId { get; set; }
     }
 }
