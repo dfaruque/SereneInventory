@@ -4,7 +4,7 @@ namespace q {
     export var jsPDFHeaderImageData: string = null
     export var jsPDFHeaderTitle: string = 'Report Title';
     export var useSerenityInlineEditors: boolean = true;
-    export var hideCategoyLinksBarInPropertyDialog: boolean = false;
+    export var hideCategoyLinksBarInPropertyDialog: boolean = true;
 
     export var DefaultMainGridOptions: GridOptions = {
         AutoColumnSize: true,

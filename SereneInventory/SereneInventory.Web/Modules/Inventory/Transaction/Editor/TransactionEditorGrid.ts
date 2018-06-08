@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../../_Ext/_q/_q.ts" />
 
 namespace SereneInventory.Inventory {
-    import fld = TransactionRow.Fields; 
+    import fld = TransactionRow.Fields;
 
     @Serenity.Decorators.registerClass()
     export class TransactionEditorGrid extends _Ext.GridEditorBase<TransactionRow> {
@@ -14,6 +14,14 @@ namespace SereneInventory.Inventory {
 
         constructor(container: JQuery) {
             super(container);
+
+        }
+
+
+        protected getButtons() {
+            //let buttons = super.getButtons();
+
+            return [];
         }
 
         protected getColumns() {

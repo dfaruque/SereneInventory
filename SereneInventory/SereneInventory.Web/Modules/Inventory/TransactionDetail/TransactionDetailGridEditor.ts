@@ -11,5 +11,17 @@ namespace SereneInventory.Inventory {
         constructor(container: JQuery) {
             super(container);
         }
+
+        validateEntity(row: TransactionDetailRow, id: number) {
+            row.ProductId = Q.toId(row.ProductId);
+
+            var sameProduct = Q.tryFirst(this.view.getItems(), x => x.ProductId === row.ProductId);
+            if (sameProduct && this.id(sameProduct) !== id) {
+                Q.alert('This product is already in transaction details!');
+                return false;
+            }
+
+            return true;
+        }
     }
 }

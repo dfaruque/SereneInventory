@@ -20,7 +20,7 @@ namespace SereneInventory.Inventory {
             super();
 
             q.initDetailEditor(this, this.form.TransactionDetailRows);
-            q.initDetailEditor(this, this.form.RelatedTransactionRows);
+            q.initDetailEditor(this, this.form.RelatedTransactionRows, { hideToolbar: true });
         }
 
         protected getSaveEntity() {
