@@ -37,12 +37,12 @@
         public String TransactionNumber { get { return Fields.TransactionNumber[this]; } set { Fields.TransactionNumber[this] = value; } }
         public partial class RowFields { public StringField TransactionNumber; }
 
-        [DisplayName("Transaction Date"), NotNull, DefaultValue("today")]
+        [DisplayName("Transaction Date"), NotNull, DefaultValue("today"), QuickFilter]
         public DateTime? TransactionDate { get { return Fields.TransactionDate[this]; } set { Fields.TransactionDate[this] = value; } }
         public partial class RowFields { public DateTimeField TransactionDate; }
 
         [DisplayName("Party"), ForeignKey("[dbo].[Party]", "Id"), LeftJoin("jParty"), TextualField("PartyName")]
-        [LookupEditor(typeof(PartyRow), InplaceAdd = true)]
+        [LookupEditor(typeof(PartyRow), InplaceAdd = true), QuickFilter]
         public Int64? PartyId { get { return Fields.PartyId[this]; } set { Fields.PartyId[this] = value; } }
         public partial class RowFields { public Int64Field PartyId; }
 
