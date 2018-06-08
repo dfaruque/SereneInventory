@@ -1004,6 +1004,10 @@
     <TypeScriptCompile Include="Imports\ServerTypings\_Ext.TimeUoM.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Inventory\Transaction\Editor\TransactionEditorDialog.ts" />
+    <TypeScriptCompile Include="Modules\Inventory\Transaction\Editor\TransactionEditorGrid.ts" />
+    <TypeScriptCompile Include="Modules\Inventory\Transaction\TransactionDialog.ts" />
+    <TypeScriptCompile Include="Modules\Inventory\Transaction\TransactionGrid.ts" />
     <TypeScriptCompile Include="Modules\_ExtWrapper\_q.ts" />
     <TypeScriptCompile Include="Modules\_Ext\AuditLogViewer\AuditLogViewer.ts" />
     <TypeScriptCompile Include="Modules\_Ext\AuditLogViewer\AuditLogViewerDialog.ts" />
@@ -1770,8 +1774,6 @@
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
     <Content Include="Modules\Inventory\Transaction\TransactionIndex.cshtml" />
-    <TypeScriptCompile Include="Modules\Inventory\Transaction\TransactionDialog.ts" />
-    <TypeScriptCompile Include="Modules\Inventory\Transaction\TransactionGrid.ts" />
     <TypeScriptCompile Include="Imports\ServerTypings\Inventory.TransactionForm.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1806,6 +1808,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Imports\ClientTypes\Inventory.TransactionDetailGridEditorAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Imports\ClientTypes\Inventory.TransactionEditorGridAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Imports\ClientTypes\_Ext.AuditLogActionTypeFormatterAttribute.cs">

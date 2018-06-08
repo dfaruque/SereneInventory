@@ -95,6 +95,10 @@
         public List<TransactionDetailRow> TransactionDetailRows { get { return Fields.TransactionDetailRows[this]; } set { Fields.TransactionDetailRows[this] = value; } }
         public partial class RowFields { public ListField<TransactionDetailRow> TransactionDetailRows; }
 
+        [DisplayName("Transaction Details"), MasterDetailRelation(nameof(TransactionRow.RefTransactionId))]
+        [TransactionEditorGrid]
+        public List<TransactionRow> RelatedTransactionRows { get { return Fields.RelatedTransactionRows[this]; } set { Fields.RelatedTransactionRows[this] = value; } }
+        public partial class RowFields { public ListField<TransactionRow> RelatedTransactionRows; }
 
         IIdField IIdRow.IdField { get { return Fields.Id; } }
 

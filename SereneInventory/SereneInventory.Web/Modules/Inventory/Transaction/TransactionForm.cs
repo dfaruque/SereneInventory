@@ -17,11 +17,17 @@ namespace SereneInventory.Inventory.Forms
         [Hidden]
         public TransactionType TransactionType { get; set; }
         public Int64 RefTransactionId { get; set; }
+        [HalfWidth]
         public String TransactionNumber { get; set; }
+        [HalfWidth]
         public DateTime TransactionDate { get; set; }
         public Int64 PartyId { get; set; }
         public Int64 TenantId { get; set; }
 
+        [Category("Transaction Details")]
         public List<TransactionDetailRow> TransactionDetailRows { get; set; }
+
+        [Category("Related Transactions")]
+        public List<TransactionRow> RelatedTransactionRows { get; set; }
     }
 }
