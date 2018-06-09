@@ -29,5 +29,8 @@ namespace SereneInventory.Inventory.Forms
 
         [Category("Related Transactions")]
         public List<TransactionRow> RelatedTransactionRows { get; set; }
+
+        public Int64 RemainingQuantity { get; set; }
+
     }
 }

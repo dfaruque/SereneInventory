@@ -100,7 +100,9 @@
         public List<TransactionRow> RelatedTransactionRows { get { return Fields.RelatedTransactionRows[this]; } set { Fields.RelatedTransactionRows[this] = value; } }
         public partial class RowFields { public ListField<TransactionRow> RelatedTransactionRows; }
 
-        [DisplayName("Total Quantity"), Expression("(SELECT SUM(d.Quantity) FROM TransactionDetail d WHERE d.TransactionId = T0.Id)")]
+        const string totalQuantityExp = "(SELECT SUM(d.Quantity) FROM TransactionDetail d WHERE d.TransactionId = T0.Id)";
+
+        [DisplayName("Total Quantity"), Expression(totalQuantityExp)]
         [MinSelectLevel(SelectLevel.List)]
         public Decimal? TotalQuantity { get { return Fields.TotalQuantity[this]; } set { Fields.TotalQuantity[this] = value; } }
         public partial class RowFields { public DecimalField TotalQuantity; }
@@ -109,6 +111,15 @@
         [MinSelectLevel(SelectLevel.List)]
         public Decimal? TotalAmount { get { return Fields.TotalAmount[this]; } set { Fields.TotalAmount[this] = value; } }
         public partial class RowFields { public DecimalField TotalAmount; }
+
+        const string totalRefferencedQuantityExp = @"ISNULL((SELECT SUM(d.Quantity) 
+FROM TransactionDetail d 
+JOIN [Transaction] RelatedTran ON d.TransactionId = RelatedTran.Id 
+WHERE RelatedTran.RefTransactionId = T0.Id), 0)";
+        [DisplayName("Remaining Quantity"), Expression(totalQuantityExp + " - " + totalRefferencedQuantityExp)]
+        [ReadOnly(true)]
+        public Decimal? RemainingQuantity { get { return Fields.RemainingQuantity[this]; } set { Fields.RemainingQuantity[this] = value; } }
+        public partial class RowFields { public DecimalField RemainingQuantity; }
 
         IIdField IIdRow.IdField { get { return Fields.Id; } }
 
