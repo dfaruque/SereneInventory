@@ -10,7 +10,7 @@
     using System.ComponentModel;
     using System.IO;
 
-    [ConnectionKey("Default"), TableName("[dbo].[Transaction]")]
+    [ConnectionKey("Default"), TableName("[dbo].[Transaction]")] 
     [DisplayName("Transaction"), InstanceName("Transaction"), TwoLevelCached]
     [ReadPermission("Inventory:Transaction:Read")]
     [InsertPermission("Inventory:Transaction:Insert")]
