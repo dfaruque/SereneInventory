@@ -245,3 +245,4 @@ ModelManifest.xml
 .fake/
 /SereneInventory/SereneInventory.Web/Content/site/site.css
 /SereneInventory/SereneInventory.Web/Scripts/site
+/SereneInventory/SereneInventory.Web/Properties/PublishProfiles/godaddy.pubxml

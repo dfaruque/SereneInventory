@@ -831,6 +831,7 @@
     <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch.min.map" />
     <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch-full.min.map" />
     <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch-formatters.min.map" />
+    <None Include="Properties\PublishProfiles\godaddy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
