@@ -21,6 +21,7 @@ namespace SereneInventory.Inventory.Columns
         public String TransactionNumber { get; set; }
         public String RefTransactionTransactionNumber { get; set; }
         public DateTime TransactionDate { get; set; }
+        [Width(200, Min = 150)]
         public Int64 PartyId { get; set; }
         public Decimal TotalQuantity { get; set; }
         public Decimal TotalAmount { get; set; }

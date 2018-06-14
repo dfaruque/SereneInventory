@@ -3,7 +3,6 @@
 namespace SereneInventory.Inventory {
     import fld = TransactionRow.Fields;
 
-    @Serenity.Decorators.panel()
     @Serenity.Decorators.registerClass()
     export class TransactionDialog extends _Ext.DialogBase<TransactionRow, any> {
         protected getFormKey() { return TransactionForm.formKey; }
