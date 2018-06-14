@@ -19,6 +19,7 @@
         RelatedTransactionRows?: TransactionRow[];
         TotalQuantity?: number;
         TotalAmount?: number;
+        RemainingQuantity?: number;
         Remarks?: string;
         IUserId?: number;
         TenantId?: number;
@@ -58,6 +59,7 @@
             RelatedTransactionRows = "RelatedTransactionRows",
             TotalQuantity = "TotalQuantity",
             TotalAmount = "TotalAmount",
+            RemainingQuantity = "RemainingQuantity",
             Remarks = "Remarks",
             IUserId = "IUserId",
             TenantId = "TenantId",

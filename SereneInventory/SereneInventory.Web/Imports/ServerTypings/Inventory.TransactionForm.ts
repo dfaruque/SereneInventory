@@ -8,6 +8,7 @@
         TenantId: Serenity.StringEditor;
         TransactionDetailRows: TransactionDetailGridEditor;
         RelatedTransactionRows: TransactionEditorGrid;
+        RemainingQuantity: Serenity.StringEditor;
     }
 
     export class TransactionForm extends Serenity.PrefixedContext {
@@ -36,7 +37,8 @@
                     'PartyId', w1,
                     'TenantId', w2,
                     'TransactionDetailRows', w4,
-                    'RelatedTransactionRows', w5
+                    'RelatedTransactionRows', w5,
+                    'RemainingQuantity', w2
                 ]);
             }
         }
