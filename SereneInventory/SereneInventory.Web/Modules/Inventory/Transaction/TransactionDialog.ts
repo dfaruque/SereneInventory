@@ -22,6 +22,22 @@ namespace SereneInventory.Inventory {
             q.initDetailEditor(this, this.form.RelatedTransactionRows, { hideToolbar: true });
         }
 
+        protected getToolbarButtons() {
+            let buttons = super.getToolbarButtons();
+
+            buttons.push({
+                title: 'Print',
+                icon: 'fa fa-print',
+                cssClass: 'btn-custom',
+                onClick: () => {
+                    Common.ReportHelper.execute({ reportKey: 'Inventory.SalesInvoice', params: { ID: this.entityId }, extension: 'html' })
+                }
+            });
+
+            return buttons;
+        }
+
+
         protected getSaveEntity() {
             let entity = super.getSaveEntity();
 

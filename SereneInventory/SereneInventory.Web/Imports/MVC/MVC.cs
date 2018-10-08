@@ -70,6 +70,10 @@ namespace MVC
         {
             public static class Transaction
             {
+                public static class SalesInvoice
+                {
+                    public const string SalesInvoicePrint = "~/Modules/Inventory/Transaction/SalesInvoice/SalesInvoicePrint.cshtml";
+                }
                 public const string TransactionIndex = "~/Modules/Inventory/Transaction/TransactionIndex.cshtml";
             }
 
@@ -137,6 +141,7 @@ namespace MVC
             public const string _Layout = "~/Views/Shared/_Layout.cshtml";
             public const string _LayoutHead = "~/Views/Shared/_LayoutHead.cshtml";
             public const string _LayoutNoNavigation = "~/Views/Shared/_LayoutNoNavigation.cshtml";
+            public const string _LayoutReport = "~/Views/Shared/_LayoutReport.cshtml";
             public const string _LayoutSlim = "~/Views/Shared/_LayoutSlim.cshtml";
             public const string _LayoutSlimHead = "~/Views/Shared/_LayoutSlimHead.cshtml";
             public const string Error = "~/Views/Shared/Error.cshtml";

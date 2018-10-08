@@ -200,5 +200,20 @@ namespace SereneInventory
                 "records that depends on this one!";
             public static LocalText SavePrimaryKeyError = "Can't save record. There is another record with the same {1} value!";
         }
+
+        public static class Company
+        {
+            public static LocalText Name = "BERC";
+            public static LocalText Title = "Turki Winning Tex";
+            public static LocalText Address = "House # 21, Road # 09, Sector # 09, Uttara, Dhaka, Bangladesh";
+            public static LocalText Contact = "+88-01923-763784, +88-01762-691101";
+        }
+
+        public static class Application
+        {
+            public static LocalText Name = "Inventory";
+            public static LocalText Title = "Inventory Management System";
+        }
+
     }
 }

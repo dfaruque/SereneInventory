@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+@{
+    var rtl = System.Globalization.CultureInfo.CurrentUICulture.TextInfo.IsRightToLeft;
+}
+<html lang="@UICulture">
+<head>
+    @{Html.RenderPartial(MVC.Views.Shared._LayoutHead);}
+    @Html.Stylesheet("~/Modules/_Ext/Reporting/report.css")
+    @RenderSection("Head", false)
+    <title>@ViewData["Title"]</title>
+    <script>
+        var pdfInfo = {};
+        var x = document.location.search.substring(1).split('&');
+        for (var i in x) { var z = x[i].split('=', 2); pdfInfo[z[0]] = unescape(z[1]); }
+        function getPdfInfo() {
+            //var page = pdfInfo.page || 1;
+            //var pageCount = pdfInfo.topage || 1;
+            //document.getElementById('pdfkit_page_current').textContent = page;
+            //document.getElementById('pdfkit_page_count').textContent = pageCount;
+        }
+    </script>
+
+</head>
+<body onload="getPdfInfo()" id="s-@(ViewData["PageId"])Page" class="@(ViewData["BodyClass"]) no-navigation@(rtl ? " rtl" : "")">
+    <section class="invoice">
+        <div class="row report-header">
+            <div class="col-xs-2">
+                <img width="110" height="110" src="~/Content/images/logo-berc.png" />
+            </div>
+
+            <div class="col-xs-10">
+                <h2>@Texts.Company.Title</h2>
+                <h4>@Texts.Company.Address</h4>
+                <h5>@Texts.Company.Contact</h5>
+                <span @((ViewData["HideDate"] != null) ? "hidden" : "") class="pull-right">Print Date: @DateTime.Now.ToDateFormat()</span>
+                <hr />
+
+            </div>
+        </div>
+
+        <div class="row report-title">
+            <div class="col-xs-12">
+                <h3 class="align-center">
+                    @ViewData["Title"]
+                </h3>
+            </div>
+        </div>
+
+        <div class="report-body">
+            @RenderBody()
+        </div>
+    </section>
+
+    @*@if (ViewData["IgnoreImmediatePrint"] == null)
+    {
+        <text>
+            <script>
+                //Open in print mode
+                $(function () {
+
+                    window.print();
+                });
+            </script>
+        </text>
+    }*@
+</body>
+
+
+</html>

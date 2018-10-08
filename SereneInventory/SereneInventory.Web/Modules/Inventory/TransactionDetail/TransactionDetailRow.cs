@@ -68,7 +68,7 @@
 
 
 
-        [DisplayName("Product Name"), Expression("jProduct.[Name]")]
+        [DisplayName("Product Name"), Expression("jProduct.[Name]"), MinSelectLevel(SelectLevel.List)]
         public String ProductName { get { return Fields.ProductName[this]; } set { Fields.ProductName[this] = value; } }
         public partial class RowFields { public StringField ProductName; }
 

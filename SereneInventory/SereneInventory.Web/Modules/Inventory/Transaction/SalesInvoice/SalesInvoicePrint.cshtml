@@ -1,0 +1,61 @@
+﻿@model SereneInventory.Inventory.Entities.TransactionRow
+@{
+    Layout = MVC.Views.Shared._LayoutReport;
+    ViewData["Title"] = "Salse Invoice";
+    int i = 1;
+}
+<div>
+
+    <div class="col-xs-8">
+        <div class="report-label ">
+            <label>Party Name</label>
+            <span>: @Model.PartyName</span>
+        </div>
+        <div class="report-label ">
+            <label>Party Address</label>
+            <span>: @Model.PartyAddress</span>
+        </div>
+    </div>
+
+    <div class="col-xs-4">
+        <div class="report-label ">
+            <label>Invoice Date</label>
+            <span>: @Model.TransactionDate.ToLongDateFormat()</span>
+        </div>
+        <div class="report-label ">
+            <label>Invoice Number</label>
+            <span>: @Model.TransactionNumber</span>
+        </div>
+        <div class="report-label ">
+            <label>Ref. Number</label>
+            <span>: @Model.RefTransactionTransactionNumber</span>
+        </div>
+    </div>
+
+    <table class="table table-bordered">
+        <tr>
+            <th>#</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Remarks</th>
+        </tr>
+
+        @foreach (var row in Model.TransactionDetailRows)
+        {
+            <tr>
+                <td class="rpt-id">@(i++)</td>
+                <td class="rpt-text">@row.ProductName</td>
+                <td class="rpt-number">@row.Quantity.ToRound(0)</td>
+                <td>@row.Remarks</td>
+            </tr>
+        }
+
+        <tr>
+            <td class="text-bold text-right" colspan="2">Total</td>
+            <td class="rpt-number text-bold">@Model.TransactionDetailRows.Sum(s => s.Quantity).ToRound(0)</td>
+            <td></td>
+
+        </tr>
+
+    </table>
+</div>
