@@ -19,7 +19,7 @@ namespace SereneInventory.Inventory.Columns
         public TransactionType TransactionType { get; set; }
         [EditLink]
         public String TransactionNumber { get; set; }
-        public String RefTransactionTransactionNumber { get; set; }
+        //public String RefTransactionTransactionNumber { get; set; }
         public DateTime TransactionDate { get; set; }
         [Width(200, Min = 150)]
         public Int64 PartyId { get; set; }

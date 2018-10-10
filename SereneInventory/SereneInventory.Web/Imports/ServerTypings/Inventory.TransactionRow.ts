@@ -2,21 +2,14 @@
     export interface TransactionRow {
         Id?: number;
         TransactionType?: TransactionType;
-        RefTransactionId?: number;
         TransactionNumber?: string;
         TransactionDate?: string;
         PartyId?: number;
-        RefTransactionTransactionType?: number;
-        RefTransactionRefTransactionId?: number;
-        RefTransactionTransactionNumber?: string;
-        RefTransactionTransactionDate?: string;
-        RefTransactionPartyId?: number;
         PartyPartyType?: number;
         PartyName?: string;
         PartyAddress?: string;
         PartyContact?: string;
         TransactionDetailRows?: TransactionDetailRow[];
-        RelatedTransactionRows?: TransactionRow[];
         TotalQuantity?: number;
         TotalAmount?: number;
         RemainingQuantity?: number;
@@ -42,21 +35,14 @@
         export declare const enum Fields {
             Id = "Id",
             TransactionType = "TransactionType",
-            RefTransactionId = "RefTransactionId",
             TransactionNumber = "TransactionNumber",
             TransactionDate = "TransactionDate",
             PartyId = "PartyId",
-            RefTransactionTransactionType = "RefTransactionTransactionType",
-            RefTransactionRefTransactionId = "RefTransactionRefTransactionId",
-            RefTransactionTransactionNumber = "RefTransactionTransactionNumber",
-            RefTransactionTransactionDate = "RefTransactionTransactionDate",
-            RefTransactionPartyId = "RefTransactionPartyId",
             PartyPartyType = "PartyPartyType",
             PartyName = "PartyName",
             PartyAddress = "PartyAddress",
             PartyContact = "PartyContact",
             TransactionDetailRows = "TransactionDetailRows",
-            RelatedTransactionRows = "RelatedTransactionRows",
             TotalQuantity = "TotalQuantity",
             TotalAmount = "TotalAmount",
             RemainingQuantity = "RemainingQuantity",

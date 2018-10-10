@@ -28,10 +28,11 @@
         public TransactionType? TransactionType { get { return (TransactionType?)Fields.TransactionType[this]; } set { Fields.TransactionType[this] = (Int32?)value; } }
         public partial class RowFields { public Int32Field TransactionType; }
 
-        [DisplayName("Ref. Transaction"), ForeignKey("[dbo].[Transaction]", "Id"), LeftJoin("jRefTransaction"), TextualField("RefTransactionTransactionNumber")]
-        [LookupEditor(typeof(TransactionRow))]
-        public Int64? RefTransactionId { get { return Fields.RefTransactionId[this]; } set { Fields.RefTransactionId[this] = value; } }
-        public partial class RowFields { public Int64Field RefTransactionId; }
+        //The following field is moved to detail now
+        //[DisplayName("Ref. Transaction"), ForeignKey("[dbo].[Transaction]", "Id"), LeftJoin("jRefTransaction"), TextualField("RefTransactionTransactionNumber")]
+        //[LookupEditor(typeof(TransactionRow))]
+        //public Int64? RefTransactionId { get { return Fields.RefTransactionId[this]; } set { Fields.RefTransactionId[this] = value; } }
+        //public partial class RowFields { public Int64Field RefTransactionId; }
 
         [DisplayName("Transaction Number"), Size(50), NotNull, QuickSearch]
         public String TransactionNumber { get { return Fields.TransactionNumber[this]; } set { Fields.TransactionNumber[this] = value; } }
@@ -49,25 +50,25 @@
         #region Foreign Fields
 
 
-        [DisplayName("Ref. Transaction Transaction Type"), Expression("jRefTransaction.[TransactionType]")]
-        public Int32? RefTransactionTransactionType { get { return Fields.RefTransactionTransactionType[this]; } set { Fields.RefTransactionTransactionType[this] = value; } }
-        public partial class RowFields { public Int32Field RefTransactionTransactionType; }
+        //[DisplayName("Ref. Transaction Transaction Type"), Expression("jRefTransaction.[TransactionType]")]
+        //public Int32? RefTransactionTransactionType { get { return Fields.RefTransactionTransactionType[this]; } set { Fields.RefTransactionTransactionType[this] = value; } }
+        //public partial class RowFields { public Int32Field RefTransactionTransactionType; }
 
-        [DisplayName("Ref. Transaction Ref. Transaction Id"), Expression("jRefTransaction.[RefTransactionId]")]
-        public Int64? RefTransactionRefTransactionId { get { return Fields.RefTransactionRefTransactionId[this]; } set { Fields.RefTransactionRefTransactionId[this] = value; } }
-        public partial class RowFields { public Int64Field RefTransactionRefTransactionId; }
+        //[DisplayName("Ref. Transaction Ref. Transaction Id"), Expression("jRefTransaction.[RefTransactionId]")]
+        //public Int64? RefTransactionRefTransactionId { get { return Fields.RefTransactionRefTransactionId[this]; } set { Fields.RefTransactionRefTransactionId[this] = value; } }
+        //public partial class RowFields { public Int64Field RefTransactionRefTransactionId; }
 
-        [DisplayName("Ref. Transaction Transaction Number"), Expression("jRefTransaction.[TransactionNumber]")]
-        public String RefTransactionTransactionNumber { get { return Fields.RefTransactionTransactionNumber[this]; } set { Fields.RefTransactionTransactionNumber[this] = value; } }
-        public partial class RowFields { public StringField RefTransactionTransactionNumber; }
+        //[DisplayName("Ref. Transaction Transaction Number"), Expression("jRefTransaction.[TransactionNumber]")]
+        //public String RefTransactionTransactionNumber { get { return Fields.RefTransactionTransactionNumber[this]; } set { Fields.RefTransactionTransactionNumber[this] = value; } }
+        //public partial class RowFields { public StringField RefTransactionTransactionNumber; }
 
-        [DisplayName("Ref. Transaction Transaction Date"), Expression("jRefTransaction.[TransactionDate]")]
-        public DateTime? RefTransactionTransactionDate { get { return Fields.RefTransactionTransactionDate[this]; } set { Fields.RefTransactionTransactionDate[this] = value; } }
-        public partial class RowFields { public DateTimeField RefTransactionTransactionDate; }
+        //[DisplayName("Ref. Transaction Transaction Date"), Expression("jRefTransaction.[TransactionDate]")]
+        //public DateTime? RefTransactionTransactionDate { get { return Fields.RefTransactionTransactionDate[this]; } set { Fields.RefTransactionTransactionDate[this] = value; } }
+        //public partial class RowFields { public DateTimeField RefTransactionTransactionDate; }
 
-        [DisplayName("Ref. Transaction Party Id"), Expression("jRefTransaction.[PartyId]")]
-        public Int64? RefTransactionPartyId { get { return Fields.RefTransactionPartyId[this]; } set { Fields.RefTransactionPartyId[this] = value; } }
-        public partial class RowFields { public Int64Field RefTransactionPartyId; }
+        //[DisplayName("Ref. Transaction Party Id"), Expression("jRefTransaction.[PartyId]")]
+        //public Int64? RefTransactionPartyId { get { return Fields.RefTransactionPartyId[this]; } set { Fields.RefTransactionPartyId[this] = value; } }
+        //public partial class RowFields { public Int64Field RefTransactionPartyId; }
 
 
 
@@ -95,10 +96,10 @@
         public List<TransactionDetailRow> TransactionDetailRows { get { return Fields.TransactionDetailRows[this]; } set { Fields.TransactionDetailRows[this] = value; } }
         public partial class RowFields { public ListField<TransactionDetailRow> TransactionDetailRows; }
 
-        [DisplayName("Transaction Details"), MasterDetailRelation(nameof(TransactionRow.RefTransactionId))]
-        [TransactionEditorGrid]
-        public List<TransactionRow> RelatedTransactionRows { get { return Fields.RelatedTransactionRows[this]; } set { Fields.RelatedTransactionRows[this] = value; } }
-        public partial class RowFields { public ListField<TransactionRow> RelatedTransactionRows; }
+        //[DisplayName("Transaction Details"), MasterDetailRelation(nameof(TransactionRow.RefTransactionId))]
+        //[TransactionEditorGrid]
+        //public List<TransactionRow> RelatedTransactionRows { get { return Fields.RelatedTransactionRows[this]; } set { Fields.RelatedTransactionRows[this] = value; } }
+        //public partial class RowFields { public ListField<TransactionRow> RelatedTransactionRows; }
 
         const string totalQuantityExp = "(SELECT SUM(d.Quantity) FROM TransactionDetail d WHERE d.TransactionId = T0.Id)";
 
@@ -116,7 +117,7 @@
 FROM TransactionDetail d 
 JOIN [Transaction] RelatedTran ON d.TransactionId = RelatedTran.Id 
 WHERE RelatedTran.RefTransactionId = T0.Id), 0)";
-        [DisplayName("Remaining Quantity"), Expression(totalQuantityExp + " - " + totalRefferencedQuantityExp)]
+        [DisplayName("Remaining Quantity???"), Expression(totalQuantityExp + " - " + totalRefferencedQuantityExp)]
         [ReadOnly(true)]
         public Decimal? RemainingQuantity { get { return Fields.RemainingQuantity[this]; } set { Fields.RemainingQuantity[this] = value; } }
         public partial class RowFields { public DecimalField RemainingQuantity; }

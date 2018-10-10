@@ -16,7 +16,7 @@ namespace SereneInventory.Inventory.Forms
     {
         [Hidden]
         public TransactionType TransactionType { get; set; }
-        public Int64 RefTransactionId { get; set; }
+        //public Int64 RefTransactionId { get; set; }
         [HalfWidth]
         public String TransactionNumber { get; set; }
         [HalfWidth]
@@ -28,7 +28,7 @@ namespace SereneInventory.Inventory.Forms
         public List<TransactionDetailRow> TransactionDetailRows { get; set; }
 
         [Category("Related Transactions")]
-        public List<TransactionRow> RelatedTransactionRows { get; set; }
+        //public List<TransactionRow> RelatedTransactionRows { get; set; }
 
         public Int64 RemainingQuantity { get; set; }
 

@@ -13,6 +13,8 @@ namespace SereneInventory.Inventory.Forms
     [BasedOnRow(typeof(Entities.TransactionDetailRow), CheckNames = true)]
     public class TransactionDetailForm
     {
+        //public Int64? RefTransactionDetailTransactionId { get; set; }
+        public Int64? RefTransactionDetailId { get; set; }
         public Int64 ProductId { get; set; }
         public Decimal Quantity { get; set; }
         public Decimal UnitPrice { get; set; }

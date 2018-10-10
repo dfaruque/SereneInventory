@@ -15,7 +15,8 @@
     [InsertPermission("Inventory:TransactionDetail:Insert")]
     [UpdatePermission("Inventory:TransactionDetail:Update")]
     [DeletePermission("Inventory:TransactionDetail:Delete")]
-    public sealed class TransactionDetailRow : NRow, IIdRow
+    [LookupScript]
+    public sealed class TransactionDetailRow : NRow, IIdRow, INameRow
     {
 
         [DisplayName("Id"), Identity]
@@ -23,8 +24,14 @@
         public partial class RowFields { public Int64Field Id; }
 
         [DisplayName("Transaction"), NotNull, ForeignKey("[dbo].[Transaction]", "Id"), LeftJoin("jTransaction"), TextualField("TransactionTransactionNumber")]
+        [LookupInclude]
         public Int64? TransactionId { get { return Fields.TransactionId[this]; } set { Fields.TransactionId[this] = value; } }
         public partial class RowFields { public Int64Field TransactionId; }
+
+        [DisplayName("Ref. Transaction Detail"), NotNull, ForeignKey("[dbo].[TransactionDetail]", "Id"), LeftJoin("jRefTransactionDetail")]
+        [LookupEditor(typeof(TransactionDetailRow)/*, CascadeFrom = nameof(RefTransactionDetailTransactionId), CascadeField = nameof(TransactionDetailRow.TransactionId)*/)]
+        public Int64? RefTransactionDetailId { get { return Fields.RefTransactionDetailId[this]; } set { Fields.RefTransactionDetailId[this] = value; } }
+        public partial class RowFields { public Int64Field RefTransactionDetailId; }
 
         [DisplayName("Product"), NotNull, ForeignKey("[dbo].[Product]", "Id"), LeftJoin("jProduct"), TextualField("ProductName")]
         [LookupEditor(typeof(ProductRow), InplaceAdd = true)]
@@ -66,6 +73,31 @@
         public Int64? TransactionPartyId { get { return Fields.TransactionPartyId[this]; } set { Fields.TransactionPartyId[this] = value; } }
         public partial class RowFields { public Int64Field TransactionPartyId; }
 
+        [DisplayName("Ref. Transaction"), Expression("jRefTransactionDetail.[TransactionId]")]
+        [ForeignKey(typeof(TransactionRow)), LeftJoin("jRefTransaction")]
+        [LookupEditor(typeof(TransactionRow))]
+        public Int64? RefTransactionDetailTransactionId { get { return Fields.RefTransactionDetailTransactionId[this]; } set { Fields.RefTransactionDetailTransactionId[this] = value; } }
+        public partial class RowFields { public Int64Field RefTransactionDetailTransactionId; }
+
+        [DisplayName("Ref. Transaction Transaction Type"), Expression("jRefTransaction.[TransactionType]")]
+        public Int32? RefTransactionTransactionType { get { return Fields.RefTransactionTransactionType[this]; } set { Fields.RefTransactionTransactionType[this] = value; } }
+        public partial class RowFields { public Int32Field RefTransactionTransactionType; }
+
+        [DisplayName("Ref. Transaction Ref Transaction Id"), Expression("jRefTransaction.[RefTransactionId]")]
+        public Int64? RefTransactionRefTransactionId { get { return Fields.RefTransactionRefTransactionId[this]; } set { Fields.RefTransactionRefTransactionId[this] = value; } }
+        public partial class RowFields { public Int64Field RefTransactionRefTransactionId; }
+
+        [DisplayName("Ref. Transaction Transaction Number"), Expression("jRefTransaction.[TransactionNumber]"), MinSelectLevel(SelectLevel.List)]
+        public String RefTransactionTransactionNumber { get { return Fields.RefTransactionTransactionNumber[this]; } set { Fields.RefTransactionTransactionNumber[this] = value; } }
+        public partial class RowFields { public StringField RefTransactionTransactionNumber; }
+
+        [DisplayName("Ref. Transaction Transaction Date"), Expression("jRefTransaction.[TransactionDate]")]
+        public DateTime? RefTransactionTransactionDate { get { return Fields.RefTransactionTransactionDate[this]; } set { Fields.RefTransactionTransactionDate[this] = value; } }
+        public partial class RowFields { public DateTimeField RefTransactionTransactionDate; }
+
+        [DisplayName("Ref. Transaction Party Id"), Expression("jRefTransaction.[PartyId]")]
+        public Int64? RefTransactionPartyId { get { return Fields.RefTransactionPartyId[this]; } set { Fields.RefTransactionPartyId[this] = value; } }
+        public partial class RowFields { public Int64Field RefTransactionPartyId; }
 
 
         [DisplayName("Product Name"), Expression("jProduct.[Name]"), MinSelectLevel(SelectLevel.List)]
@@ -88,11 +120,16 @@
         public String ProductImages { get { return Fields.ProductImages[this]; } set { Fields.ProductImages[this] = value; } }
         public partial class RowFields { public StringField ProductImages; }
 
+        [Expression("(jTransaction.[TransactionNumber] + ' - ' + jProduct.[Name])")]
+        public String LookupText { get { return Fields.LookupText[this]; } set { Fields.LookupText[this] = value; } }
+        public partial class RowFields { public StringField LookupText; }
 
         #endregion Foreign Fields
 
 
         IIdField IIdRow.IdField { get { return Fields.Id; } }
+
+        StringField INameRow.NameField { get { return Fields.LookupText; } }
 
         public static readonly RowFields Fields = new RowFields().Init();
 

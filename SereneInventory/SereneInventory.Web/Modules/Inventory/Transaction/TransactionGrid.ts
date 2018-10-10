@@ -24,7 +24,7 @@ namespace SereneInventory.Inventory {
             let trasactionNumberCaption = getTrasactionNumberCaption(transactionType);
 
             Q.first(columns, x => x.field == fld.TransactionNumber).name = trasactionNumberCaption;
-            Q.first(columns, x => x.field == fld.RefTransactionTransactionNumber).name = 'Ref. ' + trasactionNumberCaption;
+            //Q.first(columns, x => x.field == fld.RefTransactionTransactionNumber).name = 'Ref. ' + trasactionNumberCaption;
 
             return columns;
         }

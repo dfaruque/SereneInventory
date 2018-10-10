@@ -1,5 +1,6 @@
 ﻿namespace SereneInventory.Inventory {
     export interface TransactionDetailForm {
+        RefTransactionDetailId: Serenity.LookupEditor;
         ProductId: Serenity.LookupEditor;
         Quantity: Serenity.DecimalEditor;
         UnitPrice: Serenity.DecimalEditor;
@@ -23,6 +24,7 @@
                 var w2 = s.StringEditor;
 
                 Q.initFormType(TransactionDetailForm, [
+                    'RefTransactionDetailId', w0,
                     'ProductId', w0,
                     'Quantity', w1,
                     'UnitPrice', w1,

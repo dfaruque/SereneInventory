@@ -15,6 +15,7 @@ namespace SereneInventory.Inventory.Columns
     {
         [EditLink, DisplayName("Db.Shared.RecordId"), Hidden]
         public Int64 Id { get; set; }
+        public String RefTransactionTransactionNumber { get; set; }
         [Width(200, Min = 150)]
         public Int64 ProductId { get; set; }
         public Decimal Quantity { get; set; }

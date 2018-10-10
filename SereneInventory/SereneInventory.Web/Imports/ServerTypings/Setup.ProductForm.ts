@@ -1,7 +1,6 @@
 ﻿namespace SereneInventory.Setup {
     export interface ProductForm {
         Name: Serenity.StringEditor;
-        ProductType: Serenity.EnumEditor;
         ProductCategoryId: Serenity.LookupEditor;
         Description: Serenity.StringEditor;
         Images: Serenity.StringEditor;
@@ -20,13 +19,11 @@
 
                 var s = Serenity;
                 var w0 = s.StringEditor;
-                var w1 = s.EnumEditor;
-                var w2 = s.LookupEditor;
+                var w1 = s.LookupEditor;
 
                 Q.initFormType(ProductForm, [
                     'Name', w0,
-                    'ProductType', w1,
-                    'ProductCategoryId', w2,
+                    'ProductCategoryId', w1,
                     'Description', w0,
                     'Images', w0,
                     'TenantId', w0
