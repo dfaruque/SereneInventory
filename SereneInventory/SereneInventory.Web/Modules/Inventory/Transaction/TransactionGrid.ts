@@ -29,6 +29,24 @@ namespace SereneInventory.Inventory {
             return columns;
         }
 
+        protected getQuickFilters() {
+            var filters = super.getQuickFilters();
+
+            filters.push({
+                type: Serenity.LookupEditor,
+                options: {
+                    lookupKey: Setup.ProductRow.lookupKey
+                },
+                field: 'ProductId',
+                title: 'Contains Product in Details',
+                handler: w => {
+                    (this.view.params as OrderListRequest).ProductId = Q.toId(w.value);
+                },
+                cssClass: 'hidden-xs'
+            });
+
+            return filters;
+        }
         protected onViewSubmit() {
             if (!super.onViewSubmit()) {
                 return false;

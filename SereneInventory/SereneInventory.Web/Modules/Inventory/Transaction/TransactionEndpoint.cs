@@ -41,12 +41,12 @@ namespace SereneInventory.Inventory.Endpoints
         }
 
         [HttpPost]
-        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
+        public ListResponse<MyRow> List(IDbConnection connection, TransactionListRequest request)
         {
             return new MyRepository().List(connection, request);
         }
 
-		public FileContentResult ListExcel(IDbConnection connection, ListRequest request) {
+		public FileContentResult ListExcel(IDbConnection connection, TransactionListRequest request) {
             var data = List(connection, request).Entities;
             var report = new DynamicDataReport(data, request.IncludeColumns, typeof(Columns.TransactionColumns));
             var bytes = new ReportRepository().Render(report);

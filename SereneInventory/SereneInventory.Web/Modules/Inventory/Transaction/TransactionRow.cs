@@ -115,9 +115,9 @@
 
         const string totalRefferencedQuantityExp = @"ISNULL((SELECT SUM(d.Quantity) 
 FROM TransactionDetail d 
-JOIN [Transaction] RelatedTran ON d.TransactionId = RelatedTran.Id 
-WHERE RelatedTran.RefTransactionId = T0.Id), 0)";
-        [DisplayName("Remaining Quantity???"), Expression(totalQuantityExp + " - " + totalRefferencedQuantityExp)]
+Join TransactionDetail rd ON rd.Id = d.RefTransactionDetailId
+WHERE rd.TransactionId = T0.Id), 0)";
+        [DisplayName("Remaining Quantity"), Expression(totalQuantityExp + " - " + totalRefferencedQuantityExp)]
         [ReadOnly(true)]
         public Decimal? RemainingQuantity { get { return Fields.RemainingQuantity[this]; } set { Fields.RemainingQuantity[this] = value; } }
         public partial class RowFields { public DecimalField RemainingQuantity; }

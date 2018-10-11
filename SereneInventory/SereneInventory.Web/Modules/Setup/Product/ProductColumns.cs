@@ -20,7 +20,10 @@ namespace SereneInventory.Setup.Columns
         //public Int32 ProductType { get; set; }
         public Int64 ProductCategoryId { get; set; }
         public String Description { get; set; }
-        public String Images { get; set; }
+        public Decimal QuantityIn { get; set; }
+        public Decimal QuantityOut { get; set; }
+        public Decimal RemainingQuantity { get; set; }
+
         public Int64 TenantId { get; set; }
     }
 }

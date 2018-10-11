@@ -8,6 +8,9 @@
         Images?: string;
         ProductCategoryName?: string;
         ProductCategoryDescription?: string;
+        QuantityIn?: number;
+        QuantityOut?: number;
+        RemainingQuantity?: number;
         Remarks?: string;
         IUserId?: number;
         TenantId?: number;
@@ -36,6 +39,9 @@
             Images = "Images",
             ProductCategoryName = "ProductCategoryName",
             ProductCategoryDescription = "ProductCategoryDescription",
+            QuantityIn = "QuantityIn",
+            QuantityOut = "QuantityOut",
+            RemainingQuantity = "RemainingQuantity",
             Remarks = "Remarks",
             IUserId = "IUserId",
             TenantId = "TenantId",

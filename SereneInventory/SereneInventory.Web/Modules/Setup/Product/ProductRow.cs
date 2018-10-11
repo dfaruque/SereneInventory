@@ -57,6 +57,32 @@
 
         #endregion Foreign Fields
 
+        const string QuantityInExp = @"(SELECT SUM(d.Quantity) 
+FROM TransactionDetail d 
+JOIN [Transaction] t ON t.Id = d.TransactionId 
+WHERE t.TransactionType = 10
+AND d.ProductId = T0.Id)";
+
+        [DisplayName("Quantity (In)"), Expression(QuantityInExp)]
+        [MinSelectLevel(SelectLevel.List)]
+        public Decimal? QuantityIn { get { return Fields.QuantityIn[this]; } set { Fields.QuantityIn[this] = value; } }
+        public partial class RowFields { public DecimalField QuantityIn; }
+
+        const string QuantityOutExp = @"(SELECT SUM(d.Quantity) 
+FROM TransactionDetail d 
+JOIN [Transaction] t ON t.Id = d.TransactionId 
+WHERE t.TransactionType = 20
+AND d.ProductId = T0.Id)";
+
+        [DisplayName("Quantity (Out)"), Expression(QuantityOutExp)]
+        [MinSelectLevel(SelectLevel.List)]
+        public Decimal? QuantityOut { get { return Fields.QuantityOut[this]; } set { Fields.QuantityOut[this] = value; } }
+        public partial class RowFields { public DecimalField QuantityOut; }
+
+        [DisplayName("Remaining Quantity"), Expression(QuantityInExp + " - " + QuantityOutExp)]
+        [ReadOnly(true)]
+        public Decimal? RemainingQuantity { get { return Fields.RemainingQuantity[this]; } set { Fields.RemainingQuantity[this] = value; } }
+        public partial class RowFields { public DecimalField RemainingQuantity; }
 
         IIdField IIdRow.IdField { get { return Fields.Id; } }
 

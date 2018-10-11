@@ -1,4 +1,6 @@
 ﻿
+using Serenity.Services;
+
 namespace SereneInventory.Inventory.Repositories
 {
     using Serenity;
@@ -32,7 +34,7 @@ namespace SereneInventory.Inventory.Repositories
             return new MyRetrieveHandler().Process(connection, request);
         }
 
-        public ListResponse<MyRow> List(IDbConnection connection, ListRequest request)
+        public ListResponse<MyRow> List(IDbConnection connection, TransactionListRequest request)
         {
             return new MyListHandler().Process(connection, request);
         }
@@ -40,6 +42,33 @@ namespace SereneInventory.Inventory.Repositories
         private class MySaveHandler : SaveRequestHandler<MyRow> { }
         private class MyDeleteHandler : DeleteRequestHandler<MyRow> { }
         private class MyRetrieveHandler : RetrieveRequestHandler<MyRow> { }
-        private class MyListHandler : ListRequestHandler<MyRow> { }
+        private class MyListHandler : ListRequestHandler<MyRow, TransactionListRequest> {
+            protected override void ApplyFilters(SqlQuery query)
+            {
+                base.ApplyFilters(query);
+
+                if (Request.ProductId != null)
+                {
+                    var td = Entities.TransactionDetailRow.Fields.As("td");
+
+                    query.Where(Criteria.Exists(
+                        query.SubQuery()
+                            .Select("1")
+                            .From(td)
+                            .Where(
+                                td.TransactionId == fld.Id &
+                                td.ProductId == Request.ProductId.Value)
+                            .ToString()));
+                }
+            }
+        }
+    }
+}
+
+namespace SereneInventory.Inventory
+{
+    public class TransactionListRequest : ListRequest
+    {
+        public int? ProductId { get; set; }
     }
 }
