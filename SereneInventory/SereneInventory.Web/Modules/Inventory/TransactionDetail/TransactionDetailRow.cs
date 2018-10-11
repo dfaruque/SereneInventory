@@ -87,11 +87,11 @@
         public Int64? RefTransactionRefTransactionId { get { return Fields.RefTransactionRefTransactionId[this]; } set { Fields.RefTransactionRefTransactionId[this] = value; } }
         public partial class RowFields { public Int64Field RefTransactionRefTransactionId; }
 
-        [DisplayName("Ref. Transaction Transaction Number"), Expression("jRefTransaction.[TransactionNumber]"), MinSelectLevel(SelectLevel.List)]
+        [DisplayName("Ref. Transaction Number"), Expression("jRefTransaction.[TransactionNumber]"), MinSelectLevel(SelectLevel.List)]
         public String RefTransactionTransactionNumber { get { return Fields.RefTransactionTransactionNumber[this]; } set { Fields.RefTransactionTransactionNumber[this] = value; } }
         public partial class RowFields { public StringField RefTransactionTransactionNumber; }
 
-        [DisplayName("Ref. Transaction Transaction Date"), Expression("jRefTransaction.[TransactionDate]")]
+        [DisplayName("Ref. Transaction Date"), Expression("jRefTransaction.[TransactionDate]")]
         public DateTime? RefTransactionTransactionDate { get { return Fields.RefTransactionTransactionDate[this]; } set { Fields.RefTransactionTransactionDate[this] = value; } }
         public partial class RowFields { public DateTimeField RefTransactionTransactionDate; }
 
