@@ -20,4 +20,13 @@ namespace SereneInventory {
 
         return 'Invoice Number';
     }
+
+    export function getTrasactionNumberPrefix(transactionType: TransactionType): string {
+        if (transactionType == TransactionType.PurchaseInvoice)
+            return 'PI-';
+        else if (transactionType == TransactionType.SalesInvoice)
+            return 'SI-';
+        else return 'Invoice-';
+    }
+
 }

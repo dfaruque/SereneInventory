@@ -11,6 +11,7 @@ namespace SereneInventory.Inventory.Endpoints
     using System.Web.Mvc;
     using MyRepository = Repositories.TransactionRepository;
     using MyRow = Entities.TransactionRow;
+    using SereneInventory.Inventory.Entities;
 
     [RoutePrefix("Services/Inventory/Transaction"), Route("{action}")]
     [ConnectionKey(typeof(MyRow)), ServiceAuthorize(typeof(MyRow))]
@@ -46,7 +47,12 @@ namespace SereneInventory.Inventory.Endpoints
             return new MyRepository().List(connection, request);
         }
 
-		public FileContentResult ListExcel(IDbConnection connection, TransactionListRequest request) {
+        public GetNextNumberResponse GetNextNumber(IDbConnection connection, GetNextNumberRequest request)
+        {
+            return GetNextNumberHelper.GetNextNumber(connection, request, TransactionRow.Fields.TransactionNumber);
+        }
+
+        public FileContentResult ListExcel(IDbConnection connection, TransactionListRequest request) {
             var data = List(connection, request).Entities;
             var report = new DynamicDataReport(data, request.IncludeColumns, typeof(Columns.TransactionColumns));
             var bytes = new ReportRepository().Render(report);

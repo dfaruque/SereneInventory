@@ -55,5 +55,33 @@ namespace SereneInventory.Inventory {
 
             return columns;
         }
+
+        protected afterLoadEntity() {
+            super.afterLoadEntity();
+
+            // fill next number in new record mode
+            if (this.isNew())
+                this.getNextNumber();
+        }
+
+        private getNextNumber() {
+
+            var val = Q.trimToNull(this.form.TransactionNumber.value);
+
+            if (!val || val.length <= 1) {
+
+                var prefix = (val || getTrasactionNumberPrefix(getTrasactionTypeFromUrl())).toUpperCase();
+
+                TransactionService.GetNextNumber({
+                    Prefix: prefix,
+                    Length: prefix.length + 5 // we want service to search for and return serials of 5 in length
+                }, response => {
+                    this.form.TransactionNumber.value = response.Serial;
+
+                    // this is to mark numerical part after prefix
+                    (this.form.TransactionNumber.element[0] as any).setSelectionRange(prefix.length, response.Serial.length);
+                });
+            }
+        }
     }
 }
