@@ -28,12 +28,12 @@
         public Int64? TransactionId { get { return Fields.TransactionId[this]; } set { Fields.TransactionId[this] = value; } }
         public partial class RowFields { public Int64Field TransactionId; }
 
-        [DisplayName("Ref. Transaction Detail"), NotNull, ForeignKey("[dbo].[TransactionDetail]", "Id"), LeftJoin("jRefTransactionDetail")]
+        [DisplayName("Ref. Transaction Detail"), ForeignKey("[dbo].[TransactionDetail]", "Id"), LeftJoin("jRefTransactionDetail")]
         [LookupEditor(typeof(TransactionDetailRow)/*, CascadeFrom = nameof(RefTransactionDetailTransactionId), CascadeField = nameof(TransactionDetailRow.TransactionId)*/)]
         public Int64? RefTransactionDetailId { get { return Fields.RefTransactionDetailId[this]; } set { Fields.RefTransactionDetailId[this] = value; } }
         public partial class RowFields { public Int64Field RefTransactionDetailId; }
 
-        [DisplayName("Product"), NotNull, ForeignKey("[dbo].[Product]", "Id"), LeftJoin("jProduct"), TextualField("ProductName")]
+        [DisplayName("Product"), ForeignKey("[dbo].[Product]", "Id"), LeftJoin("jProduct"), TextualField("ProductName")]
         [LookupEditor(typeof(ProductRow), InplaceAdd = true)]
         public Int64? ProductId { get { return Fields.ProductId[this]; } set { Fields.ProductId[this] = value; } }
         public partial class RowFields { public Int64Field ProductId; }

@@ -14,6 +14,7 @@ namespace SereneInventory.Migrations.DefaultDB
 
             this.CreateTableWithId64("Product", "Id", s => s
                 .WithColumn("Name").AsString(100).NotNullable()
+                .WithColumn("Code").AsString(50).NotNullable()
                 .WithColumn("ProductType").AsInt32().Nullable()
                 .WithColumn("ProductCategoryId").AsInt64().Nullable().ForeignKey("ProductCategory", "Id")
                 .WithColumn("Description").AsString(500).Nullable()
@@ -37,7 +38,7 @@ namespace SereneInventory.Migrations.DefaultDB
 
             this.CreateTableWithId64("TransactionDetail", "Id", s => s
                 .WithColumn("TransactionId").AsInt64().NotNullable().ForeignKey("Transaction", "Id")
-                .WithColumn("ProductId").AsInt64().NotNullable().ForeignKey("Product", "Id")
+                .WithColumn("ProductId").AsInt64().Nullable().ForeignKey("Product", "Id")
                 .WithColumn("Quantity").AsDecimal().NotNullable()
                 .WithColumn("UnitPrice").AsDecimal().NotNullable()
                 .WithColumn("Amount").AsDecimal().NotNullable()

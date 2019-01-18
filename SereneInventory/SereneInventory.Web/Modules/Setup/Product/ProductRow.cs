@@ -26,6 +26,10 @@
         public String Name { get { return Fields.Name[this]; } set { Fields.Name[this] = value; } }
         public partial class RowFields { public StringField Name; }
 
+        [DisplayName("Code"), Size(50), NotNull, QuickSearch]
+        public String Code { get { return Fields.Code[this]; } set { Fields.Code[this] = value; } }
+        public partial class RowFields { public StringField Code; }
+
         [DisplayName("Product Type")]
         public ProductType? ProductType { get { return (ProductType?)Fields.ProductType[this]; } set { Fields.ProductType[this] = (Int32?)value; } }
         public partial class RowFields { public Int32Field ProductType; }
@@ -39,7 +43,7 @@
         public String Description { get { return Fields.Description[this]; } set { Fields.Description[this] = value; } }
         public partial class RowFields { public StringField Description; }
 
-        [DisplayName("Images"), Size(500)]
+        [DisplayName("Images"), Size(500), MultipleImageUploadEditor]
         public String Images { get { return Fields.Images[this]; } set { Fields.Images[this] = value; } }
         public partial class RowFields { public StringField Images; }
 

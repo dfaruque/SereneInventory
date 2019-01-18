@@ -2,6 +2,7 @@
     export interface ProductRow {
         Id?: number;
         Name?: string;
+        Code?: string;
         ProductType?: ProductType;
         ProductCategoryId?: number;
         Description?: string;
@@ -33,6 +34,7 @@
         export declare const enum Fields {
             Id = "Id",
             Name = "Name",
+            Code = "Code",
             ProductType = "ProductType",
             ProductCategoryId = "ProductCategoryId",
             Description = "Description",

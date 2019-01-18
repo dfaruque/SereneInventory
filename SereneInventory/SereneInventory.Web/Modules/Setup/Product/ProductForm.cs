@@ -14,6 +14,7 @@ namespace SereneInventory.Setup.Forms
     public class ProductForm
     {
         public String Name { get; set; }
+        public String Code { get; set; }
         //public Int32 ProductType { get; set; }
         public Int64 ProductCategoryId { get; set; }
         public String Description { get; set; }
