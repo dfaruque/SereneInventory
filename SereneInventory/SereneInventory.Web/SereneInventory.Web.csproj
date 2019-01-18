@@ -832,6 +832,7 @@
     <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch-full.min.map" />
     <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch-formatters.min.map" />
     <Content Include="Modules\Inventory\Transaction\SalesInvoice\SalesInvoicePrint.cshtml" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\godaddy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
