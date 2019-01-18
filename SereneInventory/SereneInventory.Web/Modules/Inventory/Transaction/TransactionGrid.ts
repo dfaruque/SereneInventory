@@ -40,7 +40,7 @@ namespace SereneInventory.Inventory {
                 field: 'ProductId',
                 title: 'Contains Product in Details',
                 handler: w => {
-                    (this.view.params as OrderListRequest).ProductId = Q.toId(w.value);
+                    (this.view.params as TransactionListRequest).ProductId = Q.toId(w.value);
                 },
                 cssClass: 'hidden-xs'
             });
