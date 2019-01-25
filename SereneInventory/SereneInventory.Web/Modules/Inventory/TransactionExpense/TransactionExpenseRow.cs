@@ -10,7 +10,7 @@ namespace SereneInventory.Inventory.Entities
     using System.IO;
 
     [ConnectionKey("Default"), Module("Inventory"), TableName("[dbo].[TransactionExpense]")]
-    [DisplayName("Transaction Expense"), InstanceName("Transaction Expense")]
+    [DisplayName("Expense"), InstanceName("Expense")]
     [ReadPermission("Administration:General")]
     [ModifyPermission("Administration:General")]
     public sealed class TransactionExpenseRow : NRow, IIdRow

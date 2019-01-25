@@ -34,7 +34,7 @@
         //public Int64? RefTransactionId { get { return Fields.RefTransactionId[this]; } set { Fields.RefTransactionId[this] = value; } }
         //public partial class RowFields { public Int64Field RefTransactionId; }
 
-        [DisplayName("Transaction Number"), Size(50), NotNull, QuickSearch]
+        [DisplayName("Invoice Number"), Size(50), NotNull, QuickSearch]
         public String TransactionNumber { get { return Fields.TransactionNumber[this]; } set { Fields.TransactionNumber[this] = value; } }
         public partial class RowFields { public StringField TransactionNumber; }
 

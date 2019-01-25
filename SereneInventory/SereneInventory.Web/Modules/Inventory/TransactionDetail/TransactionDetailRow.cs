@@ -126,10 +126,11 @@
 
         #endregion Foreign Fields
 
-        const string totalRefferencedQuantityExp = @"ISNULL((SELECT SUM(d.Quantity) 
-FROM TransactionDetail rd ON T0.Id = rd.RefTransactionDetailId), 0)";
+        const string totalRefferencedQuantityExp = @"ISNULL((SELECT SUM(rd.Quantity) 
+FROM TransactionDetail rd 
+WHERE T0.Id = rd.RefTransactionDetailId), 0)";
         [DisplayName("Remaining Quantity"), Expression("T0.Quantity - " + totalRefferencedQuantityExp)]
-        [ReadOnly(true)]
+        [ReadOnly(true), MinSelectLevel(SelectLevel.List)]
         public Decimal? RemainingQuantity { get { return Fields.RemainingQuantity[this]; } set { Fields.RemainingQuantity[this] = value; } }
         public partial class RowFields { public DecimalField RemainingQuantity; }
 

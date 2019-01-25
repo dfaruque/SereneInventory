@@ -12,14 +12,20 @@ namespace SereneInventory.Inventory {
 
         protected getEntityTitle() { return getTrasactionTypeName(TransactionType.PurchaseInvoice) }
 
-        protected form = new TransactionForm(this.idPrefix);
+        protected form = new PurchaseInvoiceForm(this.idPrefix);
 
         constructor() {
             super();
 
             q.initDetailEditor(this, this.form.TransactionDetailRows);
             q.initDetailEditor(this, this.form.TransactionExpenseRows);
-            //q.initDetailEditor(this, this.form.RelatedTransactionRows, { hideToolbar: true });
+
+            this.form.TransactionDetailRows.onItemsChanged = () => {
+                this.calculateAmount();
+            }
+            this.form.TransactionExpenseRows.onItemsChanged = () => {
+                this.calculateAmount();
+            }
         }
 
 
@@ -37,6 +43,17 @@ namespace SereneInventory.Inventory {
             // fill next number in new record mode
             if (this.isNew())
                 this.getNextNumber();
+
+            this.calculateAmount();
+        }
+
+        private calculateAmount() {
+            let totalQuantity = 0;
+            this.form.TransactionDetailRows.value.forEach(r => totalQuantity += r.Quantity);
+            let totalExpense = 0;
+            this.form.TransactionExpenseRows.value.forEach(r => totalExpense += r.Amount);
+            this.form.ExpensePerPiece.value = totalExpense / totalQuantity;
+
         }
 
         private getNextNumber() {
