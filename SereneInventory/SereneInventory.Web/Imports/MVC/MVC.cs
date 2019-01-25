@@ -70,8 +70,14 @@ namespace MVC
         {
             public static class Transaction
             {
+                public static class PurchaseInvoice
+                {
+                    public const string PurchaseInvoiceIndex = "~/Modules/Inventory/Transaction/PurchaseInvoice/PurchaseInvoiceIndex.cshtml";
+                }
+
                 public static class SalesInvoice
                 {
+                    public const string SalesInvoiceIndex = "~/Modules/Inventory/Transaction/SalesInvoice/SalesInvoiceIndex.cshtml";
                     public const string SalesInvoicePrint = "~/Modules/Inventory/Transaction/SalesInvoice/SalesInvoicePrint.cshtml";
                 }
                 public const string TransactionIndex = "~/Modules/Inventory/Transaction/TransactionIndex.cshtml";

@@ -832,6 +832,8 @@
     <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch-full.min.map" />
     <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch-formatters.min.map" />
     <Content Include="Modules\Inventory\Transaction\SalesInvoice\SalesInvoicePrint.cshtml" />
+    <Content Include="Modules\Inventory\Transaction\PurchaseInvoice\PurchaseInvoiceIndex.cshtml" />
+    <Content Include="Modules\Inventory\Transaction\SalesInvoice\SalesInvoiceIndex.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\godaddy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -938,6 +940,18 @@
     <TypeScriptCompile Include="Imports\ServerTypings\ExpenseType.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Inventory.PurchaseInvoiceColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Inventory.PurchaseInvoiceForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Inventory.SalesInvoiceColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Inventory.SalesInvoiceForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Inventory.TransactionColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1018,6 +1032,10 @@
     </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Inventory\Transaction\Editor\TransactionEditorDialog.ts" />
     <TypeScriptCompile Include="Modules\Inventory\Transaction\Editor\TransactionEditorGrid.ts" />
+    <TypeScriptCompile Include="Modules\Inventory\Transaction\PurchaseInvoice\PurchaseInvoiceDialog.ts" />
+    <TypeScriptCompile Include="Modules\Inventory\Transaction\PurchaseInvoice\PurchaseInvoiceGrid.ts" />
+    <TypeScriptCompile Include="Modules\Inventory\Transaction\SalesInvoice\SalesInvoiceDialog.ts" />
+    <TypeScriptCompile Include="Modules\Inventory\Transaction\SalesInvoice\SalesInvoiceGrid.ts" />
     <TypeScriptCompile Include="Modules\Inventory\Transaction\TransactionDialog.ts" />
     <TypeScriptCompile Include="Modules\Inventory\Transaction\TransactionGrid.ts" />
     <TypeScriptCompile Include="Modules\_ExtWrapper\_q.ts" />
@@ -1928,6 +1946,14 @@
     <Compile Include="Modules\Common\UserPreference\UserPreferenceEndpoint.cs" />
     <Compile Include="Modules\Common\UserPreference\UserPreferenceRepository.cs" />
     <Compile Include="Modules\Inventory\InventoryEnums.cs" />
+    <Compile Include="Modules\Inventory\TransactionDetail\TransactionDetailLookups.cs" />
+    <Compile Include="Modules\Inventory\Transaction\PurchaseInvoice\PurchaseInvoiceColumns.cs" />
+    <Compile Include="Modules\Inventory\Transaction\PurchaseInvoice\PurchaseInvoiceForm.cs" />
+    <Compile Include="Modules\Inventory\Transaction\PurchaseInvoice\PurchaseInvoicePage.cs" />
+    <Compile Include="Modules\Inventory\Transaction\SalesInvoice\SalesInvoiceColumns.cs" />
+    <Compile Include="Modules\Inventory\Transaction\SalesInvoice\SalesInvoiceForm.cs" />
+    <Compile Include="Modules\Inventory\Transaction\SalesInvoice\SalesInvoicePage.cs" />
+    <Compile Include="Modules\Inventory\Transaction\TransactionLookups.cs" />
     <Compile Include="Modules\Inventory\Transaction\TransactionReports.cs" />
     <Compile Include="Modules\Membership\Account\ChangePassword\AccountPage.ChangePassword.cs" />
     <Compile Include="Modules\Membership\Account\EnvironmentSettings.cs" />
@@ -2053,7 +2079,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Modules\Inventory\Transaction\PurchaseInvoice\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

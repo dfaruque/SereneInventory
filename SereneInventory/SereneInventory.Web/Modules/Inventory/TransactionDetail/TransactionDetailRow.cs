@@ -29,7 +29,7 @@
         public partial class RowFields { public Int64Field TransactionId; }
 
         [DisplayName("Ref. Transaction Detail"), ForeignKey("[dbo].[TransactionDetail]", "Id"), LeftJoin("jRefTransactionDetail")]
-        [LookupEditor(typeof(TransactionDetailRow)/*, CascadeFrom = nameof(RefTransactionDetailTransactionId), CascadeField = nameof(TransactionDetailRow.TransactionId)*/)]
+        [LookupEditor(typeof(PurchaseInvoiceDetailLookup)/*, CascadeFrom = nameof(RefTransactionDetailTransactionId), CascadeField = nameof(TransactionDetailRow.TransactionId)*/)]
         public Int64? RefTransactionDetailId { get { return Fields.RefTransactionDetailId[this]; } set { Fields.RefTransactionDetailId[this] = value; } }
         public partial class RowFields { public Int64Field RefTransactionDetailId; }
 
