@@ -21,6 +21,7 @@ namespace SereneInventory.Inventory.Forms
         public String TransactionNumber { get; set; }
         [HalfWidth]
         public DateTime TransactionDate { get; set; }
+        [LookupEditor(typeof(SuppliesLookup), InplaceAdd = true)]
         public Int64 PartyId { get; set; }
         public Int64 TenantId { get; set; }
 
