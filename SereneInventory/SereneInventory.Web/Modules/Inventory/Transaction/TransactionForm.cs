@@ -27,10 +27,13 @@ namespace SereneInventory.Inventory.Forms
         [Category("Transaction Details")]
         public List<TransactionDetailRow> TransactionDetailRows { get; set; }
 
-        [Category("Related Transactions")]
+        [Category("Expenses")]
+        public List<TransactionExpenseRow> TransactionExpenseRows { get; set; }
+
+        //[Category("Related Transactions")]
         //public List<TransactionRow> RelatedTransactionRows { get; set; }
 
-        public Int64 RemainingQuantity { get; set; }
+        //public Int64 RemainingQuantity { get; set; }
 
     }
 }

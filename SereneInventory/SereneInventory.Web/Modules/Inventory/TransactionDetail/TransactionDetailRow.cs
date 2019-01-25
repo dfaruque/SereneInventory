@@ -126,6 +126,13 @@
 
         #endregion Foreign Fields
 
+        const string totalRefferencedQuantityExp = @"ISNULL((SELECT SUM(d.Quantity) 
+FROM TransactionDetail rd ON T0.Id = rd.RefTransactionDetailId), 0)";
+        [DisplayName("Remaining Quantity"), Expression("T0.Quantity - " + totalRefferencedQuantityExp)]
+        [ReadOnly(true)]
+        public Decimal? RemainingQuantity { get { return Fields.RemainingQuantity[this]; } set { Fields.RemainingQuantity[this] = value; } }
+        public partial class RowFields { public DecimalField RemainingQuantity; }
+
 
         IIdField IIdRow.IdField { get { return Fields.Id; } }
 

@@ -9,4 +9,12 @@ namespace SereneInventory
         [Description("Sales Invoice")]
         SalesInvoice = 20,
     }
+    public enum ExpenseType
+    {
+        Transportation = 10,
+        Media = 20,
+        Delivery = 30,
+        [Description("Misc.")]
+        Misc = 40,
+    }
 }

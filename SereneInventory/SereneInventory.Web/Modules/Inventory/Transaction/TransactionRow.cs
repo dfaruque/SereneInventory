@@ -96,6 +96,11 @@
         public List<TransactionDetailRow> TransactionDetailRows { get { return Fields.TransactionDetailRows[this]; } set { Fields.TransactionDetailRows[this] = value; } }
         public partial class RowFields { public ListField<TransactionDetailRow> TransactionDetailRows; }
 
+        [DisplayName("Expenses"), MasterDetailRelation(nameof(TransactionExpenseRow.TransactionId))]
+        [TransactionExpenseGridEditor]
+        public List<TransactionExpenseRow> TransactionExpenseRows { get { return Fields.TransactionExpenseRows[this]; } set { Fields.TransactionExpenseRows[this] = value; } }
+        public partial class RowFields { public ListField<TransactionExpenseRow> TransactionExpenseRows; }
+
         //[DisplayName("Transaction Details"), MasterDetailRelation(nameof(TransactionRow.RefTransactionId))]
         //[TransactionEditorGrid]
         //public List<TransactionRow> RelatedTransactionRows { get { return Fields.RelatedTransactionRows[this]; } set { Fields.RelatedTransactionRows[this] = value; } }

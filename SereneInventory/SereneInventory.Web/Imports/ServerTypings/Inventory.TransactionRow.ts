@@ -10,6 +10,7 @@
         PartyAddress?: string;
         PartyContact?: string;
         TransactionDetailRows?: TransactionDetailRow[];
+        TransactionExpenseRows?: TransactionExpenseRow[];
         TotalQuantity?: number;
         TotalAmount?: number;
         RemainingQuantity?: number;
@@ -43,6 +44,7 @@
             PartyAddress = "PartyAddress",
             PartyContact = "PartyContact",
             TransactionDetailRows = "TransactionDetailRows",
+            TransactionExpenseRows = "TransactionExpenseRows",
             TotalQuantity = "TotalQuantity",
             TotalAmount = "TotalAmount",
             RemainingQuantity = "RemainingQuantity",

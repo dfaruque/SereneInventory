@@ -21,6 +21,6 @@ namespace SereneInventory.Inventory.Columns
         public Decimal Quantity { get; set; }
         public Decimal UnitPrice { get; set; }
         public Decimal Amount { get; set; }
-        public Int64 TenantId { get; set; }
+        public Decimal? RemainingQuantity { get; set; }
     }
 }

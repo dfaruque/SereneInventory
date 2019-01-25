@@ -19,6 +19,7 @@ namespace SereneInventory.Inventory {
             super();
 
             q.initDetailEditor(this, this.form.TransactionDetailRows);
+            q.initDetailEditor(this, this.form.TransactionExpenseRows);
             //q.initDetailEditor(this, this.form.RelatedTransactionRows, { hideToolbar: true });
         }
 

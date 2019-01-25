@@ -24,6 +24,7 @@
         ProductDescription?: string;
         ProductImages?: string;
         LookupText?: string;
+        RemainingQuantity?: number;
         Remarks?: string;
         IUserId?: number;
         TenantId?: number;
@@ -68,6 +69,7 @@
             ProductDescription = "ProductDescription",
             ProductImages = "ProductImages",
             LookupText = "LookupText",
+            RemainingQuantity = "RemainingQuantity",
             Remarks = "Remarks",
             IUserId = "IUserId",
             TenantId = "TenantId",
