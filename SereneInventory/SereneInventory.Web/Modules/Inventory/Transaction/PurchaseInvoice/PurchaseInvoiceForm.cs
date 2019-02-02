@@ -33,7 +33,8 @@ namespace SereneInventory.Inventory.Forms
         public List<TransactionExpenseRow> TransactionExpenseRows { get; set; }
         [DisplayName("Expense per Piece"), HalfWidth, OneWay, NotMapped, ReadOnly(true)]
         public decimal ExpensePerPiece { get; set; }
-
+        [DisplayName("Total Sales Amount"), HalfWidth, OneWay, NotMapped, ReadOnly(true)]
+        public Decimal TotalRefferencedAmount { get; set; }
 
         //[Category("Related Transactions")]
         //public List<TransactionRow> RelatedTransactionRows { get; set; }
