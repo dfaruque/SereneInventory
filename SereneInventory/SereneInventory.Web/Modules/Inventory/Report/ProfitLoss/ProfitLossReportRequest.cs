@@ -10,6 +10,7 @@ namespace SereneInventory.Inventory
     [FormScript("Inventory.ProfitLossReportRequestForm")]
     public class ProfitLossReportRequestForm
     {
+        [HalfWidth(UntilNext = true)]
         [DisplayName("Date From"), Required]
         public DateTime DateFrom { get; set; }
         [DisplayName("Date To"), Required]
