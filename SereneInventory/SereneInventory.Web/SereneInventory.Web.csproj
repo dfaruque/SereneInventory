@@ -586,13 +586,17 @@
     <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch.js" />
     <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch.min.js" />
     <Content Include="Modules\_Ext\AuditLog\dbo.AuditLog.sql" />
+    <Content Include="Modules\_Ext\CustomSlickGridPlugin\slick-headerfilters.css" />
     <Content Include="Modules\_Ext\CustomSlickGridPlugin\slick.autocolumnsize.js" />
+    <Content Include="Modules\_Ext\CustomSlickGridPlugin\slick.headerfilters.js" />
+    <Content Include="Modules\_Ext\DevTools\ReplaceRow\SP_ReplaceRow.sql" />
+    <Content Include="Modules\_Ext\DevTools\Sergen\SergenPanel.ts.html" />
     <Content Include="Modules\_Ext\Editors\SerenityInlineEditors.js" />
     <Content Include="Modules\_Ext\Editors\slick.editors.js" />
+    <Content Include="Modules\_Ext\ExtSkins.css" />
     <Content Include="Modules\_Ext\ExtStyles.css" />
     <Content Include="Modules\_Ext\Reporting\report.css" />
     <Content Include="Modules\_Ext\Reporting\ReportFooter.html" />
-    <Content Include="Modules\_Ext\Utils\ReplaceRow\SP_ReplaceRow.sql" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -812,7 +816,18 @@
     <Content Include="Content\toastr.less" />
     <Content Include="Scripts\site\SereneInventory.Web.js" />
     <Content Include="wkhtmltopdf-license.txt" />
-    <Content Include="Modules\_Ext\CompareEntityToDB\CompareEntityToDBIndex.cshtml" />
+    <Content Include="Modules\Inventory\Transaction\SalesInvoice\SalesInvoicePrint.cshtml" />
+    <Content Include="Modules\Inventory\Transaction\PurchaseInvoice\PurchaseInvoiceIndex.cshtml" />
+    <Content Include="Modules\Inventory\Transaction\SalesInvoice\SalesInvoiceIndex.cshtml" />
+    <Content Include="Modules\Inventory\Report\ProfitLoss\ProfitLossIndex.cshtml" />
+    <Content Include="Modules\Inventory\Report\ProfitLoss\ProfitLossReport.cshtml" />
+    <Content Include="Modules\_Ext\DevTools\Sergen\SergenIndex.cshtml" />
+    <Content Include="Modules\_Ext\DevTools\Sergen\SergenError.cshtml" />
+    <Content Include="Modules\_Ext\DevTools\GenerateMigrationFromEntity\GenerateMigrationFromEntitySuccessMsg.cshtml" />
+    <Content Include="Modules\_Ext\DevTools\GenerateMigrationFromEntity\GenerateMigrationFromEntityMigrationViewer.cshtml" />
+    <Content Include="Modules\_Ext\DevTools\GenerateMigrationFromEntity\GenerateMigrationFromEntityIndex.cshtml" />
+    <Content Include="Modules\_Ext\DevTools\CompareEntityToDB\CompareEntityToDBIndex.cshtml" />
+    <Content Include="Modules\_Ext\DevTools\CodeSnippets\CodeSnippetsIndex.cshtml" />
     <Content Include="Modules\_Ext\CodeGeneratorTemplates\_Style.scriban" />
     <Content Include="Modules\_Ext\CodeGeneratorTemplates\_ServiceTyping.scriban" />
     <Content Include="Modules\_Ext\CodeGeneratorTemplates\_RowTyping.scriban" />
@@ -824,16 +839,17 @@
     <Content Include="Modules\_Ext\CodeGeneratorTemplates\_Form.scriban" />
     <Content Include="Modules\_Ext\CodeGeneratorTemplates\_Columns.scriban" />
     <Content Include="Modules\_Ext\CodeGeneratorTemplates\Row.scriban" />
+    <Content Include="Modules\_Ext\CodeGeneratorTemplates\GridEditor.scriban" />
     <Content Include="Modules\_Ext\CodeGeneratorTemplates\Grid.scriban" />
     <Content Include="Modules\_Ext\CodeGeneratorTemplates\Endpoint.scriban" />
+    <Content Include="Modules\_Ext\CodeGeneratorTemplates\EditorForm.scriban" />
+    <Content Include="Modules\_Ext\CodeGeneratorTemplates\EditorDialog.scriban" />
+    <Content Include="Modules\_Ext\CodeGeneratorTemplates\EditorColumns.scriban" />
     <Content Include="Modules\_Ext\CodeGeneratorTemplates\Dialog.scriban" />
     <Content Include="Modules\_Ext\AuditLog\AuditLogIndex.cshtml" />
     <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch.min.map" />
     <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch-full.min.map" />
     <Content Include="Modules\_Ext\AuditLogViewer\jsondiffpatch\jsondiffpatch-formatters.min.map" />
-    <Content Include="Modules\Inventory\Transaction\SalesInvoice\SalesInvoicePrint.cshtml" />
-    <Content Include="Modules\Inventory\Transaction\PurchaseInvoice\PurchaseInvoiceIndex.cshtml" />
-    <Content Include="Modules\Inventory\Transaction\SalesInvoice\SalesInvoiceIndex.cshtml" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Properties\PublishProfiles\godaddy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
@@ -940,6 +956,12 @@
     <TypeScriptCompile Include="Imports\ServerTypings\ExpenseType.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Inventory.ProfitLossReportRequest.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\Inventory.ProfitLossReportRequestForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Imports\ServerTypings\Inventory.PurchaseInvoiceColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1006,6 +1028,12 @@
     <TypeScriptCompile Include="Imports\ServerTypings\_Ext.AuditLogViewerService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.DevTools.SergenConnection.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.DevTools.SergenGenerateOptions.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.DevTools.SergenGenerateRequest.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.DevTools.SergenListTablesRequest.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.DevTools.SergenService.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.DevTools.SergenTable.ts" />
     <TypeScriptCompile Include="Imports\ServerTypings\_Ext.EntityReportRequest.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1027,9 +1055,12 @@
     <TypeScriptCompile Include="Imports\ServerTypings\_Ext.ReplaceRowService.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.Reports.CommonReportRequest.ts" />
+    <TypeScriptCompile Include="Imports\ServerTypings\_Ext.Reports.CommonReportService.ts" />
     <TypeScriptCompile Include="Imports\ServerTypings\_Ext.TimeUoM.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Imports\_references.ts" />
     <TypeScriptCompile Include="Modules\Inventory\Transaction\Editor\TransactionEditorDialog.ts" />
     <TypeScriptCompile Include="Modules\Inventory\Transaction\Editor\TransactionEditorGrid.ts" />
     <TypeScriptCompile Include="Modules\Inventory\Transaction\PurchaseInvoice\PurchaseInvoiceDialog.ts" />
@@ -1038,6 +1069,7 @@
     <TypeScriptCompile Include="Modules\Inventory\Transaction\SalesInvoice\SalesInvoiceGrid.ts" />
     <TypeScriptCompile Include="Modules\Inventory\Transaction\TransactionDialog.ts" />
     <TypeScriptCompile Include="Modules\Inventory\Transaction\TransactionGrid.ts" />
+    <TypeScriptCompile Include="Modules\Inventory\Report\ProfitLoss\ProfitLossReportPanel.ts" />
     <TypeScriptCompile Include="Modules\_ExtWrapper\_q.ts" />
     <TypeScriptCompile Include="Modules\_Ext\AuditLogViewer\AuditLogViewer.ts" />
     <TypeScriptCompile Include="Modules\_Ext\AuditLogViewer\AuditLogViewerDialog.ts" />
@@ -1047,20 +1079,35 @@
     <TypeScriptCompile Include="Modules\_Ext\Bases\DialogBase.ts" />
     <TypeScriptCompile Include="Modules\_Ext\Bases\GridBase.ts" />
     <TypeScriptCompile Include="Modules\_Ext\Bases\ReportGridBase.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Bases\ReportPanelBase.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\DevTools\CodeSnippets\DialogSnippets.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\DevTools\CodeSnippets\DialogWithAllOverridableMethods.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\DevTools\CodeSnippets\GridSnippets.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\DevTools\CodeSnippets\GridWithAllOverridableMethods.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\DevTools\ReplaceRow\ReplaceRowDialog.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\DevTools\Sergen\SergenPanel.ts" />
     <TypeScriptCompile Include="Modules\_Ext\Editors\AutoCompleteEditor.ts" />
     <TypeScriptCompile Include="Modules\_Ext\Editors\ColorEditor.ts" />
     <TypeScriptCompile Include="Modules\_Ext\Editors\DateTimePickerEditor.ts" />
     <TypeScriptCompile Include="Modules\_Ext\Editors\EditorDialogBase.ts" />
     <TypeScriptCompile Include="Modules\_Ext\Editors\EmptyLookupEditor.ts" />
     <TypeScriptCompile Include="Modules\_Ext\Editors\GridEditorBase.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Editors\GridItemPicker\GridItemPickerDialog.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Editors\GridItemPicker\GridItemPickerEditor.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Editors\HardCodedLookupEditor.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Editors\HtmlTemplateEditor.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Editors\JsonGridEditorBase.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Editors\MonthYearEditor.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Editors\PrefixedStringEditor.ts" />
     <TypeScriptCompile Include="Modules\_Ext\Editors\StaticTextBlock.ts" />
-    <TypeScriptCompile Include="Modules\_Ext\Editors\TemplatedLookupEditor.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Formatters\MonthYearFormatter.ts" />
     <TypeScriptCompile Include="Modules\_Ext\Mixins\CardViewMixin.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Mixins\HeaderFiltersMixin.ts" />
+    <TypeScriptCompile Include="Modules\_Ext\Mixins\TreeGridMixin.ts" />
     <TypeScriptCompile Include="Modules\_Ext\Reporting\ExcelExportHelper.ts" />
     <TypeScriptCompile Include="Modules\_Ext\Reporting\PdfExportHelper.ts" />
     <TypeScriptCompile Include="Modules\_Ext\Reporting\ReportHelper.ts" />
     <TypeScriptCompile Include="Modules\_Ext\Utils\DialogUtils.ts" />
-    <TypeScriptCompile Include="Modules\_Ext\Utils\ReplaceRow\ReplaceRowDialog.ts" />
     <TypeScriptCompile Include="Modules\_Ext\Utils\Using.ts" />
     <TypeScriptCompile Include="Modules\_Ext\_q\_q.array.ts" />
     <TypeScriptCompile Include="Modules\_Ext\_q\_q.d.ts" />
@@ -1873,6 +1920,12 @@
     <Compile Include="Imports\ClientTypes\_Ext.EmptyLookupEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
+    <Compile Include="Imports\ClientTypes\_Ext.GridItemPickerEditorAttribute.cs" />
+    <Compile Include="Imports\ClientTypes\_Ext.HardCodedLookupEditorAttribute.cs" />
+    <Compile Include="Imports\ClientTypes\_Ext.HtmlTemplateEditorAttribute.cs" />
+    <Compile Include="Imports\ClientTypes\_Ext.MonthYearEditorAttribute.cs" />
+    <Compile Include="Imports\ClientTypes\_Ext.MonthYearFormatterAttribute.cs" />
+    <Compile Include="Imports\ClientTypes\_Ext.PrefixedStringEditorAttribute.cs" />
     <Compile Include="Imports\ClientTypes\_Ext.StaticTextBlockAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
@@ -1971,6 +2024,9 @@
     <Compile Include="Modules\Common\UserPreference\UserPreferenceRow.cs" />
     <Compile Include="Modules\Common\Helpers\GetNextNumberHelper.cs" />
     <Compile Include="Modules\Common\Helpers\GetNextNumberRequest.cs" />
+    <Compile Include="Modules\Inventory\Report\ProfitLoss\ProfitLossPage.cs" />
+    <Compile Include="Modules\Inventory\Report\ProfitLoss\ProfitLossReport.cs" />
+    <Compile Include="Modules\Inventory\Report\ProfitLoss\ProfitLossReportRequest.cs" />
     <Compile Include="Modules\Setup\Party\PartyLookups.cs" />
     <Compile Include="Modules\Setup\SetupEnums.cs" />
     <Compile Include="Modules\Texts.cs" />
@@ -1990,20 +2046,32 @@
     <Compile Include="Modules\_Ext\AuditLog\AuditLogRepository.cs" />
     <Compile Include="Modules\_Ext\AuditLog\AuditLogRow.cs" />
     <Compile Include="Modules\_Ext\Behaviours\AuditLogBehaviour.cs" />
-    <Compile Include="Modules\_Ext\CompareEntityToDB\CompareEntityToDBPage.cs" />
-    <Compile Include="Modules\_Ext\CompareEntityToDB\CompareEntityToDBPageModel.cs" />
-    <Compile Include="Modules\_Ext\CompareEntityToDB\SchemaHelper.cs" />
+    <Compile Include="Modules\_Ext\Behaviours\MultiScopeBehaviour.cs" />
+    <Compile Include="Modules\_Ext\DevTools\CodeSnippets\CodeSnippetsPage.cs" />
+    <Compile Include="Modules\_Ext\DevTools\CompareEntityToDB\CompareEntityToDBPage.cs" />
+    <Compile Include="Modules\_Ext\DevTools\CompareEntityToDB\CompareEntityToDBPageModel.cs" />
+    <Compile Include="Modules\_Ext\DevTools\CompareEntityToDB\SchemaHelper.cs" />
+    <Compile Include="Modules\_Ext\DevTools\GenerateMigrationFromEntity\GenerateMigrationFromEntityPage.cs" />
+    <Compile Include="Modules\_Ext\DevTools\GenerateMigrationFromEntity\GenerateMigrationFromEntityPageModel.cs" />
+    <Compile Include="Modules\_Ext\DevTools\ReplaceRow\ReplaceRowEndpoint.cs" />
+    <Compile Include="Modules\_Ext\DevTools\ReplaceRow\ReplaceRowForm.cs" />
+    <Compile Include="Modules\_Ext\DevTools\Sergen\SergenEndpoint.cs" />
+    <Compile Include="Modules\_Ext\DevTools\Sergen\SergenModels.cs" />
+    <Compile Include="Modules\_Ext\DevTools\Sergen\SergenPage.cs" />
+    <Compile Include="Modules\_Ext\Editors\GridItemPicker\GridItemPickerEditorAttribute.cs" />
     <Compile Include="Modules\_Ext\Reporting\ReportBase.cs" />
     <Compile Include="Modules\_Ext\Reporting\ReportModelBase.cs" />
     <Compile Include="Modules\_Ext\Reporting\ReportRequest.cs" />
     <Compile Include="Modules\_Ext\Utils\DateTimeHelper.cs" />
+    <Compile Include="Modules\_Ext\Utils\DbConnectionExtentions.cs" />
     <Compile Include="Modules\_Ext\Utils\EnumHelper.cs" />
     <Compile Include="Modules\_Ext\Utils\Enums.cs" />
+    <Compile Include="Modules\_Ext\Utils\ExcelWorksheetHelper.cs" />
+    <Compile Include="Modules\_Ext\Utils\Lookups.cs" />
     <Compile Include="Modules\_Ext\Utils\NumberToWords.cs" />
     <Compile Include="Modules\_Ext\Utils\ObjectExtentions.cs" />
     <Compile Include="Modules\_Ext\Utils\Q.cs" />
-    <Compile Include="Modules\_Ext\Utils\ReplaceRow\ReplaceRowEndpoint.cs" />
-    <Compile Include="Modules\_Ext\Utils\ReplaceRow\ReplaceRowForm.cs" />
+    <Compile Include="Modules\_Ext\Utils\Q.Sql.cs" />
     <Compile Include="Modules\_Ext\_ExtNavigation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Modules\Administration\User\UserRow.cs" />
@@ -2080,7 +2148,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Modules\Report\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

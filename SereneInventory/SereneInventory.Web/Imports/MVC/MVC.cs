@@ -68,6 +68,16 @@ namespace MVC
 
         public static class Inventory
         {
+            public static class Report
+            {
+                public static class ProfitLoss
+                {
+                    public const string ProfitLossIndex = "~/Modules/Inventory/Report/ProfitLoss/ProfitLossIndex.cshtml";
+                    public const string ProfitLossReport = "~/Modules/Inventory/Report/ProfitLoss/ProfitLossReport.cshtml";
+                }
+
+            }
+
             public static class Transaction
             {
                 public static class PurchaseInvoice

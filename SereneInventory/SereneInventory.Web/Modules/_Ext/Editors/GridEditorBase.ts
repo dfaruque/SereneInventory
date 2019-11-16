@@ -7,15 +7,38 @@ namespace _Ext {
     export class GridEditorBase<TEntity> extends _Ext.GridBase<TEntity, any>
         implements Serenity.IGetEditValue, Serenity.ISetEditValue, Serenity.IReadOnly {
 
+        protected get_ExtGridOptions(): ExtGridOptions { return Q.deepClone(q.DefaultEditorGridOptions); }
+
         protected getIdProperty() { return "__id"; }
+
+        isChildGrid = true;
 
         protected nextId = 1;
 
         constructor(container: JQuery) {
             super(container);
-            //this.autoColumnSizePlugin.resizeAllColumns();
 
+            this.slickGrid.onSort.subscribe((e, args) => {
+                this.sortGridFunction((args.grid as Slick.Grid), args.sortCols[0], args.sortCols[0].sortCol.field);
+
+                //(args.grid as Slick.Grid).init();
+                (args.grid as Slick.Grid).invalidateAllRows();
+                (args.grid as Slick.Grid).invalidate();
+                (args.grid as Slick.Grid).render();
+                (args.grid as Slick.Grid).resizeCanvas();
+            });
+            
         }
+
+        private sortGridFunction(grid: Slick.Grid, column: any, field: any) {
+            grid.getData().sort(function (a, b) {
+                var result = a[field] > b[field] ? 1 :
+                    a[field] < b[field] ? -1 :
+                        0;
+                return column.sortAsc ? result : -result;
+            });
+        }
+
         protected getQuickFilters() {
             return [];
         }
@@ -46,29 +69,18 @@ namespace _Ext {
                 items[index] = Q.deepClone({} as TEntity, items[index], row);
             }
 
-            this.setEntities(items);
+            this.value = items;
             callback({});
         }
 
         protected deleteEntity(id: number) {
             this.view.deleteItem(id);
-            setTimeout(this.onItemsChanged);
+            setTimeout(() => { this.onItemsChanged() });
             return true;
         }
 
         protected validateEntity(row: TEntity, id: number) {
             return true;
-        }
-
-        protected setEntities(items: TEntity[]) {
-            let i = 1;
-            items.forEach(row => {
-                row['RowNum'] = i++;
-            });
-            this.view.setItems(items, true);
-            setTimeout(this.onItemsChanged);
-            this.refresh();
-
         }
 
         protected getNewEntity(): TEntity {
@@ -77,7 +89,7 @@ namespace _Ext {
 
         protected getButtons(): Serenity.ToolButton[] {
             return [{
-                title: 'Add ' + this.getItemName(),
+                title: /*'Add ' +*/ this.getItemName(),
                 cssClass: 'add-button',
                 onClick: () => { this.addButtonClick() }
             }];
@@ -123,7 +135,11 @@ namespace _Ext {
 
             (this.slickGrid as any).getEditController().commitCurrentEdit();
 
-            return this.view.getItems().map(x => {
+            let items = this.view.getItems();
+
+            this.onBeforeGetValue(items);
+
+            return items.map(x => {
                 var y = Q.deepClone(x);
                 var id = y[p];
                 if (id && id.toString().charAt(0) == '`')
@@ -136,17 +152,22 @@ namespace _Ext {
         }
 
         public set value(value: TEntity[]) {
-            var p = this.getIdProperty();
+            var id = this.getIdProperty();
 
-            let val = value || []; //this.onViewProcessData({ Entities: value || [], Skip: 0 }).Entities; // to generate serial no.
+            let val = value || [];
 
-            this.setEntities(val.map(x => {
+            let items = val.map(x => {
                 var y = Q.deepClone(x);
-                if ((y as any)[p] == null) {
-                    (y as any)[p] = "`" + this.nextId++;
+                if ((y as any)[id] == null) {
+                    (y as any)[id] = "`" + this.nextId++;
                 }
                 return y;
-            }));
+            });
+
+            let r = this.onViewProcessData({ Entities: items })
+            this.view.setItems(r.Entities, true);
+            setTimeout(() => { this.onItemsChanged(); });
+            this.resetRowNumber(); // to generate serial no.
         }
 
         protected getGridCanLoad() {
@@ -165,10 +186,12 @@ namespace _Ext {
 
         protected createToolbarExtensions(): void {
             //super.createToolbarExtensions();
-            Serenity.GridUtils.addQuickSearchInputCustom(this.toolbar.element, (field, text) => {
-                this.searchText = Select2.util.stripDiacritics(Q.trimToNull(text) || '').toLowerCase();
-                this.view.setItems(this.view.getItems(), true);
-            });
+            if (this.get_ExtGridOptions().EnableQuickSearch) {
+                Serenity.GridUtils.addQuickSearchInputCustom(this.toolbar.element, (field, text) => {
+                    this.searchText = Select2.util.stripDiacritics(Q.trimToNull(text) || '').toLowerCase();
+                    this.view.setItems(this.view.getItems(), true);
+                });
+            }
         }
 
         protected onViewFilter(row): boolean {
@@ -208,15 +231,20 @@ namespace _Ext {
             this.isReadOnly = value;
             if (value == true) {
                 this.element.find('.add-button').addClass('disabled');
+                let opt = this.slickGrid.getOptions();
+                opt.editable = false;
+
+                this.slickGrid.setOptions(opt);
             } else {
                 this.element.find('.add-button').removeClass('disabled');
             }
+
         }
 
         protected getSlickOptions() {
             let opt = super.getSlickOptions();
             opt.forceFitColumns = false;
-            opt.autoHeight = true; // If you need to show footer, you have to do opt.autoHeight = false
+            //opt.autoHeight = true; // If you need to show footer, you have to do opt.autoHeight = false
             return opt;
         }
 
@@ -224,6 +252,9 @@ namespace _Ext {
 
         //custom events
         onItemsChanged() {
+
+        }
+        onBeforeGetValue(items: TEntity[]) {
 
         }
     }

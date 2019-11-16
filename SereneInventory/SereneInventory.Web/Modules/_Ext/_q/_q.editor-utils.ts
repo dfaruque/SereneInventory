@@ -1,7 +1,7 @@
 ﻿
 namespace q {
 
-    export function initDetailEditor(dialog: _Ext.DialogBase<any, any>, editor: _Ext.GridEditorBase<any>, options: GridEditorOptions = {}): void {
+    export function initDetailEditor(dialog: _Ext.DialogBase<any, any>, editor: _Ext.GridEditorBase<any>, options: ExtGridEditorOptions = {}): void {
 
         if (options.showCaption != true) {
             editor.element.siblings('.caption').hide();
@@ -14,23 +14,28 @@ namespace q {
         }
         editor.parentDialog = dialog;
 
-        dialog.afterSetDialogSize = () => {
+        dialog.onAfterSetDialogSize = () => {
+            let $gridContainer = editor.element.find('.grid-container');
 
             if (options.height) {
                 editor.slickGrid.setOptions({ autoHeight: false });
-                editor.element.find('.grid-container').height(options.height);
+                $gridContainer.height(options.height);
 
-                editor.slickGrid.resizeCanvas();
+            } else {
+                let top = $gridContainer.position().top;
+                let height = dialog.element.innerHeight() - top - 40;
+
+                if (height > 200)
+                    $gridContainer.height(height);
+
             }
 
             if (options.width) {
-                editor.element.find('.grid-container').width(options.width);
+                $gridContainer.width(options.width);
 
-                editor.slickGrid.resizeCanvas();
             }
-            //else {
-            //    editor.element.find('.grid-container').width('100%');
-            //}
+
+            editor.slickGrid.resizeCanvas();
 
         }
 
@@ -43,7 +48,7 @@ namespace q {
             .height(heightInPx);
     }
 
-    export function addNotificationIcon(editor: Serenity.StringEditor, isSuccess: boolean): void {
+    export function addNotificationIcon(editor: Serenity.Widget<any>, isSuccess: boolean): void {
 
         let isAddOnInitialized = editor.element.data('isAddOnInitialized');
 
@@ -62,6 +67,21 @@ namespace q {
                 .children().switchClass('fa-check', 'fa-times');
 
         }
+    }
+
+    export function addPopoverIcon(editor: Serenity.Widget<any>, isSuccess: boolean, popoverOptions: any): void { // popoverOptions: Bootstrap.PopoverOptions
+        addNotificationIcon(editor, isSuccess);
+
+        //(editor.element as any).popover('destroy');
+        (editor.element.siblings('.text') as any).popover('destroy');
+
+        setTimeout(h => {
+            //(editor.element as any).popover(popoverOptions);
+            (editor.element.siblings('.text') as any)
+                .popover(popoverOptions)
+                .on("show.bs.popover", function () { $(this).data("bs.popover").tip().css("width", "600px"); });;
+        }, 100)
+
     }
 
     export function setEditorLabel(editor: Serenity.Widget<any>, value: string) {
@@ -97,25 +117,89 @@ namespace q {
             categoryAnchor.closest('.s-PropertyGrid').find(`a[href='#${categoryAnchorName}']`).show();
     }
 
-    export function hideField(editor: Serenity.Widget<any>, value: boolean = true) {
+    export function hideCategories(containerElement: JQuery, value: boolean = true) {
         if (value == true)
-            editor.element.closest('.field').hide();
+            containerElement.find('.category').hide();
         else
-            editor.element.closest('.field').show();
+            containerElement.find('.category').show();
+
+        let categoryAnchor = containerElement.find('.category').find('.category-anchor');
+
+        let categoryAnchorName = categoryAnchor.attr('name');
+        if (value == true)
+            categoryAnchor.closest('.s-PropertyGrid').find(`a[href='#${categoryAnchorName}']`).hide();
+        else
+            categoryAnchor.closest('.s-PropertyGrid').find(`a[href='#${categoryAnchorName}']`).show();
+    }
+
+    export function hideFields(containerElement: JQuery, value: boolean = true) {
+        if (value == true)
+            containerElement.find('.field').hide();
+        else
+            containerElement.find('.field').show();
+    }
+
+    export function hideFieldsAndCategories(containerElement: JQuery, value: boolean = true) {
+        hideFields(containerElement);
+        hideCategories(containerElement);
+    }
+
+    export function hideField(editor: Serenity.Widget<any>, value: boolean = true) {
+        if (editor) {
+            if (value == true)
+                editor.element.closest('.field').hide();
+            else
+                editor.element.closest('.field').show();
+        }
     }
     export function showField(editor: Serenity.Widget<any>, value: boolean = true) {
+        if (editor) {
+            if (value == true)
+                editor.element.closest('.field').show();
+            else
+                editor.element.closest('.field').hide();
+        }
+    }
+
+    export function showAndEnableField(editor: Serenity.Widget<any>) {
+        q.showField(editor);
+        Serenity.EditorUtils.setReadOnly(editor, false);
+
+    }
+
+    export function showFieldAndCategory(editor: Serenity.Widget<any>, value: boolean = true) {
+        showField(editor, value);
         if (value == true)
-            editor.element.closest('.field').show();
-        else
-            editor.element.closest('.field').hide();
+            hideEditorCategory(editor, false);
     }
 
     export function hideEditorTab(editor: Serenity.Widget<any>, value: boolean = true) {
-        let tabId = editor.element.closest('.tab-pane').hide().attr('id');
+        if (value) {
+            let tabId = editor.element.closest('.tab-pane').hide().attr('id');
+            let tabAnchor = editor.element.closest('.s-PropertyGrid').find(`a[href='#${tabId}']`);
+            tabAnchor.closest('li').hide();
+        } else {
+            let tabId = editor.element.closest('.tab-pane').show().attr('id');
+            let tabAnchor = editor.element.closest('.s-PropertyGrid').find(`a[href='#${tabId}']`);
+            tabAnchor.closest('li').show();
+        }
+    }
+
+    export function disableEditorTab(editor: Serenity.Widget<any>, value: boolean = true) {
+        let tabId = editor.element.closest('.tab-pane').attr('id');
 
         let tabAnchor = editor.element.closest('.s-PropertyGrid').find(`a[href='#${tabId}']`);
+        let tabLi = tabAnchor.closest('li');
 
-        tabAnchor.closest('li').hide();
+        if (value == true) {
+            tabAnchor.hide();
+            tabLi.closest('li').addClass('disabled').prepend(`<a class="disabled">${tabAnchor.text()}</label>`);
+        } else {
+            tabAnchor.show();
+            tabLi.closest('li').removeClass('disabled').find('.disabled').remove();
+
+        }
+
     }
 
     export function readOnlyEditorTab(editor: Serenity.Widget<any>, value: boolean = true) {
@@ -123,14 +207,23 @@ namespace q {
 
         Serenity.EditorUtils.setReadonly($editors, value);
     }
-        
+
     export function readOnlyEditorCategory(editor: Serenity.Widget<any>, value: boolean = true) {
         let $editors = editor.element.closest('.category').find('.editor');
-        
+
         Serenity.EditorUtils.setReadonly($editors, value);
     }
     export function readonlyEditorCategory($editor: JQuery, value: boolean = true) {
         let $editors = $editor.closest('.category').find('.editor');
+        Serenity.EditorUtils.setReadonly($editors, value);
+    }
+
+    export function readOnlyEditorPropertyGrid(editor: Serenity.Widget<any>, value: boolean = true) {
+        let $editors = editor.element.closest('.s-PropertyGrid').find('.editor');
+        Serenity.EditorUtils.setReadonly($editors, value);
+    }
+    export function readonlyEditorPropertyGrid($editor: JQuery, value: boolean = true) {
+        let $editors = $editor.closest('.s-PropertyGrid').find('.editor');
         Serenity.EditorUtils.setReadonly($editors, value);
     }
 

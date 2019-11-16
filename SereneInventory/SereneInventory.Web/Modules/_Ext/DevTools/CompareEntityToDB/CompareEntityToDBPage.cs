@@ -1,5 +1,5 @@
 ﻿
-namespace _Ext.Pages
+namespace _Ext.DevTools.Pages
 {
     using Serenity;
     using Serenity.Data;
@@ -11,7 +11,7 @@ namespace _Ext.Pages
     using Serenity.Web;
 
     [RoutePrefix("CompareEntityToDB"), Route("{action=index}")]
-    [PageAuthorize("Administration:CompareEntityToDB")]
+    [PageAuthorize("DevTools:CompareEntityToDB")]
     public class CompareEntityToDBController : Controller
     {
         [Authorize, HttpGet]
@@ -19,7 +19,7 @@ namespace _Ext.Pages
         {
             var model = new Model.CompareEntityToDBPageModel();
 
-            return View("~/Modules/_Ext/CompareEntityToDB/CompareEntityToDBIndex.cshtml", model);
+            return View("~/Modules/_Ext/DevTools/CompareEntityToDB/CompareEntityToDBIndex.cshtml", model);
         }
     }
 }

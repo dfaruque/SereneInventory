@@ -19,16 +19,11 @@ namespace _Ext
     {
         public bool ActivateFor(Row row)
         {
-            var auditLog = row as IAuditLog;
-            if (auditLog == null)
+            if (row is IAuditLog)
             {
-                var exauditLog = row as IExAuditLog;
-                if (exauditLog == null)
-                    return false;
-                //else
-                //    IdFieldName = exauditLog.IdField.PropertyName;
+                return true;
             }
-            return true;
+            return false;
         }
 
 
@@ -66,46 +61,51 @@ namespace _Ext
         {
             try
             {
-                var connection = uow.Connection;
-                var fld = AuditLogRow.Fields;
-
-                var entityId = (row as IIdRow).IdField[row] ?? 0;
-
-                var lastVersion = connection.TryFirst<AuditLogRow>(q => q
-                .Select(fld.VersionNo, fld.NewEntity)
-                .Where(fld.EntityTableName == row.Table && fld.EntityId == entityId)
-                .OrderBy(fld.Id, desc: true));
-
-                //var jsonSerializerSettings = new JsonSerializerSettings
-                //{
-                //    ContractResolver = new DynamicContractResolver("IDate", "IUser", "EDate", "EUser")
-                //};
-
-                var rowJson = JsonConvert.SerializeObject(row);//, jsonSerializerSettings);
-                var oldrowJson = JsonConvert.SerializeObject(oldRow);//, jsonSerializerSettings);
-
-                if (auditActionType == AuditActionType.Delete || lastVersion?.NewEntity != rowJson)
+                using (var auditLogConnection = SqlConnections.NewFor<AuditLogRow>())
                 {
-                    int versionNo = (lastVersion?.VersionNo ?? 0) + 1;
+                    var fld = AuditLogRow.Fields;
 
-                    var auditLogRow = new AuditLogRow
+                    var entityId = (row as IIdRow).IdField[row] ?? 0;
+
+                    var lastVersion = auditLogConnection.TryFirst<AuditLogRow>(q => q
+                    .Select(fld.VersionNo, fld.NewEntity)
+                    .Where(fld.EntityTableName == row.Table && fld.EntityId == entityId)
+                    .OrderBy(fld.Id, desc: true));
+
+                    //we don't want to serialize id field
+                    var pkField = (oldRow as IIdRow)?.IdField as Field;
+                    if (!(pkField is null))
+                        oldRow.ClearAssignment(pkField);
+
+                    var oldrowJson = JsonConvert.SerializeObject(oldRow);
+                    var rowJson = JsonConvert.SerializeObject(row);
+
+                    if (auditActionType == AuditActionType.Delete || lastVersion?.NewEntity != rowJson)
                     {
-                        VersionNo = versionNo,
-                        UserId = int.Parse(Authorization.UserId),
-                        ActionType = auditActionType,
-                        ActionDate = DateTime.Now,
-                        EntityTableName = row.Table,
-                        EntityId = entityId,
-                        OldEntity = oldrowJson,
-                        NewEntity = rowJson,
-                        IpAddress = HttpContext.Current.Request.UserHostAddress,
-                        SessionId = HttpContext.Current.Session.SessionID
-                    };
+                        int versionNo = (lastVersion?.VersionNo ?? 0) + 1;
 
-                    connection.Insert<AuditLogRow>(auditLogRow);
+                        var auditLogRow = new AuditLogRow
+                        {
+                            VersionNo = versionNo,
+                            UserId = int.Parse(Authorization.UserId),
+                            ActionType = auditActionType,
+                            ActionDate = DateTime.Now,
+                            EntityTableName = row.Table,
+                            EntityId = entityId,
+                            OldEntity = oldrowJson,
+                            NewEntity = rowJson,
+                            IpAddress = HttpContext.Current.Request.UserHostAddress,
+                            SessionId = HttpContext.Current.Session.SessionID
+                        };
+
+                        auditLogConnection.Insert<AuditLogRow>(auditLogRow);
+                    }
                 }
             }
-            catch { }
+            catch (Exception ex)
+            {
+                Log.Debug("_Ext.AuditLog Failed.", ex, row.GetType());
+            }
         }
 
         string GetPageUrl()
@@ -131,16 +131,6 @@ namespace _Ext
     {
     }
 
-    /// <summary>
-    /// This is used if want to store specific IdFields instead of default Identity field (or identity field is not avail able  ).
-    /// </summary>
-    public interface IExAuditLog
-    {
-        /// <summary>
-        /// Assign the field which need to save as reference id in Audit Log Table
-        /// </summary>
-        Int32Field IdField { get; }
-    }
 
     [EnumKey("Enum.Audit.AuditActionType"), ScriptInclude]
     public enum AuditActionType
@@ -153,36 +143,7 @@ namespace _Ext
     /// <summary>
     /// Any field which does not required to log in audit table. For Example InsertUserId, InsertDate etc
     /// </summary>
-    public class IgnoreAuditLog : Attribute
-    {
-    }
-
-    public class DynamicContractResolver : DefaultContractResolver
-    {
-        private readonly string[] props;
-
-        public DynamicContractResolver(params string[] prop)
-        {
-            this.props = prop;
-        }
-
-        protected override IList<JsonProperty> CreateProperties(Type type, MemberSerialization memberSerialization)
-        {
-            IList<JsonProperty> retval = base.CreateProperties(type, memberSerialization);
-
-            // retorna todas as propriedades que não estão na lista para ignorar
-            retval = retval.Where(p => !this.props.Contains(p.PropertyName)).ToList();
-
-            return retval;
-        }
-
-        protected override List<MemberInfo> GetSerializableMembers(Type objectType)
-        {
-            var retval = base.GetSerializableMembers(objectType);
-            // retorna todas as propriedades que não estão na lista para ignorar
-            retval = retval.Where(p => !this.props.Contains(p.Name)).ToList();
-            return retval;
-        }
-
-    }
+    //public class IgnoreAuditLogAttribute : Attribute
+    //{
+    //}
 }

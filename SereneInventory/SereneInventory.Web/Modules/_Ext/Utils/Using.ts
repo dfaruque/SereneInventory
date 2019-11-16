@@ -183,8 +183,11 @@ function usingChartjs() {
     if (window['Chart']) {
         return;
     } else {
-        loadScript(Q.resolveUrl('~/Scripts/chartjs/Chart.js'))
+        loadScript(Q.resolveUrl('~/Scripts/chartjs/Chart.min.js'))
     }
+
+    window['Chart'].defaults.global.defaultFontFamily = $('body').css('font-family');
+    window['Chart'].defaults.global.maintainAspectRatio = false;
 }
 
 function includeCustomMarkerCss() {
@@ -288,5 +291,36 @@ function usingJsonDiffPatch() {
 
         loadScript(Q.resolveUrl("~/Modules/_Ext/AuditLogViewer/jsondiffpatch/jsondiffpatch.min.js"))
         loadScript(Q.resolveUrl("~/Modules/_Ext/AuditLogViewer/jsondiffpatch/jsondiffpatch-formatters.min.js"))
+    }
+}
+
+function usingSlickGridEditors() {
+    if (window['Slick'] && window['Slick']['Editors'] && window['Slick']['Editors']['Text']) {
+        return;
+    } else {
+        loadScript(Q.resolveUrl("~/Modules/_Ext/Editors/slick.editors.js"))
+    }
+}
+
+function usingSlickAutoColumnSize() {
+    if (window['Slick'] && window['Slick']['AutoColumnSize']) {
+        return;
+    } else {
+        loadScript(Q.resolveUrl("~/Modules/_Ext/CustomSlickGridPlugin/slick.autocolumnsize.js"))
+    }
+}
+
+function usingSlickHeaderFilters() {
+    if (window['Slick'] && window['Slick']['HeaderFilters']) {
+        return;
+    } else {
+        $("<link/>")
+        .attr("type", "text/css")
+        .attr("id", "CustomSlickGridPlugin")
+        .attr("rel", "stylesheet")
+        .attr("href", Q.resolveUrl("~/Modules/_Ext/CustomSlickGridPlugin/slick-headerfilters.css"))
+        .appendTo(document.head);
+
+        loadScript(Q.resolveUrl("~/Modules/_Ext/CustomSlickGridPlugin/slick.headerfilters.js"));
     }
 }

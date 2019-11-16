@@ -13,7 +13,9 @@
         TransactionExpenseRows?: TransactionExpenseRow[];
         TotalQuantity?: number;
         TotalAmount?: number;
+        TotalExpense?: number;
         RemainingQuantity?: number;
+        TotalRefferencedAmount?: number;
         Remarks?: string;
         IUserId?: number;
         TenantId?: number;
@@ -47,7 +49,9 @@
             TransactionExpenseRows = "TransactionExpenseRows",
             TotalQuantity = "TotalQuantity",
             TotalAmount = "TotalAmount",
+            TotalExpense = "TotalExpense",
             RemainingQuantity = "RemainingQuantity",
+            TotalRefferencedAmount = "TotalRefferencedAmount",
             Remarks = "Remarks",
             IUserId = "IUserId",
             TenantId = "TenantId",

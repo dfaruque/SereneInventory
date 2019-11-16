@@ -7,6 +7,7 @@
         TransactionDetailRows: TransactionDetailGridEditor;
         TransactionExpenseRows: TransactionExpenseGridEditor;
         ExpensePerPiece: Serenity.DecimalEditor;
+        TotalRefferencedAmount: Serenity.DecimalEditor;
     }
 
     export class PurchaseInvoiceForm extends Serenity.PrefixedContext {
@@ -35,7 +36,8 @@
                     'TenantId', w3,
                     'TransactionDetailRows', w4,
                     'TransactionExpenseRows', w5,
-                    'ExpensePerPiece', w6
+                    'ExpensePerPiece', w6,
+                    'TotalRefferencedAmount', w6
                 ]);
             }
         }

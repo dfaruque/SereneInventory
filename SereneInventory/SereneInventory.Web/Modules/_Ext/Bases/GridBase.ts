@@ -1,21 +1,23 @@
-﻿declare namespace Slick {
-    class AutoColumnSize {
-
-    }
-}
-
+﻿/// <reference path="../_q/_q.d.ts" />
 namespace _Ext {
-    declare function SerenityInlineEditor(args: any): void;
 
     @Serenity.Decorators.filterable()
     export class GridBase<TItem, TOptions>
         //this comment is for preventing replacement 
         extends Serenity.EntityGrid<TItem, TOptions> {
+
+        protected get_ExtGridOptions(): ExtGridOptions { return Q.deepClone(q.DefaultMainGridOptions); }
+        protected isPickerMode(): boolean { return this.element.hasClass('RowSelectionCheckGrid'); }
+
         isReadOnly: boolean;
         isRequired: boolean;
         isAutosized = false;
         isChildGrid = false;
+        nextRowNumber = 1;
         public autoColumnSizePlugin;
+
+        public rowSelection = new Serenity.GridRowSelectionMixin(this);
+        public pickerDialog: GridItemPickerDialog;
 
         constructor(container: JQuery, options?: TOptions) {
             super(container, options);
@@ -27,7 +29,9 @@ namespace _Ext {
 
             setTimeout(() => {
                 if (this.isAutosized == false) {
-                    this.resizeAllCulumn();
+                    if (this.get_ExtGridOptions().AutoColumnSize == true) {
+                        this.resizeAllCulumn();
+                    }
                     this.slickContainer.fadeTo(100, 1);
                 }
             }, 100);
@@ -60,7 +64,9 @@ namespace _Ext {
                     title: 'View as Report',
                     icon: 'fa fa-html5',
                     onClick: () => {
-                        ReportHelper.execute({ reportKey: reportRequest.ReportKey, params: { request: this.getReportRequest() }, extension: 'html' });
+                        let request = this.getReportRequest();
+                        if (request)
+                            ReportHelper.execute({ reportKey: reportRequest.ReportKey, params: { request: request }, extension: 'html' });
                     }
                 });
 
@@ -87,14 +93,13 @@ namespace _Ext {
             return buttons;
         }
 
-        protected getReportRequest()//: _Ext.ReportRequest
-        {
+        protected getReportRequest(): _Ext.ListReportRequest {
             let view = this.getView();
 
             var request = Q.deepClone(view ? view.params : {}) //as _Ext.ReportRequest;
-            request.ReportServiceMethodName = null;     // if some value found in this property than "view as report" button will appear
-            request.ReportKey = null;                   // if some value found in this property than "export to pdf" button will appear
-            request.ListExcelServiceMethodName = null;  // if some value found in this property than "export to xls" button will appear
+            request.ReportServiceMethodName = null;     // if some value found in this property then "view as report" button will appear
+            request.ReportKey = null;                   // if some value found in this property then "export to pdf" button will appear
+            request.ListExcelServiceMethodName = null;  // if some value found in this property then "export to xls" button will appear
             request.EqualityFilterWithTextValue = {};
 
             if (view) {
@@ -102,7 +107,7 @@ namespace _Ext {
 
                 for (let quickFilter of quickFilters) {
                     let filterValue = request.EqualityFilter[quickFilter.field];
-                    if (filterValue) {
+                    if (filterValue && filterValue.length > 0) {
                         if (quickFilter.options.lookupKey) {
                             let lookup = Q.getLookup(quickFilter.options.lookupKey);
                             request.EqualityFilterWithTextValue[quickFilter.title] = lookup.itemById[filterValue][lookup.textField];
@@ -112,7 +117,11 @@ namespace _Ext {
                             let enumValue = Q.toId(filterValue);
                             request.EqualityFilterWithTextValue[quickFilter.title] = Serenity.EnumFormatter.format(Serenity.EnumTypeRegistry.get(enumKey), enumValue);
                         }
+                        else if (quickFilter.type == GridItemPickerEditor) {
+                            var customFilter = this.findQuickFilter(GridItemPickerEditor, quickFilter.field);
+                            request.EqualityFilterWithTextValue[quickFilter.title] = customFilter.text;
 
+                        }
                         else {
                             request.EqualityFilterWithTextValue[quickFilter.title] = filterValue;
                         }
@@ -124,19 +133,19 @@ namespace _Ext {
                         let filterText = '';
 
                         if (!Q.isEmptyOrNull(dateFrom))
-                            filterText = 'From ' + dateFrom
+                            filterText = Q.format(q.text('Controls.FromDate', 'From {0}'), dateFrom) + ' ';
 
                         if (!Q.isEmptyOrNull(dateTo))
-                            filterText = filterText + ' To ' + dateTo
+                            filterText = filterText + Q.format(q.text('Controls.ToDate', 'To {0}'), dateTo);
 
                         if (!Q.isEmptyOrNull(filterText)) {
                             request.EqualityFilterWithTextValue[quickFilter.title] = filterText
                         }
-                        else if (q.DefaultMainGridOptions.ShowAnyInEqualityFilterWithTextValue == true) {
-                            request.EqualityFilterWithTextValue[quickFilter.title] = 'all'
+                        else if (this.get_ExtGridOptions().ShowAnyInEqualityFilterWithTextValue == true) {
+                            request.EqualityFilterWithTextValue[quickFilter.title] = q.text('Controls.All', 'all')
                         }
-                    } else if (q.DefaultMainGridOptions.ShowAnyInEqualityFilterWithTextValue == true) {
-                        request.EqualityFilterWithTextValue[quickFilter.title] = 'all'
+                    } else if (this.get_ExtGridOptions().ShowAnyInEqualityFilterWithTextValue == true) {
+                        request.EqualityFilterWithTextValue[quickFilter.title] = q.text('Controls.All', 'all')
                     }
                 }
 
@@ -146,139 +155,218 @@ namespace _Ext {
         }
 
         protected getColumns(): Slick.Column[] {
-            let cols = super.getColumns();
+            let columns = super.getColumns();
 
-            let isEditable = this.getSlickOptions().editable
+            let isEditable = this.getSlickOptions().editable;
+            let extOptions = this.get_ExtGridOptions();
 
-            cols.forEach(c => {
+            if (isEditable == true) {
+                usingSlickGridEditors();
+            }
 
-                c.width = c.minWidth || c.width || 50;
-                c.cssClass = c.cssClass || '';
-                if (c.sourceItem) {
-                    if (c.sourceItem.filteringType == String("Lookup")) {
-                        c.cssClass += ' align-left';
-                        if (c.sourceItem.editorType == "Lookup") {
-                            (c as any).lookup = Q.getLookup(c.sourceItem.editorParams.lookupKey)
-                            c.formatter = (row, cell, value, columnDef: any, dataContext) => {
+            columns.forEach(column => {
+                if (extOptions.AutoColumnSize == true) {
+                    column.width = column.minWidth || column.width || 50;
+                    column.cssClass = column.cssClass || '';
+                }
+
+                if (column.sourceItem) {
+                    let formatterType = column.sourceItem.formatterType;
+                    //width and cssClass
+                    if (column.sourceItem.filteringType == "Lookup") {
+                        column.cssClass += ' align-left';
+                        column.width = column.minWidth > 100 ? column.minWidth : 100;
+                    } else if (formatterType == "Enum") {
+                        column.width = column.minWidth > 100 ? column.minWidth : 100;
+                    } else if (formatterType == "Date") {
+                        column.cssClass += ' align-center';
+                        column.width = column.minWidth > 99 ? column.minWidth : 99;
+                    } else if (formatterType == "DateTime") {
+                        column.cssClass += ' align-center';
+                        column.width = column.minWidth > 140 ? column.minWidth : 140;
+                    } else if (formatterType == "Number") {
+                        column.cssClass += ' align-right';
+
+                    } else if (formatterType == "Checkbox") {
+                        column.cssClass += ' align-center';
+                    } else {
+                        column.cssClass += ' align-left';
+                        column.width = column.minWidth > 99 ? column.minWidth : 99;
+                    }
+
+                    //formatter
+                    if (column.sourceItem.editorType == "Lookup") {
+                        if (!column.sourceItem.editorParams.autoComplete) {
+                            (column as any).lookup = Q.getLookup(column.sourceItem.editorParams.lookupKey)
+                            column.formatter = (row, cell, value, columnDef: any, dataContext) => {
                                 let item = columnDef.lookup.itemById[value];
                                 if (item) return item[columnDef.lookup.textField];
                                 else return '-';
                             };
                         }
-                        //c.width = c.minWidth > 160 ? c.minWidth : 160;
-                    } else if (c.sourceItem.formatterType == String("Enum")) {
-                        //c.cssClass += ' align-center';
+                    } else if (formatterType == "Enum") {
 
-                        c.formatter = (row, cell, value, columnDef: any, dataContext) => {
+                        column.formatter = (row, cell, value, columnDef: any, dataContext) => {
                             let enumKey = columnDef.sourceItem.editorParams.enumKey
                             let text = Serenity.EnumFormatter.format(Serenity.EnumTypeRegistry.get(enumKey), Q.toId(value));
                             if (text) return text;
                             else return '-';
                         };
-                    } else if (c.sourceItem.formatterType == String("Date")) {
-                        c.cssClass += ' align-center';
-                        c.width = c.minWidth > 99 ? c.minWidth : 99;
-                    } else if (c.sourceItem.formatterType == String("DateTime")) {
-                        c.cssClass += ' align-center';
-                        c.width = c.minWidth > 140 ? c.minWidth : 140;
-                    } else if (c.sourceItem.formatterType == String("Number")) {
-                        c.cssClass += ' align-right';
-                        if (c.sourceItem.editorType == String("Decimal")) {
+                    } else if (column.sourceItem.editorType == "Decimal") {
 
-                            let formatSrt = '#,##0.00';
+                        let formatSrt = '#,##0.00';
 
-                            if (c.sourceItem.editorParams) {
-                                let decimals = c.sourceItem.editorParams['decimals'];
-                                if (decimals) {
-                                    formatSrt = '#,##0.'
-                                    for (let i = 0; i < decimals; i++) {
-                                        formatSrt += '0'
-                                    }
-                                }
-                                else if (c.sourceItem.editorParams['minValue']) {
-                                    let splitedMinValue = (c.sourceItem.editorParams['minValue'] as string).split('.');
-                                    if (splitedMinValue.length > 1) {
-                                        formatSrt = '#,##0.' + splitedMinValue[1];
-                                    } else {
-                                        formatSrt = '#,##0';
-
-                                    }
+                        if (column.sourceItem.editorParams) {
+                            let decimals = column.sourceItem.editorParams['decimals'];
+                            if (decimals) {
+                                formatSrt = '#,##0.'
+                                for (let i = 0; i < decimals; i++) {
+                                    formatSrt += '0'
                                 }
                             }
+                            else if (column.sourceItem.editorParams['minValue']) {
+                                let splitedMinValue = (column.sourceItem.editorParams['minValue'] as string).split('.');
+                                if (splitedMinValue.length > 1) {
+                                    formatSrt = '#,##0.' + splitedMinValue[1];
+                                } else {
+                                    formatSrt = '#,##0';
 
-                            c.format = ctx => Serenity.NumberFormatter.format(ctx.value, formatSrt);
+                                }
+                            }
                         }
 
-                    } else if (c.sourceItem.formatterType == String("Checkbox")) {
-                        c.cssClass += ' align-center';
-                    } else {
-                        c.cssClass += ' align-left';
-                        c.width = c.minWidth > 99 ? c.minWidth : 99;
+                        column.format = ctx => Serenity.NumberFormatter.format(ctx.value, formatSrt);
                     }
-
 
                     //editor
-                    if (isEditable == true && c.sourceItem.readOnly != true) {
+                    if (isEditable == true && column.sourceItem.readOnly != true) {
                         if (q.useSerenityInlineEditors) {
-                            c.editor = SerenityInlineEditor;
+                            column.editor = SerenityInlineEditor;
                         } else {
-                            if (c.sourceItem.editorType == "Lookup" || c.sourceItem.editorType == "Enum") {
-                                c.editor = Slick['Editors']['Select2'];
-                                c.width = c.minWidth > 160 ? c.minWidth : 160;
-                            } else if (c.sourceItem.editorType == "Date") {
-                                c.editor = Slick['Editors']['Date'];
-                            } else if (c.sourceItem.editorType == "Boolean") {
-                                c.editor = Slick['Editors']['Checkbox'];
-                            } else if (c.sourceItem.editorType == "Integer") {
-                                c.editor = Slick['Editors']['Integer'];
-                            } else if (c.sourceItem.editorType == "Decimal") {
-                                c.editor = Slick['Editors']['Float'];
-                            } else if (c.sourceItem.editorType == "YesNoSelect") {
-                                c.editor = Slick['Editors']['YesNoSelect'];
-                            } else if (c.sourceItem.editorType == "PercentComplete") {
-                                c.editor = Slick['Editors']['PercentComplete'];
-                            } else if (c.sourceItem.editorType == "LongText") {
-                                c.editor = Slick['Editors']['LongText'];
+                            let editorType = column.sourceItem.editorType;
+
+                            if (editorType == "Lookup" || editorType == "Enum") {
+                                column.editor = Slick['Editors']['Select2'];
+                                column.width = column.minWidth > 160 ? column.minWidth : 160;
+                            } else if (editorType == "Date") {
+                                column.editor = Slick['Editors']['Date'];
+                            } else if (editorType == "Boolean") {
+                                column.editor = Slick['Editors']['Checkbox'];
+                            } else if (editorType == "Integer") {
+                                column.editor = Slick['Editors']['Integer'];
+                            } else if (editorType == "Decimal") {
+                                column.editor = Slick['Editors']['Float'];
+                            } else if (editorType == "YesNoSelect") {
+                                column.editor = Slick['Editors']['YesNoSelect'];
+                            } else if (editorType == "PercentComplete") {
+                                column.editor = Slick['Editors']['PercentComplete'];
+                            } else if (editorType == "LongText") {
+                                column.editor = Slick['Editors']['LongText'];
                             } else {
-                                c.editor = Slick['Editors']['Text'];
+                                column.editor = Slick['Editors']['Text'];
                             }
                         }
                     }
-                } else {
-                    c.cssClass += ' align-left';
-                    c.width = c.minWidth > 99 ? c.minWidth : 99;
                 }
-
             });
 
-            cols.unshift({
-                field: 'inline-actions',
-                name: '',
-                width: 25,
-                minWidth: 25,
-                maxWidth: 25,
-                format: ctx => '<a class="inline-action view-details" title="view details"><i class="view-details fa fa-pencil-square-o"></i></a>'
-                //+ '<a class="inline-action delete-row" title="delete"><i class="fa fa-trash-o text-red"></i></a>'
-            },
-                {
-                    field: 'RowNum',
-                    name: '#',
-                    cssClass: 'align-center',
-                    headerCssClass: 'align-center',
-                    width: 40,
-                    minWidth: 40,
-                    maxWidth: 40,
-                    //format: ctx => (ctx.row + 1).toString()
+            columns.unshift({
+                field: 'RowNum',
+                name: '#',
+                cssClass: 'rownum-column',
+                headerCssClass: 'align-center',
+                width: 40,
+                minWidth: 40,
+                maxWidth: 40,
+                visible: extOptions.ShowRowNumberColumn,
+                format: ctx => {
+                    if (!ctx.item.RowNum) {
+                        ctx.item.RowNum = this.nextRowNumber++;
+                    }
+                    return String(ctx.item.RowNum);
+                }
+            });
+
+            if (extOptions.ShowInlineActionsColumn == true) {
+                let inlineActionsColumnWidth = 0;
+                let inlineActionsColumnContent = '';
+
+                if (extOptions.ShowEditInlineButtun == true) {
+                    inlineActionsColumnWidth += 32;
+                    var title = this.isReadOnly ? q.text('Controls.View', 'View Details') : q.text('Controls.Edit', 'Edit');
+                    inlineActionsColumnContent += `<a class="inline-actions view-details" title="${title}" style="padding: 0 5px;"><i class="view-details fa fa-pencil-square-o"></i></a>`;
+                }
+
+                if (extOptions.ShowDeleteInlineButtun == true) {
+                    inlineActionsColumnWidth += 22;
+                    inlineActionsColumnContent += `<a class="inline-actions delete-row" title="${q.text('Controls.Delete', 'Delete')}" style="padding-left: 5px;"><i class="delete-row fa fa-trash-o text-red"></i></a>`;
+                }
+
+                if (extOptions.ShowPrintInlineButtun == true) {
+                    inlineActionsColumnWidth += 25;
+                    inlineActionsColumnContent += `<a class="inline-actions print-row" title="${q.text('Controls.Print', 'Print')}" style="padding-left: 5px;"><i class="print-row fa fa-print"></i></a>`;
+                }
+
+                columns.unshift({
+                    field: 'inline-actions',
+                    name: '',
+                    cssClass: 'inline-actions-column',
+                    width: inlineActionsColumnWidth,
+                    minWidth: inlineActionsColumnWidth,
+                    maxWidth: inlineActionsColumnWidth,
+                    format: ctx => inlineActionsColumnContent
+                });
+            }
+
+            if (extOptions.ShowRowSelectionCheckboxColumn == true) {
+                let rowSelectionCol = Serenity.GridRowSelectionMixin.createSelectColumn(() => this.rowSelection);
+                rowSelectionCol.width = rowSelectionCol.minWidth = rowSelectionCol.maxWidth = 25
+                columns.unshift(rowSelectionCol);
+            }
+
+            if (this.isPickerMode()) { //show checkbox column in picker mode
+                let options = (this.options as any) as GridItemPickerEditorOptions;
+                if (!options.multiple && !options.gridType) {
+                    Q.notifyWarning("Could not determine multiple/single. Probably there is no 'options' parameter in grid's constructor.");
+                }
+
+                //remove edit link in picker mode
+                columns.forEach(column => {
+                    if (column.sourceItem && column.sourceItem.editLink)
+                        column.format = undefined;
                 });
 
-            return cols;
+                if (options.multiple == true) {
+                    let rowSelectionCol = Serenity.GridRowSelectionMixin.createSelectColumn(() => this.rowSelection);
+                    rowSelectionCol.width = rowSelectionCol.minWidth = rowSelectionCol.maxWidth = 25
+                    columns.unshift(rowSelectionCol);
+                } else {
+                    columns.unshift({
+                        field: 'row-selection',
+                        name: '',
+                        cssClass: 'inline-actions-column',
+                        width: 66,
+                        minWidth: 66,
+                        maxWidth: 66,
+                        format: ctx => '<a class="inline-actions select-row"><i class="select-row fa fa-check"></i> Select</a>'
+                    });
+
+                }
+
+            }
+
+            return columns;
         }
 
         protected createSlickGrid() {
             var grid = super.createSlickGrid();
-            this.autoColumnSizePlugin = new Slick.AutoColumnSize();
-            grid.registerPlugin(this.autoColumnSizePlugin);
 
+            usingSlickAutoColumnSize();
+
+            if (Slick.AutoColumnSize) {
+                this.autoColumnSizePlugin = new Slick.AutoColumnSize();
+                grid.registerPlugin(this.autoColumnSizePlugin);
+            }
             grid.registerPlugin(new Slick.Data.GroupItemMetadataProvider());
 
             return grid;
@@ -291,7 +379,9 @@ namespace _Ext {
             this.slickGrid.setColumns(columns);
 
             setTimeout(() => {
-                this.resizeAllCulumn();
+                if (this.get_ExtGridOptions().AutoColumnSize == true) {
+                    this.resizeAllCulumn();
+                }
                 this.slickContainer.fadeTo(100, 1);
             }, 100);
 
@@ -302,9 +392,9 @@ namespace _Ext {
 
             let gridContainerWidth = this.slickContainer.width();
 
-            if (gridContainerWidth == 0) {
-                gridContainerWidth = this.element.closest('.s-Dialog').width() - 55;
-            }
+            if (gridContainerWidth > 0) { } else { gridContainerWidth = this.element.closest('.s-Dialog').width() - 55; }
+            if (gridContainerWidth > 0) { } else { gridContainerWidth = this.element.closest('.s-Panel').width() - 55; }
+            if (gridContainerWidth > 0) { } else { gridContainerWidth = $('section.content').width() - 75; }
 
             this.slickGrid.setOptions({ forceFitColumns: false });
 
@@ -375,7 +465,7 @@ namespace _Ext {
                 let fixedSizeColumnsWidth = 0;
                 fixedSizeColumns.map(m => m.width).forEach(e => fixedSizeColumnsWidth += e);
 
-                let stretchableGridAreaWidth = gridContainerWidth - fixedSizeColumnsWidth - 18;
+                let stretchableGridAreaWidth = gridContainerWidth - fixedSizeColumnsWidth - (this.isChildGrid ? 48 : 18);
 
                 let resizableColumnsWidth = 0;
                 resizableColumns
@@ -383,7 +473,14 @@ namespace _Ext {
                     .forEach(e => resizableColumnsWidth += e);
 
                 resizableColumns.forEach(c => {
-                    c.width = c.width * (stretchableGridAreaWidth / resizableColumnsWidth);
+                    let widthMultiplyingFactor = stretchableGridAreaWidth / resizableColumnsWidth;
+                    let newWidth = c.width * widthMultiplyingFactor;
+                    let increment = newWidth - c.width;
+
+                    //if (increment <= 200) // maximum streching is 200
+                    c.width = newWidth;
+                    //else c.width = c.width + 200;
+
                 });
 
                 this.slickGrid.setColumns(allVisibleColumns);
@@ -395,7 +492,10 @@ namespace _Ext {
 
         protected getSlickOptions() {
             let opt = super.getSlickOptions();
-            opt.forceFitColumns = true;
+            if (this.get_ExtGridOptions().AutoColumnSize == true) {
+                opt.forceFitColumns = true;
+            }
+
             opt.enableTextSelectionOnCells = true;
 
             opt.enableCellNavigation = true;
@@ -406,6 +506,15 @@ namespace _Ext {
 
         }
 
+        protected getViewOptions() {
+            let opt = super.getViewOptions();
+
+            opt.rowsPerPage = q.DefaultMainGridOptions.RowsPerPage;
+
+            return opt;
+        }
+
+        protected getPrintRowServiceMethod() { return 'Print' }
 
         protected onClick(e: JQueryEventObject, row: number, cell: number) {
             super.onClick(e, row, cell);
@@ -418,10 +527,10 @@ namespace _Ext {
             var target = $(e.target);
 
             // if user clicks "i" element, e.g. icon
-            if (target.parent().hasClass('inline-action') || target.parent().hasClass('inline-btn'))
+            if (target.parent().hasClass('inline-action') || target.parent().hasClass('inline-actions') || target.parent().hasClass('inline-btn'))
                 target = target.parent();
 
-            if (target.hasClass('inline-action') || target.hasClass('inline-btn')) {
+            if (target.hasClass('inline-action') || target.hasClass('inline-actions') || target.hasClass('inline-btn')) {
                 //e.preventDefault();
 
                 this.onInlineActionClick(target, recordId, item);
@@ -431,57 +540,130 @@ namespace _Ext {
 
         protected onInlineActionClick(target: JQuery, recordId, item: TItem): void {
             if (target.hasClass('delete-row')) {
-                Q.confirm('Delete record?', () => {
-                    let o = this as any;
-                    if (o.deleteEntity) { //for in-memory grid
-                        o.deleteEntity(recordId);
-                    }
-                    else {
-                        Q.serviceRequest(this.getService() + '/Delete', { EntityId: recordId }, response => {
-                            this.refresh();
-                        });
-                    }
-                });
+                if (this.isReadOnly == true) {
+                    Q.notifyWarning('Read only records could not be deleted!');
+                } else {
+                    Q.confirm('Delete record?', () => {
+                        let o = this as any;
+                        if (o.deleteEntity) { //for in-memory grid
+                            o.deleteEntity(recordId);
+                        }
+                        else {
+                            Q.serviceRequest(this.getService() + '/Delete', { EntityId: recordId }, response => {
+                                this.refresh();
+                            });
+                        }
+                    });
+                }
             }
             else if (target.hasClass('view-details')) {
+                (this.slickGrid as any).getEditController().commitCurrentEdit();
+
                 this.editItem(recordId);
+            }
+            else if (target.hasClass('print-row')) {
+                let request: Serenity.RetrieveRequest = { EntityId: recordId };
+
+                Q.postToService({ service: Q.resolveUrl(this.getService() + '/' + this.getPrintRowServiceMethod()), request: request, target: '_blank' });
+            }
+            else if (target.hasClass('select-row')) {
+                this.rowSelection.setSelectedKeys([recordId]);
+                this.pickerDialog.onSuccess(this.selectedItems);
+                this.pickerDialog.dialogClose();
             }
         }
 
-        protected onViewProcessData(response: Serenity.ListResponse<TItem>): Serenity.ListResponse<TItem> {
-            let r = super.onViewProcessData(response);
-            let items = r.Entities
-            let grouping_levels = this.view.getGrouping();
+        protected resetRowNumber() {
+            this.nextRowNumber = 1;
+            let items = this.getItems();
 
-            if (grouping_levels.length == 0) {
+            let grouping_fields = this.view.getGrouping();
+
+            if (grouping_fields.length == 0) {
                 for (let i = 0; i < items.length; i++) {
-                    (items[i] as any).RowNum = response.Skip + i + 1;
+                    (items[i] as any).RowNum = i + 1;
                 }
-            } else if (grouping_levels.length = 1) {
+            } else if (grouping_fields.length > 0) {
 
-                let groups = this.view.getGroups();
-
-                let generateRowNumber = () => {
-                    groups = this.view.getGroups();
+                let generateRowNumber = (groups: Slick.Group<any>[]) => {
 
                     for (let gi = 0; gi < groups.length; gi++) {
-                        let rows = groups[gi].rows;
-                        for (let i = 0; i < rows.length; i++) {
-
-                            let item = (items as any[]).filter(f => f.Id == (rows[i] as any).Id)[0];
-                            if (item)
-                                (item as any).RowNum = i + 1;
+                        let subGroups = groups[gi].groups;
+                        if (subGroups) {
+                            generateRowNumber(subGroups);
+                        } else {
+                            let rows = groups[gi].rows;
+                            for (let i = 0; i < rows.length; i++) {
+                                rows[i].RowNum = i + 1;
+                            }
                         }
                     }
                 };
 
-                if (groups.length == 0) {
-                    setTimeout(generateRowNumber);
-                } else {
-                    generateRowNumber();
-                }
+                let groups = this.view.getGroups();
+                generateRowNumber(groups);
+            }
+
+            this.setItems(items);
+        }
+
+        protected setGrouping(groupInfo: Slick.GroupInfo<TItem>[]): void {
+            this.view.setGrouping(groupInfo);
+            this.resetRowNumber();
+        }
+
+        protected onViewProcessData(response: Serenity.ListResponse<TItem>): Serenity.ListResponse<TItem> {
+            let r = super.onViewProcessData(response);
+
+            if (this.get_ExtGridOptions().ShowRowNumberColumn == true) {
+                setTimeout(() => { this.resetRowNumber() });
             }
             return r;
         }
+
+        public initDialog(dialog: DialogBase<TItem, any>): void {
+            super.initDialog(dialog);
+
+            dialog.parentGrid = this;
+        }
+
+        get selectedItems() {
+            return this.rowSelection.getSelectedKeys().map(m => {
+                let item = this.view.getItemById(m);
+
+                if (!item) {
+                    item = {} as any;
+                    item[this.getIdProperty()] = m
+                }
+
+                return item
+            })
+        }
+
+        set selectedKeys(value: any[]) {
+            let options = (this.options as any) as GridItemPickerEditorOptions;
+            if (options.multiple == true) {
+                this.rowSelection.setSelectedKeys(value);
+            } else {
+
+            }
+        }
+
+        protected onViewSubmit() {
+            if (!super.onViewSubmit()) {
+                return false;
+            }
+
+            let options = (this.options as any) as GridItemPickerEditorOptions;
+
+            if (options.filteringCriteria) {
+
+                var request = this.view.params as Serenity.ListRequest;
+
+                request.Criteria = Serenity.Criteria.and(request.Criteria, options.filteringCriteria);
+            }
+            return true;
+        }
+
     }
 }

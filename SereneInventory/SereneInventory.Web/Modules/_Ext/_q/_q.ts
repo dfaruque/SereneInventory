@@ -1,17 +1,17 @@
-﻿/// <reference path="../Bases/GridBase.ts" />
-/// <reference path="../Bases/ReportGridBase.ts" />
-/// <reference path="../Bases/DialogBase.ts" />
-/// <reference path="../Editors/EditorDialogBase.ts" />
-/// <reference path="../Editors/GridEditorBase.ts" />
+﻿namespace q {
+    export function text(key: string, fallback: string): string {
+        var result = Q.text(key);
 
-var isPageRefreshRequired: boolean;
-//const nameof = <T>(name: keyof T) => name;
-const nameofFactory = <T>() => (name: keyof T) => name;
-//usage const nameof = nameofFactory<Edoc.RevenueReportModel>();
+        if (result == key) return fallback;
+        else return result;
+    }
 
-namespace q {
     export function isCosmicThemeApplied(): boolean {
         return document.body.className.indexOf('cosmic') >= 0;
+    }
+
+    export function getSelectedLanguage(): string {
+        return (document.getElementById('LanguageSelect') as HTMLSelectElement).value;
     }
 
     export function formatDecimal(value) {
@@ -49,28 +49,3 @@ namespace q {
 
 }
 
-interface GridEditorOptions {
-    isReadOnly?: boolean; //false
-    height?: number;
-    autoHeight?: boolean;//true
-    width?: number;
-    showCaption?: boolean;//false
-    hideToolbar?: boolean;//false
-}
-
-interface GridOptions {
-    AutoColumnSize: boolean,
-    FadeInEffectWhenInit: boolean,
-    ShowAnyInEqualityFilterWithTextValue: boolean,
-}
-
-interface DialogOptions {
-    AutoFitContentArea: boolean,
-}
-
-
-declare namespace LiteDB {
-    interface ObjectId {
-
-    }
-}

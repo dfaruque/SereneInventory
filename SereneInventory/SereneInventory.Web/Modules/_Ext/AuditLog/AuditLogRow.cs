@@ -9,16 +9,16 @@ namespace _Ext.Entities
     using System.ComponentModel;
     using System.IO;
 
-    [ConnectionKey("Default"), TableName("[dbo].[AuditLog]")]
+    [ConnectionKey("Default"), TableName("[AuditLog]")]
     [DisplayName("Audit Log"), InstanceName("Audit Log"), TwoLevelCached]
     [ReadPermission("Administration:AuditLog")]
     [ModifyPermission("Administration:AuditLog")]
     public sealed class AuditLogRow : Row, IIdRow, INameRow
     {
-        [DisplayName("Id"), PrimaryKey]
+        [DisplayName("Id"), PrimaryKey, NotNull]
         public Int64? Id { get { return Fields.Id[this]; } set { Fields.Id[this] = value; } }
 
-        [DisplayName("Version No"), Size(20), NotNull]
+        [DisplayName("Version No."), Size(20), NotNull]
         public Int32? VersionNo { get { return Fields.VersionNo[this]; } set { Fields.VersionNo[this] = value; } }
 
         [DisplayName("User"), NotNull, QuickFilter]
@@ -29,7 +29,7 @@ namespace _Ext.Entities
         [AuditLogActionTypeFormatter]
         public AuditActionType? ActionType { get { return (AuditActionType?)Fields.ActionType[this]; } set { Fields.ActionType[this] = (int?)value; } }
 
-        [DisplayName("Action Date"), NotNull, QuickFilter]
+        [DisplayName("Action Date"), NotNull, QuickFilter, SortOrder(1, true)]
         [DateTimeEditor, DateTimeFiltering, DateTimeFormatter]
         public DateTime? ActionDate { get { return Fields.ActionDate[this]; } set { Fields.ActionDate[this] = value; } }
 

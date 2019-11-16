@@ -1,7 +1,9 @@
-﻿using Serenity.ComponentModel;
+﻿using Serenity;
+using Serenity.ComponentModel;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -17,32 +19,45 @@ public static class EnumUtil
     public static string GetEnumDescription(this Enum value)
     {
         if (value == null)
-            return null;
+            return string.Empty;
 
-        FieldInfo fi = value.GetType().GetField(value.ToString());
-
-        DescriptionAttribute[] attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
-
-        if (attributes != null &&
-            attributes.Length > 0)
-            return attributes[0].Description;
-        else
-            return value.ToString();
+        return EnumMapper.FormatEnum(value.GetType(), value);
     }
 
-    public static string GetEnumCssClass(this Enum value)
+    public static string GetCssClass(this Enum value, string defaultClass = "")
+    {
+        if (value == null)
+            return defaultClass;
+
+        FieldInfo fieldInfo = value.GetType().GetField(value.ToString());
+
+        var attribute = (CssClassAttribute)fieldInfo.GetCustomAttribute(typeof(CssClassAttribute));
+
+        return attribute?.CssClass ?? defaultClass;
+    }
+
+    public static string GetColumnName(this Enum value)
     {
         if (value == null)
             return "";
 
-        FieldInfo fi = value.GetType().GetField(value.ToString());
+        FieldInfo fieldInfo = value.GetType().GetField(value.ToString());
 
-        CssClassAttribute[] attributes = (CssClassAttribute[])fi.GetCustomAttributes(typeof(CssClassAttribute), false);
+        var attribute = (ColumnAttribute)fieldInfo.GetCustomAttribute(typeof(ColumnAttribute));
 
-        if (attributes != null &&
-            attributes.Length > 0)
-            return attributes[0].CssClass;
-        else
-            return "";
+        return attribute?.Name ?? "";
+    }
+
+    public static T GetAttr<T>(this Enum value)
+        where T : Attribute
+    {
+        if (value == null)
+            return null;
+
+        FieldInfo fieldInfo = value.GetType().GetField(value.ToString());
+
+        var attribute = fieldInfo.GetCustomAttribute<T>();
+
+        return attribute;
     }
 }
