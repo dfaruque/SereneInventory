@@ -20,25 +20,65 @@
 
 <div class="row">
     <div class="col-xs-12">
-        <table class="table table-bordered table-condensed table-excel-exportable">
+        <table class="table table-bordered table-condensed table-excel-exportable" style="font-size:12px">
             <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Order Number</th>
-                    <th>Order Date</th>
+                    <th rowspan="2">#</th>
+                    <th rowspan="2">Item Name</th>
+                    <th colspan="3">Purchase</th>
+                    <th colspan="3">Sales</th>
+                    <th colspan="2">Balance</th>
+                    <th colspan="2">Profit</th>
+                </tr>
+                <tr>
+                    <th>Qty</th>
+                    <th>Avg. Price</th>
+                    <th>Amount</th>
+                    <th>Sales Qty</th>
+                    <th>Avg. Price</th>
+                    <th>Amount</th>
+                    <th>Qty</th>
+                    <th>Amount</th>
+                    <th>Avg.</th>
+                    <th>Total</th>
                 </tr>
             </thead>
             <tbody>
                 @{i = 1;}
-                @foreach (var row in Model.OrderRows)
+                @foreach (var row in Model.Items)
                 {
-                    <tr>
-                        <td class="rpt-id">@i@{i++;} </td>
-                        <td>@row.TransactionNumber</td>
-                        <td class="rpt-date">@row.TransactionDate.ToDateFormat()</td>
-                    </tr>
+                <tr>
+                    <td class="rpt-id">@i@{i++;} </td>
+                    <td>@row.ItemName</td>
+                    <td class="rpt-number">@row.PurchaseQuantity</td>
+                    <td class="rpt-number">@row.AveragePurchasePrice</td>
+                    <td class="rpt-number">@row.PurchaseAmount</td>
+                    <td class="rpt-number">@row.SalesQuantity</td>
+                    <td class="rpt-number">@row.AverageSalesPrice</td>
+                    <td class="rpt-number">@row.SalesAmount</td>
+                    <td class="rpt-number">@row.RemainigQuantity</td>
+                    <td class="rpt-number">@row.BalanceAmount</td>
+                    <td class="rpt-number">@row.AverageProfit</td>
+                    <td class="rpt-number">@row.TotalProfit</td>
+                </tr>
                 }
             </tbody>
+            <tfoot>
+                <tr>
+                    <th colspan="2" class="rpt-number">Total </th>
+                    <th class="rpt-number">@Model.Items.Sum(row => row.PurchaseQuantity)</th>
+                    <th class="rpt-number"></th>
+                    <th class="rpt-number">@Model.Items.Sum(row => row.PurchaseAmount)</th>
+                    <th class="rpt-number">@Model.Items.Sum(row => row.SalesQuantity)</th>
+                    <th class="rpt-number"></th>
+                    <th class="rpt-number">@Model.Items.Sum(row => row.SalesAmount)</th>
+                    <th class="rpt-number">@Model.Items.Sum(row => row.RemainigQuantity)</th>
+                    <th class="rpt-number">@Model.Items.Sum(row => row.BalanceAmount)</th>
+                    <th class="rpt-number"></th>
+                    <th class="rpt-number">@Model.Items.Sum(row => row.TotalProfit)</th>
+                </tr>
+
+            </tfoot>
         </table>
 
     </div>

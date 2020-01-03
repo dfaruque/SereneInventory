@@ -205,7 +205,7 @@ namespace SereneInventory
         {
             public static LocalText Name = "BERC";
             public static LocalText Title = "Turki Winning Tex";
-            public static LocalText Address = "House # 21, Road # 09, Sector # 09, Uttara, Dhaka, Bangladesh";
+            public static LocalText Address = "House # 9, Road # 09, Sector # 09, Uttara, Dhaka, Bangladesh";
             public static LocalText Contact = "+88-01923-763784, +88-01762-691101";
         }
 
