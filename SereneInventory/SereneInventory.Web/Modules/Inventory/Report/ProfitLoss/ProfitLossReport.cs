@@ -46,7 +46,7 @@
                 .Select(Sql.Avg(tdfld.Amount.Expression), nameof(ItemModel.PurchaseAmount))
                 .Where(tdfld.TransactionTransactionType == (int)TransactionType.PurchaseInvoice)
                 .Where(tdfld.TransactionTransactionDate >= request.DateFrom)
-                .Where(tdfld.TransactionTransactionType <= request.DateTo)
+                .Where(tdfld.TransactionTransactionDate <= request.DateTo)
                 .GroupBy(tdfld.ProductName)
                 ;
 
@@ -59,7 +59,7 @@
                 .Select(Sql.Avg(tdfld.Amount.Expression), nameof(ItemModel.SalesAmount))
                 .Where(tdfld.TransactionTransactionType == (int)TransactionType.SalesInvoice)
                 .Where(tdfld.TransactionTransactionDate >= request.DateFrom)
-                .Where(tdfld.TransactionTransactionType <= request.DateTo)
+                .Where(tdfld.TransactionTransactionDate <= request.DateTo)
                 .GroupBy(tdfld.ProductName)
                 ;
 
