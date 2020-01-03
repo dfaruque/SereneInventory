@@ -122,23 +122,23 @@
         public Decimal? TotalExpense { get { return Fields.TotalExpense[this]; } set { Fields.TotalExpense[this] = value; } }
         public partial class RowFields { public DecimalField TotalExpense; }
 
-        const string totalRefferencedQuantityExp = @"ISNULL((SELECT SUM(d.Quantity) 
-FROM TransactionDetail d 
-Join TransactionDetail rd ON rd.Id = d.RefTransactionDetailId
-WHERE rd.TransactionId = T0.Id), 0)";
-        [DisplayName("Remaining Quantity"), Expression(totalQuantityExp + " - " + totalRefferencedQuantityExp)]
-        [ReadOnly(true)]
-        public Decimal? RemainingQuantity { get { return Fields.RemainingQuantity[this]; } set { Fields.RemainingQuantity[this] = value; } }
-        public partial class RowFields { public DecimalField RemainingQuantity; }
+//        const string totalRefferencedQuantityExp = @"ISNULL((SELECT SUM(d.Quantity) 
+//FROM TransactionDetail d 
+//Join TransactionDetail rd ON rd.Id = d.RefTransactionDetailId
+//WHERE rd.TransactionId = T0.Id), 0)";
+//        [DisplayName("Remaining Quantity"), Expression(totalQuantityExp + " - " + totalRefferencedQuantityExp)]
+//        [ReadOnly(true)]
+//        public Decimal? RemainingQuantity { get { return Fields.RemainingQuantity[this]; } set { Fields.RemainingQuantity[this] = value; } }
+//        public partial class RowFields { public DecimalField RemainingQuantity; }
 
-        const string totalRefferencedAmountExp = @"ISNULL((SELECT SUM(d.Amount) 
-FROM TransactionDetail d 
-Join TransactionDetail rd ON rd.Id = d.RefTransactionDetailId
-WHERE rd.TransactionId = T0.Id), 0)";
-        [DisplayName("Total Refferenced Amount"), Expression(totalRefferencedAmountExp)]
-        [ReadOnly(true)]
-        public Decimal? TotalRefferencedAmount { get { return Fields.TotalRefferencedAmount[this]; } set { Fields.TotalRefferencedAmount[this] = value; } }
-        public partial class RowFields { public DecimalField TotalRefferencedAmount; }
+//        const string totalRefferencedAmountExp = @"ISNULL((SELECT SUM(d.Amount) 
+//FROM TransactionDetail d 
+//Join TransactionDetail rd ON rd.Id = d.RefTransactionDetailId
+//WHERE rd.TransactionId = T0.Id), 0)";
+//        [DisplayName("Total Refferenced Amount"), Expression(totalRefferencedAmountExp)]
+//        [ReadOnly(true)]
+//        public Decimal? TotalRefferencedAmount { get { return Fields.TotalRefferencedAmount[this]; } set { Fields.TotalRefferencedAmount[this] = value; } }
+//        public partial class RowFields { public DecimalField TotalRefferencedAmount; }
 
         IIdField IIdRow.IdField { get { return Fields.Id; } }
 

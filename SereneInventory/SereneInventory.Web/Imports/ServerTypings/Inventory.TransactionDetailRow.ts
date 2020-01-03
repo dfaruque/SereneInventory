@@ -2,7 +2,6 @@
     export interface TransactionDetailRow {
         Id?: number;
         TransactionId?: number;
-        RefTransactionDetailId?: number;
         ProductId?: number;
         Quantity?: number;
         UnitPrice?: number;
@@ -12,7 +11,6 @@
         TransactionTransactionNumber?: string;
         TransactionTransactionDate?: string;
         TransactionPartyId?: number;
-        RefTransactionDetailTransactionId?: number;
         RefTransactionTransactionType?: number;
         RefTransactionRefTransactionId?: number;
         RefTransactionTransactionNumber?: string;
@@ -24,7 +22,6 @@
         ProductDescription?: string;
         ProductImages?: string;
         LookupText?: string;
-        RemainingQuantity?: number;
         Remarks?: string;
         IUserId?: number;
         TenantId?: number;
@@ -47,7 +44,6 @@
         export declare const enum Fields {
             Id = "Id",
             TransactionId = "TransactionId",
-            RefTransactionDetailId = "RefTransactionDetailId",
             ProductId = "ProductId",
             Quantity = "Quantity",
             UnitPrice = "UnitPrice",
@@ -57,7 +53,6 @@
             TransactionTransactionNumber = "TransactionTransactionNumber",
             TransactionTransactionDate = "TransactionTransactionDate",
             TransactionPartyId = "TransactionPartyId",
-            RefTransactionDetailTransactionId = "RefTransactionDetailTransactionId",
             RefTransactionTransactionType = "RefTransactionTransactionType",
             RefTransactionRefTransactionId = "RefTransactionRefTransactionId",
             RefTransactionTransactionNumber = "RefTransactionTransactionNumber",
@@ -69,7 +64,6 @@
             ProductDescription = "ProductDescription",
             ProductImages = "ProductImages",
             LookupText = "LookupText",
-            RemainingQuantity = "RemainingQuantity",
             Remarks = "Remarks",
             IUserId = "IUserId",
             TenantId = "TenantId",

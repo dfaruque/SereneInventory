@@ -10,7 +10,7 @@
     using System.IO;
 
     [ConnectionKey("Default"), TableName("[dbo].[TransactionDetail]")]
-    [DisplayName("Transaction Detail"), InstanceName("Transaction Detail"), TwoLevelCached]
+    [DisplayName("Transaction Item"), InstanceName("Transaction Item"), TwoLevelCached]
     [ReadPermission("Inventory:TransactionDetail:Read")]
     [InsertPermission("Inventory:TransactionDetail:Insert")]
     [UpdatePermission("Inventory:TransactionDetail:Update")]
@@ -28,10 +28,10 @@
         public Int64? TransactionId { get { return Fields.TransactionId[this]; } set { Fields.TransactionId[this] = value; } }
         public partial class RowFields { public Int64Field TransactionId; }
 
-        [DisplayName("Ref. Transaction Detail"), ForeignKey("[dbo].[TransactionDetail]", "Id"), LeftJoin("jRefTransactionDetail")]
-        [LookupEditor(typeof(PurchaseInvoiceDetailLookup)/*, CascadeFrom = nameof(RefTransactionDetailTransactionId), CascadeField = nameof(TransactionDetailRow.TransactionId)*/)]
-        public Int64? RefTransactionDetailId { get { return Fields.RefTransactionDetailId[this]; } set { Fields.RefTransactionDetailId[this] = value; } }
-        public partial class RowFields { public Int64Field RefTransactionDetailId; }
+        //[DisplayName("Ref. Transaction Detail"), ForeignKey("[dbo].[TransactionDetail]", "Id"), LeftJoin("jRefTransactionDetail")]
+        //[LookupEditor(typeof(PurchaseInvoiceDetailLookup)/*, CascadeFrom = nameof(RefTransactionDetailTransactionId), CascadeField = nameof(TransactionDetailRow.TransactionId)*/)]
+        //public Int64? RefTransactionDetailId { get { return Fields.RefTransactionDetailId[this]; } set { Fields.RefTransactionDetailId[this] = value; } }
+        //public partial class RowFields { public Int64Field RefTransactionDetailId; }
 
         [DisplayName("Product"), ForeignKey("[dbo].[Product]", "Id"), LeftJoin("jProduct"), TextualField("ProductName")]
         [LookupEditor(typeof(ProductRow), InplaceAdd = true)]
@@ -73,11 +73,11 @@
         public Int64? TransactionPartyId { get { return Fields.TransactionPartyId[this]; } set { Fields.TransactionPartyId[this] = value; } }
         public partial class RowFields { public Int64Field TransactionPartyId; }
 
-        [DisplayName("Ref. Transaction"), Expression("jRefTransactionDetail.[TransactionId]")]
-        [ForeignKey(typeof(TransactionRow)), LeftJoin("jRefTransaction")]
-        [LookupEditor(typeof(TransactionRow))]
-        public Int64? RefTransactionDetailTransactionId { get { return Fields.RefTransactionDetailTransactionId[this]; } set { Fields.RefTransactionDetailTransactionId[this] = value; } }
-        public partial class RowFields { public Int64Field RefTransactionDetailTransactionId; }
+        //[DisplayName("Ref. Transaction"), Expression("jRefTransactionDetail.[TransactionId]")]
+        //[ForeignKey(typeof(TransactionRow)), LeftJoin("jRefTransaction")]
+        //[LookupEditor(typeof(TransactionRow))]
+        //public Int64? RefTransactionDetailTransactionId { get { return Fields.RefTransactionDetailTransactionId[this]; } set { Fields.RefTransactionDetailTransactionId[this] = value; } }
+        //public partial class RowFields { public Int64Field RefTransactionDetailTransactionId; }
 
         [DisplayName("Ref. Transaction Transaction Type"), Expression("jRefTransaction.[TransactionType]")]
         public Int32? RefTransactionTransactionType { get { return Fields.RefTransactionTransactionType[this]; } set { Fields.RefTransactionTransactionType[this] = value; } }
@@ -126,13 +126,13 @@
 
         #endregion Foreign Fields
 
-        const string totalRefferencedQuantityExp = @"ISNULL((SELECT SUM(rd.Quantity) 
-FROM TransactionDetail rd 
-WHERE T0.Id = rd.RefTransactionDetailId), 0)";
-        [DisplayName("Remaining Quantity"), Expression("T0.Quantity - " + totalRefferencedQuantityExp)]
-        [ReadOnly(true), MinSelectLevel(SelectLevel.List)]
-        public Decimal? RemainingQuantity { get { return Fields.RemainingQuantity[this]; } set { Fields.RemainingQuantity[this] = value; } }
-        public partial class RowFields { public DecimalField RemainingQuantity; }
+//        const string totalRefferencedQuantityExp = @"ISNULL((SELECT SUM(rd.Quantity) 
+//FROM TransactionDetail rd 
+//WHERE T0.Id = rd.RefTransactionDetailId), 0)";
+//        [DisplayName("Remaining Quantity"), Expression("T0.Quantity - " + totalRefferencedQuantityExp)]
+//        [ReadOnly(true), MinSelectLevel(SelectLevel.List)]
+//        public Decimal? RemainingQuantity { get { return Fields.RemainingQuantity[this]; } set { Fields.RemainingQuantity[this] = value; } }
+//        public partial class RowFields { public DecimalField RemainingQuantity; }
 
 
         IIdField IIdRow.IdField { get { return Fields.Id; } }

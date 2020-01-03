@@ -25,7 +25,7 @@ namespace SereneInventory.Inventory.Columns
         public Int64 PartyId { get; set; }
         public Decimal TotalQuantity { get; set; }
         public Decimal TotalAmount { get; set; }
-        public Decimal RemainingQuantity { get; set; }
+        //public Decimal RemainingQuantity { get; set; }
         public Int64 TenantId { get; set; }
     }
 }
