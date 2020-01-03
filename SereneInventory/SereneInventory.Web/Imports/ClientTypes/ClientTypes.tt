@@ -14,18 +14,6 @@
 
     var generator = new ClientTypesGenerator();
     generator.RootNamespaces.Add("SereneInventory");
-
-    if (System.IO.File.Exists(solutionDir + @"SereneInventory\SereneInventory.Script\SereneInventory.Script.csproj"))
-    {
-        var ssDir = solutionDir + @"SereneInventory\SereneInventory.Script\bin\debug\";
-        var ssTypeLister = new SSTypeLister(
-            ssDir + "Serenity.Script.Imports.dll",
-            ssDir + "Serenity.Script.UI.dll",
-            ssDir + "SereneInventory.Script.dll");
-        var ssTypes = ssTypeLister.List();
-        foreach (var type in ssTypes)
-            generator.AddSSType(type);
-    }
    
     var tsTypeLister = new TSTypeLister(webDir);
     var tsTypes = tsTypeLister.List();
