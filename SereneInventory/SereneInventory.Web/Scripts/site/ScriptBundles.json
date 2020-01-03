@@ -13,7 +13,10 @@
     "~/Scripts/toastr.js",
     "~/Scripts/vegas/vegas.js",
     "~/Scripts/saltarelle/mscorlib.js",
-    "~/Scripts/serenity/Serenity.CoreLib.js"
+    "~/Scripts/react.development.js",
+    "~/Scripts/react-dom.development.js",
+    "~/Scripts/serenity/Serenity.CoreLib.js",
+    "~/Scripts/serenity/Serenity.Script.UI.js"
   ],
   "Site": [
     "~/Modules/_Ext/Editors/slick.editors.js",

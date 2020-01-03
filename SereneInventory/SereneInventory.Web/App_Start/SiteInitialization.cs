@@ -7,6 +7,9 @@
     using Serenity.Web;
     using System;
     using System.Configuration;
+    using System.IO;
+    using System.Reflection;
+    using System.Text;
 
     public static partial class SiteInitialization
     {
@@ -30,6 +33,26 @@
                     registrar.RegisterInstance<IDirectoryService>(new ActiveDirectoryService());
 
                 InitializeExceptionLog();
+            }
+            catch (ReflectionTypeLoadException ex)
+            {
+                StringBuilder sb = new StringBuilder();
+                foreach (Exception exSub in ex.LoaderExceptions)
+                {
+                    sb.AppendLine(exSub.Message);
+                    FileNotFoundException exFileNotFound = exSub as FileNotFoundException;
+                    if (exFileNotFound != null)
+                    {
+                        if (!string.IsNullOrEmpty(exFileNotFound.FusionLog))
+                        {
+                            sb.AppendLine("Fusion Log:");
+                            sb.AppendLine(exFileNotFound.FusionLog);
+                        }
+                    }
+                    sb.AppendLine();
+                }
+                string errorMessage = sb.ToString();
+                //Display or log the error based on your application.
             }
             catch (Exception ex)
             {
