@@ -11,11 +11,6 @@
         TransactionTransactionNumber?: string;
         TransactionTransactionDate?: string;
         TransactionPartyId?: number;
-        RefTransactionTransactionType?: number;
-        RefTransactionRefTransactionId?: number;
-        RefTransactionTransactionNumber?: string;
-        RefTransactionTransactionDate?: string;
-        RefTransactionPartyId?: number;
         ProductName?: string;
         ProductProductType?: number;
         ProductProductCategoryId?: number;
@@ -35,11 +30,6 @@
         export const idProperty = 'Id';
         export const nameProperty = 'LookupText';
         export const localTextPrefix = 'Inventory.TransactionDetail';
-        export const lookupKey = 'Inventory.TransactionDetail';
-
-        export function getLookup(): Q.Lookup<TransactionDetailRow> {
-            return Q.getLookup<TransactionDetailRow>('Inventory.TransactionDetail');
-        }
 
         export declare const enum Fields {
             Id = "Id",
@@ -53,11 +43,6 @@
             TransactionTransactionNumber = "TransactionTransactionNumber",
             TransactionTransactionDate = "TransactionTransactionDate",
             TransactionPartyId = "TransactionPartyId",
-            RefTransactionTransactionType = "RefTransactionTransactionType",
-            RefTransactionRefTransactionId = "RefTransactionRefTransactionId",
-            RefTransactionTransactionNumber = "RefTransactionTransactionNumber",
-            RefTransactionTransactionDate = "RefTransactionTransactionDate",
-            RefTransactionPartyId = "RefTransactionPartyId",
             ProductName = "ProductName",
             ProductProductType = "ProductProductType",
             ProductProductCategoryId = "ProductProductCategoryId",
